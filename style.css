@@ -4636,6 +4636,29 @@ body.product-card-style-plain .hestia-shop {
   margin: 10px 0 0;
 }
 
+/*--------------------------------------------------------------
+## Compatibility with EverestForms
+--------------------------------------------------------------*/
+.everest-forms .evf-field-container .evf-frontend-row input,
+.everest-forms .evf-field-container .evf-frontend-row select,
+.everest-forms .evf-field-container .evf-frontend-row textarea,
+.everest-forms .evf-field-container .evf-frontend-row input:focus,
+.everest-forms .evf-field-container .evf-frontend-row select:focus,
+.everest-forms .evf-field-container .evf-frontend-row textarea:focus  {
+  border: none;
+  border-radius: 0;
+}
+
+.everest-forms .everest-forms-part-button,
+.everest-forms button[type=submit],
+.everest-forms input[type=submit] {
+  padding: 12px 30px;
+  border: none;
+  border-radius: 3px;
+  color: #fff;
+}
+
+
 /* Compatibility with WPForms */
 div.wpforms-container .wpforms-form input[type=date].form-control,
 div.wpforms-container .wpforms-form input[type=datetime].form-control,

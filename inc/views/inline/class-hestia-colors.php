@@ -116,12 +116,14 @@ class Hestia_Colors extends Hestia_Abstract_Main {
 		.btn.btn-primary,
 		.widget_product_search button[type="submit"],
 		.hestia-sidebar-open.btn.btn-rose,
-		.hestia-sidebar-close.btn.btn-rose {
+		.hestia-sidebar-close.btn.btn-rose,
+		.everest-forms button[type=submit].everest-forms-submit-button {
 		    -webkit-box-shadow: 0 2px 2px 0 ' . hestia_hex_rgba( $color_accent, '0.14' ) . ',0 3px 1px -2px ' . hestia_hex_rgba( $color_accent, '0.2' ) . ',0 1px 5px 0 ' . hestia_hex_rgba( $color_accent, '0.12' ) . ';
 		    box-shadow: 0 2px 2px 0 ' . hestia_hex_rgba( $color_accent, '0.14' ) . ',0 3px 1px -2px ' . hestia_hex_rgba( $color_accent, '0.2' ) . ',0 1px 5px 0 ' . hestia_hex_rgba( $color_accent, '0.12' ) . ';
 		}
 		
-		.card .header-primary, .card .content-primary {
+		.card .header-primary, .card .content-primary,
+		.everest-forms button[type=submit].everest-forms-submit-button {
 		    background: ' . esc_html( $color_accent ) . ';
 		}
 		
@@ -141,7 +143,10 @@ class Hestia_Colors extends Hestia_Abstract_Main {
 		.btn.btn-primary:active:hover, 
 		.hestia-sidebar-open.btn.btn-rose:hover,
 		.hestia-sidebar-close.btn.btn-rose:hover,
-		.pagination span.current:hover{
+		.pagination span.current:hover,
+		.everest-forms button[type=submit].everest-forms-submit-button:hover,
+		.everest-forms button[type=submit].everest-forms-submit-button:focus,
+		.everest-forms button[type=submit].everest-forms-submit-button:active {
 			-webkit-box-shadow: 0 14px 26px -12px' . hestia_hex_rgba( $color_accent, '0.42' ) . ',0 4px 23px 0 rgba(0,0,0,0.12),0 8px 10px -5px ' . hestia_hex_rgba( $color_accent, '0.2' ) . ';
 		    box-shadow: 0 14px 26px -12px ' . hestia_hex_rgba( $color_accent, '0.42' ) . ',0 4px 23px 0 rgba(0,0,0,0.12),0 8px 10px -5px ' . hestia_hex_rgba( $color_accent, '0.2' ) . ';
 			color: #fff;
