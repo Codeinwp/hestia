@@ -155,11 +155,33 @@ class Hestia_Child extends Hestia_Abstract_Main {
 
 		/* Style Big Title second button as it was before buttons styling feature */
 		$custom_css .= '
-            .carousel .hestia-big-title-content .buttons > a.btn.btn-primary {
+            .carousel .hestia-big-title-content .buttons > a.btn.btn-primary,
+            .carousel .hestia-big-title-content .buttons > a.btn.btn-right {
                 border-radius: 30px !important;
                 padding: 11px 30px !important;
             }
         ';
+
+		/* Fix reply button on comments */
+		$custom_css .= '
+			.section-comments .comment .media-body .media-footer {
+				top: 5px;
+				right: 0;
+			}
+			.section-comments .comment .media-body .media-heading {
+				padding-right: 50px;
+			}
+			.section-comments .comment {
+				margin-bottom: 30px;
+			}
+		';
+
+		/* Fix spacing between lines with maximum font-size in Big Title section */
+		$custom_css .= '
+			.carousel .hestia-title {
+				line-height: 1.1;
+			}
+		';
 
 		return $custom_css;
 	}
@@ -235,6 +257,23 @@ class Hestia_Child extends Hestia_Abstract_Main {
 				top: 6px;
 		    }
 	    ';
+
+		/* Related products */
+		$custom_css .= '
+			.woocommerce.single-product .related.products {
+				margin-top: 0;
+			}
+			.woocommerce.single-product .upsells.products {
+				padding-bottom: 0;
+			}
+		';
+
+		/* Fix spacing between lines with maximum font-size in Big Title section */
+		$custom_css .= '
+			.carousel .hestia-title {
+				line-height: 1.1;
+			}
+		';
 
 		return $custom_css;
 	}

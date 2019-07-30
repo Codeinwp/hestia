@@ -208,8 +208,8 @@ class Hestia_About_Controls extends Hestia_Register_Customizer_Controls {
 				the_post();
 				get_template_part( 'template-parts/content', 'frontpage' );
 			endwhile;
-		else : // I'm not sure it's possible to have no posts when this page is shown, but WTH
-			get_template_part( 'template-parts/content', 'none' );
+			else : // I'm not sure it's possible to have no posts when this page is shown, but WTH
+				get_template_part( 'template-parts/content', 'none' );
 		endif;
 	}
 

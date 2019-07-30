@@ -34,7 +34,7 @@ do_action( 'hestia_before_index_wrapper' ); ?>
 
 			do_action( 'hestia_before_index_posts_loop' );
 			$paged         = get_query_var( 'paged' ) ? get_query_var( 'paged' ) : 1;
-			$posts_to_skip = ( $paged == 1 ) ? apply_filters( 'hestia_filter_skipped_posts_in_main_loop', array() ) : array();
+			$posts_to_skip = ( $paged === 1 ) ? apply_filters( 'hestia_filter_skipped_posts_in_main_loop', array() ) : array();
 
 			?>
 			<div class="row">
@@ -54,13 +54,13 @@ do_action( 'hestia_before_index_wrapper' ); ?>
 							the_post();
 							$counter ++;
 							$pid = get_the_ID();
-							if ( ! empty( $posts_to_skip ) && in_array( $pid, $posts_to_skip ) ) {
+							if ( ! empty( $posts_to_skip ) && in_array( $pid, $posts_to_skip, true ) ) {
 								$counter ++;
 								continue;
 							}
 							if ( $alternative_blog_layout === 'blog_alternative_layout2' ) {
 								get_template_part( 'template-parts/content', 'alternative-2' );
-							} elseif ( ( $alternative_blog_layout === 'blog_alternative_layout' ) && ( $counter % 2 == 0 ) ) {
+							} elseif ( ( $alternative_blog_layout === 'blog_alternative_layout' ) && ( $counter % 2 === 0 ) ) {
 								get_template_part( 'template-parts/content', 'alternative' );
 							} else {
 								get_template_part( 'template-parts/content' );

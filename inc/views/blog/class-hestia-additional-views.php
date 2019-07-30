@@ -21,7 +21,7 @@ class Hestia_Additional_Views extends Hestia_Abstract_Main {
 
 		add_action( 'hestia_blog_related_posts', array( $this, 'related_posts' ) );
 
-		add_action( 'hestia_do_header', array( $this, 'hidden_sidebars' ) );
+		add_action( 'hestia_before_header_hook', array( $this, 'hidden_sidebars' ) );
 	}
 
 	/**
@@ -44,7 +44,7 @@ class Hestia_Additional_Views extends Hestia_Abstract_Main {
 					array(
 						'u' => $post_link,
 					),
-					'https://www.facebook.com/sharer/sharer.php'
+					'https://www.facebook.com/sharer.php'
 				)
 			);
 
@@ -52,19 +52,23 @@ class Hestia_Additional_Views extends Hestia_Abstract_Main {
 			esc_url(
 				add_query_arg(
 					array(
-						'status' => wp_strip_all_tags( $post_title ) . ' - ' . esc_url( $post_link ),
+						'url'  => $post_link,
+						'text' => rawurlencode( html_entity_decode( wp_strip_all_tags( $post_title ), ENT_COMPAT, 'UTF-8' ) ),
 					),
-					'https://twitter.com/home'
+					'http://twitter.com/share'
 				)
 			);
 
-		$google_url =
+		$email_title = str_replace( '&', '%26', $post_title );
+
+		$email_url =
 			esc_url(
 				add_query_arg(
 					array(
-						'url' => $post_link,
+						'subject' => wp_strip_all_tags( $email_title ),
+						'body'    => $post_link,
 					),
-					'https://plus.google.com/share'
+					'mailto:'
 				)
 			);
 
@@ -85,11 +89,11 @@ class Hestia_Additional_Views extends Hestia_Abstract_Main {
                    <i class="fa fa-twitter"></i>
                 </a>
                 
-                <a target="_blank" rel="tooltip"
-                   data-original-title=" ' . esc_attr__( 'Share on Google+', 'hestia' ) . '"
-                   class="btn btn-just-icon btn-round btn-google"
-                   href="' . $google_url . '">
-                   <i class="fa fa-google"></i>
+                <a rel="tooltip"
+                   data-original-title=" ' . esc_attr__( 'Share on Email', 'hestia' ) . '"
+                   class="btn btn-just-icon btn-round"
+                   href="' . $email_url . '">
+                   <i class="fa fa-envelope"></i>
                </a>
             </div>
 		</div>';

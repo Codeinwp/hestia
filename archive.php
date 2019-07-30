@@ -41,10 +41,10 @@ do_action( 'hestia_before_archive_content' );
 							get_template_part( 'template-parts/content' );
 						endwhile;
 						the_posts_pagination();
-					else :
-						get_template_part( 'template-parts/content', 'none' );
+						else :
+							get_template_part( 'template-parts/content', 'none' );
 					endif;
-					?>
+						?>
 				</div>
 				<?php
 

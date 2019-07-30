@@ -51,8 +51,12 @@ class Hestia_Autoloader {
 			'Hestia_Customizer_Section'                   => HESTIA_CORE_DIR . 'types',
 			'Hestia_Bootstrap_Navwalker'                  => HESTIA_PHP_INCLUDE,
 			'Hestia_Admin_Notices_Manager'                => HESTIA_PHP_INCLUDE . 'admin',
-			'Hestia_Page_Settings'                        => HESTIA_PHP_INCLUDE . 'admin/page-settings',
-			'Hestia_Meta_Radio_Buttons'                   => HESTIA_PHP_INCLUDE . 'admin/page-settings/meta-radio-buttons',
+			'Hestia_Metabox_Manager'                      => HESTIA_PHP_INCLUDE . 'admin/metabox',
+			'Hestia_Metabox_Main'                         => HESTIA_PHP_INCLUDE . 'admin/metabox',
+			'Hestia_Metabox_Controls_Base'                => HESTIA_PHP_INCLUDE . 'admin/metabox',
+			'Hestia_Metabox_Control_Base'                 => HESTIA_PHP_INCLUDE . 'admin/metabox/controls',
+			'Hestia_Metabox_Radio_Image'                  => HESTIA_PHP_INCLUDE . 'admin/metabox/controls',
+			'Hestia_Metabox_Checkbox'                     => HESTIA_PHP_INCLUDE . 'admin/metabox/controls',
 			'Hestia_Customizer_Main'                      => HESTIA_PHP_INCLUDE . 'customizer',
 			'Hestia_Customizer_Notices'                   => HESTIA_PHP_INCLUDE . 'customizer',
 			'Hestia_Sync_About'                           => HESTIA_PHP_INCLUDE . 'customizer',
@@ -93,6 +97,8 @@ class Hestia_Autoloader {
 			'Hestia_Blog_Section_Controls'                => HESTIA_PHP_INCLUDE . 'customizer/front-page',
 			'Hestia_Contact_Controls'                     => HESTIA_PHP_INCLUDE . 'customizer/front-page',
 			'Hestia_Subscribe_Controls'                   => HESTIA_PHP_INCLUDE . 'customizer/front-page',
+			'Hestia_Gutenberg'                            => HESTIA_PHP_INCLUDE . 'compatibility',
+			'Hestia_Header_Footer_Elementor'              => HESTIA_PHP_INCLUDE . 'compatibility/page-builder',
 			'Hestia_Page_Builder_Helper'                  => HESTIA_PHP_INCLUDE . 'compatibility/page-builder',
 			'Hestia_Elementor_Compatibility'              => HESTIA_PHP_INCLUDE . 'compatibility/page-builder',
 			'Hestia_Beaver_Builder_Compatibility'         => HESTIA_PHP_INCLUDE . 'compatibility/page-builder',
@@ -126,7 +132,9 @@ class Hestia_Autoloader {
 			'Hestia_Main_Addon'                           => HESTIA_PHP_INCLUDE . 'addons',
 			'Hestia_Addon_Manager'                        => HESTIA_PHP_INCLUDE . 'addons',
 			'Hestia_Hooks_Page'                           => HESTIA_PHP_INCLUDE . 'addons/admin/hooks-page',
-			'Hestia_Page_Settings_Addon'                  => HESTIA_PHP_INCLUDE . 'addons/admin',
+			'Hestia_Metabox_Addon'                        => HESTIA_PHP_INCLUDE . 'addons/admin',
+			'Hestia_Metabox_View'                         => HESTIA_PHP_INCLUDE . 'views/pluggable',
+
 			'Hestia_Iconpicker'                           => HESTIA_PHP_INCLUDE . 'addons/customizer/controls/iconpicker',
 			'Hestia_Section_Ordering'                     => HESTIA_PHP_INCLUDE . 'addons/customizer/front-page',
 			'Hestia_Clients_Bar_Controls'                 => HESTIA_PHP_INCLUDE . 'addons/customizer/front-page',
@@ -147,6 +155,7 @@ class Hestia_Autoloader {
 			'Hestia_General_Controls_Addon'               => HESTIA_PHP_INCLUDE . 'addons/customizer/general',
 			'Hestia_Header_Controls_Addon'                => HESTIA_PHP_INCLUDE . 'addons/customizer/general',
 			'Hestia_Typography_Controls_Addon'            => HESTIA_PHP_INCLUDE . 'addons/customizer/general',
+			'Hestia_White_Label_Controls_Addon'           => HESTIA_PHP_INCLUDE . 'addons/customizer/general',
 			'Hestia_Customizer_Notices_Addon'             => HESTIA_PHP_INCLUDE . 'addons/customizer',
 			'Hestia_Defaults_Models'                      => HESTIA_PHP_INCLUDE . 'addons/models',
 
@@ -175,7 +184,6 @@ class Hestia_Autoloader {
 			'Hestia_Content_Import'                       => HESTIA_PHP_INCLUDE . 'content-import',
 			'Hestia_Import_Utilities'                     => HESTIA_PHP_INCLUDE . 'content-import',
 			'Hestia_Import_Zerif'                         => HESTIA_PHP_INCLUDE . 'content-import',
-			'Hestia_Import_Zerif_Frontpage'               => HESTIA_PHP_INCLUDE . 'content-import',
 		);
 	}
 

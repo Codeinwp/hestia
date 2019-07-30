@@ -31,6 +31,7 @@ add_filter( 'woocommerce_show_page_title', 'hestia_woocommerce_hide_page_title' 
  * @see hestia_woocommerce_after_shop_loop_item()
  * @see hestia_woocommerce_template_loop_product_title()
  */
+remove_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_show_product_loop_sale_flash', 10 );
 add_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_show_product_loop_sale_flash', 20 );
 
 remove_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail', 10 ); /* Remove the default thumbnail */
@@ -94,3 +95,8 @@ add_action( 'woocommerce_after_cart', 'woocommerce_cross_sell_display' );
  */
 add_action( 'woocommerce_before_cart_totals', 'hestia_woocommerce_before_cart_totals', 1 );
 add_action( 'woocommerce_after_cart_totals', 'hestia_woocommerce_after_cart_totals', 1 );
+
+/**
+ * Change product-category classes based on the customizer layout options for shop loop items
+ */
+add_filter( 'product_cat_class', 'hestia_woocommerce_loop_category_classes', 10, 1 );

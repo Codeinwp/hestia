@@ -36,11 +36,16 @@ class Hestia_Woocommerce_Header_Manager extends Hestia_Abstract_Main {
 		}
 
 		if ( 'classic-blog' === $layout ) {
+			add_filter( 'hestia_boxed_layout', '__return_empty_string' );
 			return false;
 		}
 
 		$header_wrapper_class = 'page-header header-small';
-		$general_layout       = get_theme_mod( 'hestia_general_layout', apply_filters( 'hestia_boxed_layout_default', 1 ) );
+		if ( is_product() ) {
+			$header_wrapper_class = 'page-header';
+		}
+
+		$general_layout = get_theme_mod( 'hestia_general_layout', apply_filters( 'hestia_boxed_layout_default', 1 ) );
 		if ( isset( $general_layout ) && true === (bool) $general_layout ) {
 			$header_wrapper_class .= ' boxed-layout-header';
 		}
@@ -156,7 +161,7 @@ class Hestia_Woocommerce_Header_Manager extends Hestia_Abstract_Main {
 	 * @return void
 	 */
 	private function render_woocommerce_header_background() {
-		$background_image            = $this->get_woocommerce_header_image_url();
+		$background_image            = apply_filters( 'hestia_header_image_filter', $this->get_woocommerce_header_image_url() );
 		$customizer_background_image = get_background_image();
 
 		$header_filter_div = '<div class="header-filter';

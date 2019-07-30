@@ -24,7 +24,7 @@ class Hestia_Color_Controls extends Hestia_Register_Customizer_Controls {
 				array(
 					'label'    => esc_html__( 'Accent Color', 'hestia' ),
 					'section'  => 'colors',
-					'palette'  => false,
+					'palette'  => apply_filters( 'hestia_accent_color_palette', false ),
 					'priority' => 10,
 				),
 				'Hestia_Customize_Alpha_Color_Control'

@@ -156,7 +156,7 @@ class Hestia_Subscribe_Info extends WP_Customize_Control {
 
 		if ( $sib_account === true ) {
 			echo '<br/>';
-			echo '<a target="_blank" href="http://bit.ly/sibcwp" class="button" style="margin-top: 8px">' . esc_html__( 'Create SendinBlue Account', 'hestia' ) . '</a>';
+			echo '<a target="_blank" href="http://bit.ly/sibwp2" class="button" style="margin-top: 8px">' . esc_html__( 'Create SendinBlue Account', 'hestia' ) . '</a>';
 		}
 	}
 

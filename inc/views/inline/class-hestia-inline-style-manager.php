@@ -13,6 +13,7 @@ class Hestia_Inline_Style_Manager extends Hestia_Abstract_Main {
 	 * Add all the hooks necessary.
 	 */
 	public function init() {
+		add_action( 'enqueue_block_editor_assets', array( $this, 'register_google_font' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'register_google_font' ) );
 		add_action( 'after_setup_theme', array( $this, 'sync_new_fs' ) );
 	}

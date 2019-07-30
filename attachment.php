@@ -3,7 +3,7 @@
  * The template for displaying attachments.
  *
  * @package Hestia
- * @since Hestia 1.0
+ * @since   Hestia 1.0
  */
 
 get_header();
@@ -37,23 +37,22 @@ do_action( 'hestia_before_attachment_wrapper' )
 									title="<?php the_title_attribute(); ?>" rel="attachment">
 								<?php echo basename( $post->guid ); ?>
 							</a>
-						<?php
+							<?php
 						endif;
 
-						echo '<p class="sizes">';
-if ( wp_attachment_is_image( get_the_ID() ) ) {
-	echo '<div class="image-meta">';
-	echo '<i class="fa fa-camera"></i> ';
-	/* translators: %s is Image sizes for attachment single page. */
-	printf( esc_html__( 'Size: %s', 'hestia' ), hestia_get_image_sizes() );
+						echo '<p class="sizes">';if ( wp_attachment_is_image( get_the_ID() ) ) {
+							echo '<div class="image-meta">';
+							echo '<i class="fa fa-camera"></i> ';
+							/* translators: %s is Image sizes for attachment single page. */
+							printf( esc_html__( 'Size: %s', 'hestia' ), hestia_get_image_sizes() );
 
-	echo '</div>';
-}
+							echo '</div>';
+						}
 						echo '</p>';
-if ( comments_open() || get_comments_number() ) :
-	comments_template();
+						if ( comments_open() || get_comments_number() ) :
+							comments_template();
 						endif;
-?>
+						?>
 					</div>
 
 				<?php endwhile; ?>

@@ -42,14 +42,14 @@ class Hestia_Public_Typography extends Hestia_Inline_Style_Manager {
 			$custom_css .=
 				'h1, h2, h3, h4, h5, h6, .hestia-title, .hestia-title.title-in-content, p.meta-in-content , .info-title, .card-title,
 		.page-header.header-small .hestia-title, .page-header.header-small .title, .widget h5, .hestia-title, 
-		.title, .card-title, .info-title, .footer-brand, .footer-big h4, .footer-big h5, .media .media-heading, 
+		.title, .footer-brand, .footer-big h4, .footer-big h5, .media .media-heading, 
 		.carousel h1.hestia-title, .carousel h2.title, 
-		.carousel span.sub-title, .woocommerce.single-product h1.product_title, .woocommerce section.related.products h2, .hestia-about h1, .hestia-about h2, .hestia-about h3, .hestia-about h4, .hestia-about h5 {
+		.carousel span.sub-title, .hestia-about h1, .hestia-about h2, .hestia-about h3, .hestia-about h4, .hestia-about h5 {
 			font-family: ' . esc_html( $hestia_headings_font ) . ';
 		}';
 			if ( class_exists( 'WooCommerce' ) ) {
 				$custom_css .=
-					'.woocommerce.single-product .product_title, .woocommerce .related.products h2, .woocommerce span.comment-reply-title {
+					'.woocommerce.single-product h1.product_title, .woocommerce section.related.products h2, .woocommerce span.comment-reply-title, .woocommerce ul.products[class*="columns-"] li.product-category h2 {
 				font-family: ' . esc_html( $hestia_headings_font ) . ';
 			}';
 			}
@@ -193,7 +193,7 @@ class Hestia_Public_Typography extends Hestia_Inline_Style_Manager {
 				break;
 			case 'tablet':
 			case 'mobile':
-				$v3 = ( 36 + (int) $value ) > 0 ? ( 36 + (int) $value ) : 0;
+				$v3 = ( 26 + (int) $value ) > 0 ? ( 26 + (int) $value ) : 0;
 				break;
 		}
 		$custom_css .= ! empty( $v3 ) ? '
@@ -232,11 +232,11 @@ class Hestia_Public_Typography extends Hestia_Inline_Style_Manager {
 				break;
 			case 'tablet':
 			case 'mobile':
-				$v1 = ( 36 + (int) $value ) > 0 ? ( 36 + (int) $value ) : 0;
-				$v2 = ( 32 + (int) $value ) > 0 ? ( 32 + (int) $value ) : 0;
-				$v3 = ( 28 + (int) $value ) > 0 ? ( 28 + (int) $value ) : 0;
-				$v4 = ( 24 + (int) $value ) > 0 ? ( 24 + (int) $value ) : 0;
-				$v5 = ( 21 + (int) $value ) > 0 ? ( 21 + (int) $value ) : 0;
+				$v1 = ( 30 + (int) $value ) > 0 ? ( 30 + (int) $value ) : 0;
+				$v2 = ( 28 + (int) $value ) > 0 ? ( 28 + (int) $value ) : 0;
+				$v3 = ( 24 + (int) $value ) > 0 ? ( 24 + (int) $value ) : 0;
+				$v4 = ( 22 + (int) $value ) > 0 ? ( 22 + (int) $value ) : 0;
+				$v5 = ( 20 + (int) $value ) > 0 ? ( 20 + (int) $value ) : 0;
 				$v6 = ( 18 + (int) $value ) > 0 ? ( 18 + (int) $value ) : 0;
 				break;
 		}

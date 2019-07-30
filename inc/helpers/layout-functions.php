@@ -37,7 +37,8 @@ if ( ! function_exists( 'hestia_wp_link_pages' ) ) {
 			if ( 'number' == $r['next_or_number'] ) {
 				$output .= $r['before'];
 				for ( $i = 1; $i < ( $numpages + 1 ); $i = $i + 1 ) {
-					$j       = str_replace( '%', $i, $r['pagelink'] );
+					$j = str_replace( '%', $i, $r['pagelink'] );
+
 					$output .= ' ';
 					$output .= $r['link_before'];
 					if ( $i != $page || ( ( ! $more ) && ( $page == 1 ) ) ) {
@@ -57,7 +58,8 @@ if ( ! function_exists( 'hestia_wp_link_pages' ) ) {
 			} else {
 				if ( $more ) {
 					$output .= $r['before'];
-					$i       = $page - 1;
+
+					$i = $page - 1;
 					if ( $i && $more ) {
 						$output .= _wp_link_page( $i );
 						$output .= $r['link_before'] . $r['previouspagelink'] . $r['link_after'] . '</a>';
@@ -470,6 +472,40 @@ if ( ! function_exists( 'hestia_hex_rgba' ) ) {
 	}
 }
 
+if ( ! function_exists( 'hestia_generate_gradient_color' ) ) {
+	/**
+	 * Generate gradient second color based on Header Gradient color
+	 *
+	 * @return string RGBA string.
+	 * @since Hestia 1.1.53
+	 *
+	 * @param string $input   the color from which to generate the gradient color.
+	 * @param string $opacity the opacity for the generated color.
+	 */
+	function hestia_generate_gradient_color( $input, $opacity = '' ) {
+
+		$rgb = hestia_hex_rgb( $input );
+
+		$rgb[0] = $rgb[0] + 66;
+		$rgb[1] = $rgb[1] + 28;
+		$rgb[2] = $rgb[2] - 21;
+
+		if ( $rgb[0] >= 255 ) {
+			$rgb[0] = 255;
+		}
+
+		if ( $rgb[1] >= 255 ) {
+			$rgb[1] = 255;
+		}
+
+		if ( $rgb[2] <= 0 ) {
+			$rgb[2] = 0;
+		}
+
+		return hestia_rgb_to_rgba( $rgb, $opacity );
+	}
+}
+
 if ( ! function_exists( 'hestia_adjust_brightness' ) ) {
 	/**
 	 * Generate a new color, darker or lighter.
@@ -491,8 +527,9 @@ if ( ! function_exists( 'hestia_adjust_brightness' ) ) {
 		$color_parts = str_split( $hex, 2 );
 		$return      = '#';
 		foreach ( $color_parts as $color ) {
-			$color   = hexdec( $color ); // Convert to decimal
-			$color   = max( 0, min( 255, $color + $steps ) ); // Adjust color
+			$color = hexdec( $color ); // Convert to decimal
+			$color = max( 0, min( 255, $color + $steps ) ); // Adjust color
+
 			$return .= str_pad( dechex( $color ), 2, '0', STR_PAD_LEFT ); // Make two char hex code
 		}
 
@@ -549,7 +586,7 @@ if ( ! function_exists( 'hestia_layout' ) ) {
 		 * Add main-raised class when the Boxed Layout option is enabled
 		 */
 		if ( isset( $hestia_general_layout ) && $hestia_general_layout == 1 ) {
-			$layout_class .= ' main-raised ';
+			$layout_class .= apply_filters( 'hestia_boxed_layout', ' main-raised ' );
 		}
 
 		/**
@@ -658,6 +695,7 @@ if ( ! function_exists( 'hestia_category' ) ) {
 	 * Displays blog categories
 	 *
 	 * @param boolean $rel_tag should have rel='tag'.
+	 *
 	 * @since Hestia 1.0
 	 *
 	 * @return string

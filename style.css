@@ -5,13 +5,13 @@ Theme URI:      https://themeisle.com/themes/hestia/
 Author:         ThemeIsle
 Author URI:     https://themeisle.com
 Description:    Hestia is a modern WordPress theme for professionals. It fits creative business, small businesses (restaurants, wedding planners, sport/medical shops), startups, corporate businesses, online agencies and firms, portfolios, ecommerce (WooCommerce), and freelancers. It has a multipurpose one-page design, widgetized footer, blog/news page and a clean look, is compatible with: Flat Parallax Slider, Photo Gallery, Travel Map and Elementor Page Builder . The theme is responsive, WPML, Retina ready, SEO friendly, and uses Material Kit for design.
-Version:        2.0.12
+Version:        2.4.8
 License:        GNU General Public License v2 or later
 License URI:    http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain:    hestia
 WordPress Available:  yes
 Requires License:    no
-Tags: blog, custom-logo, portfolio, e-commerce, rtl-language-support, post-formats, grid-layout, one-column, two-columns, custom-background, custom-colors, custom-header, custom-menu, featured-image-header, featured-images, flexible-header, full-width-template, sticky-post, theme-options, threaded-comments, translation-ready
+Tags: blog, custom-logo, portfolio, e-commerce, rtl-language-support, post-formats, grid-layout, one-column, two-columns, custom-background, custom-colors, custom-header, custom-menu, featured-image-header, featured-images, flexible-header, full-width-template, sticky-post, theme-options, threaded-comments, translation-ready, editor-style, footer-widgets, left-sidebar, right-sidebar, wide-blocks
 
 This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned with others.
@@ -208,8 +208,6 @@ h3#ship-to-different-address {
 body,
 .btn,
 .form-control,
-ul,
-ol,
 .woocommerce #reviews #comments label {
   font-size: 14px;
 }
@@ -237,8 +235,15 @@ output {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-weight: 300;
+  font-weight: 500;
   line-height: 1.618;
+}
+
+h5.description,
+h5.subscribe-description,
+.card-product .price h4,
+h4.author {
+  font-weight: 300;
 }
 
 h6.category {
@@ -253,8 +258,12 @@ h6.category {
 .footer-big h4,
 .footer-big h5,
 .media .media-heading,
-.woocommerce.archive .blog-post .products .product-category h2 {
+.woocommerce ul.products[class*="columns-"] li.product-category h2 {
   font-weight: 700;
+}
+
+.hestia-title {
+  word-break: break-word;
 }
 
 button,
@@ -995,17 +1004,17 @@ h6.category {
   text-transform: uppercase;
 }
 
-.hestia-title, .title, .card-title, .info-title, .footer-brand, .footer-big h4, .footer-big h5, .media .media-heading, .woocommerce.archive .blog-post .products .product-category h2 {
+.hestia-title, .title, .card-title, .info-title, .footer-brand, .footer-big h4, .footer-big h5, .media .media-heading, .woocommerce ul.products[class*="columns-"] li.product-category h2 {
   font-family: "Roboto Slab", "Times New Roman", serif;
 }
-.hestia-title, .hestia-title a, .hestia-title a:hover, .title, .title a, .title a:hover, .card-title, .card-title a, .card-title a:hover, .info-title, .info-title a, .info-title a:hover, .footer-brand, .footer-brand a, .footer-brand a:hover, .footer-big h4, .footer-big h4 a, .footer-big h4 a:hover, .footer-big h5, .footer-big h5 a, .footer-big h5 a:hover, .media .media-heading, .media .media-heading a, .media .media-heading a:hover, .woocommerce.archive .blog-post .products .product-category h2, .woocommerce.archive .blog-post .products .product-category h2 a, .woocommerce.archive .blog-post .products .product-category h2 a:hover {
+.hestia-title, .hestia-title a, .hestia-title a:hover, .title, .title a, .title a:hover, .card-title, .card-title a, .card-title a:hover, .info-title, .info-title a, .info-title a:hover, .footer-brand, .footer-brand a, .footer-brand a:hover, .footer-big h4, .footer-big h4 a, .footer-big h4 a:hover, .footer-big h5, .footer-big h5 a, .footer-big h5 a:hover, .media .media-heading, .media .media-heading a, .media .media-heading a:hover, .woocommerce ul.products[class*="columns-"] li.product-category h2, .woocommerce ul.products[class*="columns-"] li.product-category h2 a, .woocommerce ul.products[class*="columns-"] li.product-category h2 a:hover {
   color: #3C4858;
   text-decoration: none;
   word-wrap: break-word;
 }
 
 .page-header .hestia-title {
-  line-height: 1.1;
+  line-height: 1.4;
 }
 
 .title-in-content {
@@ -1041,6 +1050,10 @@ h2.hestia-title {
 
 .description, .card-description, .footer-big {
   color: #999999;
+}
+
+.card-description.entry-content {
+  color: #3C4858;
 }
 
 .subscribe-line-image .subscribe-description {
@@ -1116,10 +1129,10 @@ h2.hestia-title {
 
 .tooltip {
   opacity: 0;
-  -webkit-transition: opacity,-webkit-transform 0.2s ease;
-  transition: opacity,-webkit-transform 0.2s ease;
-  transition: opacity,transform 0.2s ease;
-  transition: opacity,transform 0.2s ease,-webkit-transform 0.2s ease;
+  -webkit-transition: opacity, -webkit-transform 0.2s ease;
+  transition: opacity, -webkit-transform 0.2s ease;
+  transition: opacity, transform 0.2s ease;
+  transition: opacity, transform 0.2s ease, -webkit-transform 0.2s ease;
   -webkit-transform: translate3d(0, 5px, 0);
   -ms-transform: translate3d(0, 5px, 0);
   transform: translate3d(0, 5px, 0);
@@ -1380,6 +1393,13 @@ input[type="radio"] + label, input[type="checkbox"] + label {
   font-weight: 400;
 }
 
+blockquote cite {
+  font-size: .8em;
+  color: #777;
+  font-style: normal;
+  font-weight: 400;
+}
+
 /*--------------------------------------------------------------
 ## Buttons
 --------------------------------------------------------------*/
@@ -1420,11 +1440,6 @@ input[type="button"],
   white-space: normal;
   letter-spacing: 0;
   text-transform: uppercase;
-  will-change: box-shadow,transform;
-}
-
-.fca_qc_next_question {
-  will-change: unset;
 }
 
 input[type="number"] {
@@ -3427,6 +3442,10 @@ body.admin-bar .navbar {
   text-align: center;
 }
 
+.product-category.product h2.woocommerce-loop-category__title {
+  font-size: 18px !important;
+}
+
 /* Hide the second image which is used on swap-images hover effect */
 .card-product.card-hover-style-pop-and-glow .card-image a img:nth-of-type(2),
 .card-product.card-hover-style-swap-images .card-image a img:nth-of-type(2) {
@@ -3435,16 +3454,19 @@ body.admin-bar .navbar {
 
 /* Swap-images hover effect */
 .card-product.card-hover-style-swap-images:hover .card-image {
-  -webkit-transform: none;
-  -moz-transform: none;
-  -ms-transform: none;
-  -o-transform: none;
   transform: none;
 }
 .card-product.card-hover-style-swap-images:hover .card-image a img:nth-of-type(2) {
   display: block;
   position: absolute;
   top: 0;
+}
+
+/* Raise card-plain on shop loop items
+ * without adding box-shadow
+ */
+.card-product.card-plain .card-image {
+  margin-top: -30px;
 }
 
 .img-thumbnail {
@@ -3947,8 +3969,13 @@ table > tbody > tr:last-child,
 /*--------------------------------------------------------------
 ## Header
 --------------------------------------------------------------*/
-.header-layout-classic-blog.page:not(.home) .main-raised {
+.header-layout-classic-blog.page:not(.home):not(.archive) .main-raised {
   border-radius: 0;
+}
+
+.header-layout-classic-blog:not(.page-template-default):not(.home):not(.archive).woocommerce.archive .main-raised, .header-layout-classic-blog:not(.page-template-default):not(.home):not(.archive).single .main-raised,
+.header-layout-classic-blog:not(.page-template-default):not(.home):not(.archive) .main-raised {
+  margin-top: 0;
 }
 
 /*--------------------------------------------------------------
@@ -4185,6 +4212,7 @@ table > tbody > tr:last-child,
   position: relative;
   -webkit-backface-visibility: hidden;
   -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: unset;
 }
 .section-image:after {
   display: block;
@@ -4409,7 +4437,7 @@ body.product-card-style-plain .hestia-shop {
 .hestia-work .col-md-6 .card-background .content {
   padding-top: 20%;
 }
-.hestia-work .card-background:hover a {
+.hestia-work .card-background:hover a:hover {
   opacity: 1;
 }
 .hestia-work .card-background:hover .content {
@@ -4441,6 +4469,7 @@ body.product-card-style-plain .hestia-shop {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  z-index: 1;
 }
 
 .hestia-portfolio-modal {
@@ -6033,10 +6062,6 @@ dl dd, pre {
   margin-left: 24px;
 }
 
-article.sticky h2:before {
-  content: "Featured: ";
-}
-
 img.centered, .aligncenter {
   display: block;
   margin: 0 auto 24px;
@@ -6369,6 +6394,49 @@ aside .widget a {
 }
 
 /*--------------------------------------------------------------
+## Gutenberg Blocks
+--------------------------------------------------------------*/
+figure.wp-block-pullquote {
+  border-left: none;
+  border-top: 4px solid;
+  border-bottom: 4px solid;
+  margin: 20px 0;
+  padding: 3em 0;
+}
+figure.wp-block-pullquote p {
+  font-size: 28px;
+  font-style: normal;
+  margin-bottom: 20px;
+}
+figure.wp-block-pullquote blockquote {
+  margin: 1em;
+  border: none;
+}
+figure.wp-block-pullquote cite {
+  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: 300;
+}
+
+.single-post-wrap .has-small-font-size, .page-content-wrap .has-small-font-size {
+  font-size: 13px;
+}
+.single-post-wrap .has-medium-font-size, .page-content-wrap .has-medium-font-size {
+  font-size: 20px;
+}
+.single-post-wrap .has-large-font-size, .page-content-wrap .has-large-font-size {
+  font-size: 36px;
+}
+.single-post-wrap .has-huge-font-size, .page-content-wrap .has-huge-font-size {
+  font-size: 48px;
+}
+
+.wp-block-separator:not(.is-style-wide):not(.is-style-dots) {
+  max-width: 150px;
+  border-bottom: 0;
+}
+
+/*--------------------------------------------------------------
 # Page
 --------------------------------------------------------------*/
 .page-header .container,
@@ -6557,6 +6625,25 @@ aside .widget a {
   flex: 1 0 auto;
 }
 
+body:not(.home) .wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+body:not(.home) .wrapper .main {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
+}
+body:not(.home) .wrapper .main .hestia-blogs {
+  flex: 1 0 auto;
+}
+body:not(.home) .wrapper .content-area {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
+}
+
 /*--------------------------------------------------------------
 # Responsive
 --------------------------------------------------------------*/
@@ -6704,6 +6791,9 @@ aside .widget a {
   .single.single-post .section-blog-info .card-profile .card-title,
   .single.single-post .section-blog-info .card-profile .description {
     text-align: center;
+  }
+  .single.single-post .section-blog-info .card-profile .card-avatar {
+    margin-bottom: 20px;
   }
 
   .hestia-sidebar-open,
@@ -7350,12 +7440,19 @@ aside .widget a {
     padding: 30px 0;
   }
 
+  .single-post .page-header.header-small,
+  .page .page-header.header-small,
+  .blog .page-header.header-small,
+  .archive .page-header.header-small,
+  .category .page-header.header-small {
+    min-height: 0;
+  }
   .single-post .page-header.header-small .container,
   .page .page-header.header-small .container,
   .blog .page-header.header-small .container,
   .archive .page-header.header-small .container,
   .category .page-header.header-small .container {
-    padding: 170px 15px 90px;
+    padding: 120px 15px 50px;
   }
   .single-post .page-header.header-small .container .hestia-title,
   .page .page-header.header-small .container .hestia-title,
@@ -7470,9 +7567,6 @@ aside .widget a {
   body.admin-bar .navbar.navbar-scroll-point.navbar-fixed-top.navbar-transparent .navbar-collapse, body.admin-bar .navbar.navbar-scroll-point.header-with-topbar.navbar-fixed-top.navbar-transparent .navbar-collapse {
     max-height: calc(100% - 70px);
     margin-top: 115px;
-  }
-  body.admin-bar.woocommerce.single-product .product {
-    padding-top: 24px;
   }
 }
 @media (max-width: 480px) {
@@ -8069,6 +8163,28 @@ div.wpforms-container .wpforms-form select:focus {
 
 body.fl-builder-edit .navbar.header-with-topbar.navbar-default:not(.navbar-transparent) {
   margin-top: 40px;
+}
+
+/*--------------------------------------------------------------
+## Everest Forms
+--------------------------------------------------------------*/
+.everest-forms .evf-field-container .evf-frontend-row input,
+.everest-forms .evf-field-container .evf-frontend-row select,
+.everest-forms .evf-field-container .evf-frontend-row textarea,
+.everest-forms .evf-field-container .evf-frontend-row input:focus,
+.everest-forms .evf-field-container .evf-frontend-row select:focus,
+.everest-forms .evf-field-container .evf-frontend-row textarea:focus {
+  border: none;
+  border-radius: 0;
+}
+
+.everest-forms .everest-forms-part-button,
+.everest-forms button[type=submit],
+.everest-forms input[type=submit] {
+  padding: 12px 30px;
+  border: none;
+  border-radius: 3px;
+  color: #fff;
 }
 
 /*--------------------------------------------------------------

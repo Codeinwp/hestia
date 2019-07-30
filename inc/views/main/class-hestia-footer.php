@@ -74,6 +74,11 @@ class Hestia_Footer extends Hestia_Abstract_Main {
 	 * @access public
 	 */
 	public function the_footer_content() {
+
+		if ( apply_filters( 'hestia_filter_components_toggle', false, 'footer' ) === true ) {
+			return;
+		}
+
 		hestia_before_footer_trigger();
 
 		?>

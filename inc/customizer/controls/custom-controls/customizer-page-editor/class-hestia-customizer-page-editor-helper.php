@@ -34,8 +34,13 @@ class Hestia_Customizer_Page_Editor_Helper extends Hestia_Abstract_Main {
 				$settings = array(
 					'tinymce' => array(
 						'content_style' => $this->get_editor_style(),
-						'height'        => 260,
 						'rows'          => 55,
+						'setup'         => "function (editor) {
+                 			editor.onInit.add(function(){
+                 			var iframe = document.getElementById('wpeditorwidget_ifr');
+                 			iframe.style.height = '260px';
+                 			});
+                		}",
 					),
 				);
 				wp_editor( '', 'wpeditorwidget', $settings );

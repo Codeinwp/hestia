@@ -187,11 +187,8 @@ function hestia_woocommerce_template_loop_product_thumbnail() {
 		<div class="card-image">
 			<a href="<?php echo esc_url( get_permalink() ); ?>" title="<?php the_title_attribute(); ?>">
 				<?php
-
-				echo wp_kses_post( $thumbnail );
-
+				echo $thumbnail;
 				do_action( 'hestia_shop_after_product_thumbnail' );
-
 				?>
 			</a>
 			<div class="ripple-container"></div>
@@ -509,3 +506,58 @@ function hestia_view_cart_notice() {
 	}
 }
 add_action( 'after_setup_theme', 'hestia_view_cart_notice', 15 );
+
+/**
+ * Change product-category classes based on customizer products layout options and hover effect
+ *
+ * @param array $classes - product-category initial classes.
+ *
+ * @return array $classes - product-category filtered classes.
+ */
+function hestia_woocommerce_loop_category_classes( $classes ) {
+
+	$hestia_product_style = get_theme_mod( 'hestia_product_style', 'boxed' );
+
+	if ( in_array( $hestia_product_style, array( 'plain', 'boxed' ) ) ) {
+		$class = 'card-' . $hestia_product_style;
+		array_push( $classes, $class );
+	}
+
+	$hestia_product_hover_style = get_theme_mod( 'hestia_product_hover_style', 'pop-and-glow' );
+
+	if ( in_array( $hestia_product_hover_style, array( 'pop-and-glow', 'swap-images' ) ) ) {
+		$hover_class = 'card-hover-style-' . $hestia_product_hover_style;
+		array_push( $classes, $hover_class );
+	}
+
+	return $classes;
+}
+
+/**
+ * Function to place the sale tag when classic blog layout is selected for products header.
+ */
+function hestia_sale_tag_placement() {
+	if ( ! is_product() ) {
+		return;
+	}
+
+	remove_action( 'woocommerce_before_single_product_summary', 'woocommerce_show_product_sale_flash', 10 );
+	add_action( 'woocommerce_before_single_product_summary', 'hestia_wrap_product_image', 18 );
+	add_action( 'woocommerce_before_single_product_summary', 'woocommerce_show_product_sale_flash', 21 );
+	add_action( 'woocommerce_before_single_product_summary', 'hestia_close_wrap', 22 );
+}
+add_action( 'hestia_do_header', 'hestia_sale_tag_placement', 15 );
+
+/**
+ * Wrap product image in a div.
+ */
+function hestia_wrap_product_image() {
+	echo '<div class="hestia-product-image-wrap">';
+}
+
+/**
+ * Close product image wrap.
+ */
+function hestia_close_wrap() {
+	echo '</div>';
+}

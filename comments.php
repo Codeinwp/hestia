@@ -6,7 +6,7 @@
  * and the comment form.
  *
  * @package Hestia
- * @since Hestia 1.0
+ * @since   Hestia 1.0
  */
 
 /*
@@ -26,7 +26,7 @@ if ( post_password_required() ) {
 				<h3 class="hestia-title text-center">
 					<?php
 					$comments_number = get_comments_number();
-					if ( 0 == ! $comments_number ) {
+					if ( 0 !== $comments_number ) {
 						if ( 1 === $comments_number ) {
 							/* translators: %s: post title */
 							_x( 'One comment', 'comments title', 'hestia' );

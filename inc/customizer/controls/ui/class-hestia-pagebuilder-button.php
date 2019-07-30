@@ -119,7 +119,7 @@ class Hestia_PageBuilder_Button extends WP_Customize_Control {
 			if ( $builder_value === true ) {
 				switch ( $builder_name ) {
 					case 'elementor':
-						$json['edit_link']['elementor'] = \Elementor\Utils::get_edit_link( $this->pid );
+						$json['edit_link']['elementor'] = \Elementor\Plugin::$instance->documents->get( $this->pid )->get_edit_url();
 						break;
 					case 'beaver':
 						$json['edit_link']['beaver'] = FLBuilderModel::get_edit_url( $this->pid );

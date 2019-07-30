@@ -20,10 +20,10 @@ do_action( 'hestia_before_single_post_wrapper' );
 					the_post();
 					get_template_part( 'template-parts/content', 'single' );
 				endwhile;
-			else :
-				get_template_part( 'template-parts/content', 'none' );
+				else :
+					get_template_part( 'template-parts/content', 'none' );
 			endif;
-			?>
+				?>
 		</div>
 	</div>
 </div>

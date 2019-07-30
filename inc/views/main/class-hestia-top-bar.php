@@ -22,6 +22,9 @@ class Hestia_Top_Bar extends Hestia_Abstract_Main {
 	 * The top bar markup.
 	 */
 	public function top_bar_content() {
+		if ( apply_filters( 'hestia_filter_components_toggle', false, 'header' ) === true ) {
+			return;
+		}
 		$top_bar_is_hidden = get_theme_mod( 'hestia_top_bar_hide', true );
 
 		if ( (bool) $top_bar_is_hidden === true ) {

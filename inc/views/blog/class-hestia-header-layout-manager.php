@@ -85,7 +85,7 @@ class Hestia_Header_Layout_Manager extends Hestia_Abstract_Main {
 		/**
 		 * If it's blog, default will be 'default'
 		 */
-		if ( is_home() ) {
+		if ( is_home() || is_archive() ) {
 			$layout = 'default';
 		}
 
@@ -107,14 +107,15 @@ class Hestia_Header_Layout_Manager extends Hestia_Abstract_Main {
 			}
 
 			if ( is_product() ) {
-				return 'no-content';
+				$layout = get_theme_mod( 'hestia_product_layout', 'no-content' );
+
 			}
 		}
 
 		/**
 		 * Try to get individual layout.
 		 */
-		$individual_layout = get_post_meta( $page_id, 'hestia_header_layout', true );
+		$individual_layout = is_singular()  ? get_post_meta( $page_id, 'hestia_header_layout', true ) : '';
 
 		return ! empty( $individual_layout ) ? $individual_layout : $layout;
 	}
@@ -125,6 +126,7 @@ class Hestia_Header_Layout_Manager extends Hestia_Abstract_Main {
 	public function post_page_header() {
 		$layout = apply_filters( 'hestia_header_layout', get_theme_mod( 'hestia_header_layout', 'default' ) );
 		if ( 'classic-blog' === $layout ) {
+			add_filter( 'hestia_boxed_layout', '__return_empty_string' );
 			return;
 		}
 		$this->display_header( $layout, 'post' );
@@ -166,7 +168,6 @@ class Hestia_Header_Layout_Manager extends Hestia_Abstract_Main {
 		$this->render_header_background();
 		echo '</div>';
 	}
-
 
 	/**
 	 * Decide if header should be before featured post or before content.
@@ -339,11 +340,17 @@ class Hestia_Header_Layout_Manager extends Hestia_Abstract_Main {
 			return $header_content_output;
 		}
 
+		if ( is_home() ) {
+			$header_content_output = '<h1 class="' . esc_attr( $title_class ) . '">' . single_post_title( '', false ) . '</h1>';
+
+			return $header_content_output;
+		}
+
 		$entry_class = '';
 		if ( ! is_page() ) {
 			$entry_class = 'entry-title';
 		}
-		$header_content_output = '<h1 class="' . esc_attr( $title_class ) . ' ' . esc_attr( $entry_class ) . '">' . single_post_title( '', false ) . '</h1>';
+		$header_content_output = '<h1 class="' . esc_attr( $title_class ) . ' ' . esc_attr( $entry_class ) . '">' . wp_kses_post( get_the_title() ) . '</h1>';
 
 		return $header_content_output;
 	}

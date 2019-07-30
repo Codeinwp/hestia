@@ -30,10 +30,10 @@ do_action( 'hestia_before_single_page_wrapper' ); ?>
 					the_post();
 					get_template_part( 'template-parts/content-fullwidth', 'page' );
 				endwhile;
-			else :
-				get_template_part( 'template-parts/content', 'none' );
+				else :
+					get_template_part( 'template-parts/content', 'none' );
 			endif;
-			?>
+				?>
 		</div>
 	</div>
 

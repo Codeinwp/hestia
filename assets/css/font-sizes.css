@@ -11,10 +11,12 @@
 
 @media (max-width: 768px) {
 	.carousel .hestia-title,
-	h1.hestia-title,
+	h1.hestia-title {
+		font-size: 36px;
+	}
 	.page-header.header-small .hestia-title,
 	.page-header.header-small .title {
-		font-size: 36px;
+		font-size: 26px;
 	}
 }
 
@@ -36,6 +38,14 @@ h2.title {
 .woocommerce div.product .product_title,
 .woocommerce .related.products h2 {
 	font-size: 32px;
+}
+
+
+@media (max-width: 768px) {
+	.woocommerce div.product .product_title,
+	.woocommerce .related.products h2 {
+		font-size: 24px;
+	}
 }
 
 .subscribe-line h3.hestia-title,
@@ -153,35 +163,35 @@ h6,
 	.single-post-wrap h1,
 	.page-content-wrap h1,
 	.page-template-template-fullwidth article h1 {
-		font-size: 36px;
+		font-size: 30px;
 	}
 
 	h2,
 	.single-post-wrap h2,
 	.page-content-wrap h2,
 	.page-template-template-fullwidth article h2 {
-		font-size: 32px;
+		font-size: 28px;
 	}
 
 	h3,
 	.single-post-wrap h3,
 	.page-content-wrap h3,
 	.page-template-template-fullwidth article h3 {
-		font-size: 28px;
+		font-size: 24px;
 	}
 
 	h4,
 	.single-post-wrap h4,
 	.page-content-wrap h4,
 	.page-template-template-fullwidth article h4 {
-		font-size: 24px;
+		font-size: 22px;
 	}
 
 	h5,
 	.single-post-wrap h5,
 	.page-content-wrap h5,
 	.page-template-template-fullwidth article h5 {
-		font-size: 21px;
+		font-size: 20px;
 	}
 
 	h6,

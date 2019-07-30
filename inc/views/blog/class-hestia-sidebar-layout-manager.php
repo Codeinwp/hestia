@@ -56,9 +56,11 @@ class Hestia_Sidebar_Layout_Manager extends Hestia_Abstract_Main {
 			return $layout;
 		}
 
-		$individual_layout = get_post_meta( $pid, 'hestia_layout_select', true );
-		if ( ! empty( $individual_layout ) && $individual_layout !== 'default' ) {
-			return $individual_layout;
+		if ( is_singular() ) {
+			$individual_layout = get_post_meta( $pid, 'hestia_layout_select', true );
+			if ( ! empty( $individual_layout ) && $individual_layout !== 'default' ) {
+				return $individual_layout;
+			}
 		}
 
 		return $layout;

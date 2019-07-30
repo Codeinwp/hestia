@@ -40,9 +40,7 @@ class Hestia_Blog_Post_Layout {
 			'row_class'     => $row_class,
 			'layout'        => $layout,
 		);
-		if ( is_search() ) {
-			do_action( 'hestia_before_search_content' );
-		}
+
 		echo $this->get_article( $settings );
 	}
 
@@ -243,6 +241,10 @@ class Hestia_Blog_Post_Layout {
 	 */
 	private function get_theme_excerpt( $type ) {
 		global $post;
+
+		if ( is_post_type_archive() ) {
+			return get_the_excerpt();
+		}
 
 		$content = $this->get_post_content();
 
