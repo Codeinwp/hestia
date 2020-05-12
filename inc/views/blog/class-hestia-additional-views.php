@@ -171,7 +171,7 @@ class Hestia_Additional_Views extends Hestia_Abstract_Main {
 			return;
 		}
 		?>
-		<button class="hestia-scroll-to-top">
+		<button class="hestia-scroll-to-top" aria-label="Scroll to Top">
 			<i class="fa fa-angle-double-up" aria-hidden="true"></i>
 		</button>
 		<?php
