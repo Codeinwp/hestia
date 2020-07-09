@@ -71,7 +71,7 @@ class Hestia_Elementor_Compatibility extends Hestia_Page_Builder_Helper {
 		}
 		$reply = $_POST['reply'];
 		if ( ! empty( $reply ) ) {
-			if ( $reply == 'yes' ) {
+			if ( $reply === 'yes' ) {
 				update_option( 'elementor_disable_color_schemes', 'yes' );
 				update_option( 'elementor_disable_typography_schemes', 'yes' );
 			}
@@ -86,7 +86,7 @@ class Hestia_Elementor_Compatibility extends Hestia_Page_Builder_Helper {
 	 * @return bool
 	 */
 	private function is_plugin_preview() {
-		if ( ( isset( $_REQUEST['action'] ) && 'elementor' == $_REQUEST['action'] ) || isset( $_REQUEST['elementor-preview'] ) ) {
+		if ( ( isset( $_REQUEST['action'] ) && 'elementor' === $_REQUEST['action'] ) || isset( $_REQUEST['elementor-preview'] ) ) {
 			return true;
 		}
 		return false;
@@ -126,7 +126,7 @@ class Hestia_Elementor_Compatibility extends Hestia_Page_Builder_Helper {
 
 		$had_elementor = get_option( 'hestia_had_elementor' );
 		// Ask user if he wants to disable default styling for plugin.
-		if ( $had_elementor == 'no' && $this->is_plugin_preview() ) {
+		if ( $had_elementor === 'no' && $this->is_plugin_preview() ) {
 			wp_enqueue_script( 'hestia-elementor-notice', get_template_directory_uri() . '/assets/js/admin/hestia-elementor-notice.js', array(), HESTIA_VERSION );
 			wp_localize_script(
 				'hestia-elementor-notice',

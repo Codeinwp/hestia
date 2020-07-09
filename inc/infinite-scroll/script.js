@@ -21,12 +21,10 @@ jQuery(document).ready(function($){
                 postWrap.append( '<div class="loading text-center"><i class="fa fa-3x fa-spin fa-spinner" aria-hidden="true"></i></div>' );
             }
 
-            var counter = $('.flex-row').length;
             lock = true;
             var data = {
                 action: 'infinite_scroll',
                 page: page,
-                counter : counter,
                 nonce: infinite.nonce
             };
             $.post(infinite.ajaxurl, data, function(res) {

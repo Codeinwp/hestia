@@ -30,12 +30,6 @@ class Hestia_Admin {
 		 * About page instance
 		 */
 		$config = array(
-			'welcome_notice'      => array(
-				'type'            => 'custom',
-				'notice_class'    => 'ti-welcome-notice updated',
-				'dismiss_option'  => 'hestia_notice_dismissed',
-				'render_callback' => array( $this, 'welcome_notice_content' ),
-			),
 			'footer_messages'     => array(
 				'type'     => 'custom',
 				'messages' => array(
@@ -113,7 +107,6 @@ class Hestia_Admin {
 					'feedzy-rss-feeds',
 					'otter-blocks',
 					'elementor',
-					'wp-product-review',
 					'visualizer',
 					'wpforms-lite',
 					'translatepress-multilingual',
@@ -202,7 +195,16 @@ class Hestia_Admin {
 				),
 			),
 		);
-		if ( class_exists( 'TI_About_Page' ) ) {
+		if ( class_exists( 'Themeisle_Onboarding', false ) ) {
+			$config['welcome_notice']
+				= array(
+					'type'            => 'custom',
+					'notice_class'    => 'ti-welcome-notice updated',
+					'dismiss_option'  => 'hestia_notice_dismissed',
+					'render_callback' => array( $this, 'welcome_notice_content' ),
+				);
+		}
+		if ( class_exists( 'TI_About_Page', false ) ) {
 			TI_About_Page::init( apply_filters( 'hestia_about_page_array', $config ) );
 		}
 	}
@@ -225,68 +227,68 @@ class Hestia_Admin {
 				array(
 					'title'       => __( 'Mobile friendly', 'hestia' ),
 					'description' => __( 'Responsive layout. Works on every device.', 'hestia' ),
-					'is_in_lite'  => 'true',
-					'is_in_pro'   => 'true',
+					'is_in_lite'  => true,
+					'is_in_pro'   => true,
 				),
 				array(
 					'title'       => __( 'WooCommerce Compatible', 'hestia' ),
 					'description' => __( 'Ready for e-commerce. You can build an online store here.', 'hestia' ),
-					'is_in_lite'  => 'true',
-					'is_in_pro'   => 'true',
+					'is_in_lite'  => true,
+					'is_in_pro'   => true,
 				),
 				array(
 					'title'       => __( 'Frontpage Sections', 'hestia' ),
 					'description' => __( 'Big title, Features, About, Team, Testimonials, Subscribe, Blog, Contact', 'hestia' ),
-					'is_in_lite'  => 'true',
-					'is_in_pro'   => 'true',
+					'is_in_lite'  => true,
+					'is_in_pro'   => true,
 				),
 				array(
 					'title'       => __( 'Background image', 'hestia' ),
 					'description' => __( 'You can use any background image you want.', 'hestia' ),
-					'is_in_lite'  => 'true',
-					'is_in_pro'   => 'true',
+					'is_in_lite'  => true,
+					'is_in_pro'   => true,
 				),
 				array(
 					'title'       => __( 'Section Reordering', 'hestia' ),
 					'description' => __( 'The ability to reorganize your Frontpage Sections more easily and quickly.', 'hestia' ),
-					'is_in_lite'  => 'false',
-					'is_in_pro'   => 'true',
+					'is_in_lite'  => false,
+					'is_in_pro'   => true,
 				),
 				array(
 					'title'       => __( 'Shortcodes for each section', 'hestia' ),
 					'description' => __( 'Display a frontpage section wherever you like by adding its shortcode in page or post content.', 'hestia' ),
-					'is_in_lite'  => 'false',
-					'is_in_pro'   => 'true',
+					'is_in_lite'  => false,
+					'is_in_pro'   => true,
 				),
 				array(
 					'title'       => __( 'Header Slider', 'hestia' ),
 					'description' => __( 'You will be able to add more content to your site header with an awesome slider.', 'hestia' ),
-					'is_in_lite'  => 'false',
-					'is_in_pro'   => 'true',
+					'is_in_lite'  => false,
+					'is_in_pro'   => true,
 				),
 				array(
 					'title'       => __( 'Fully Customizable Colors', 'hestia' ),
 					'description' => __( 'Change colors for the header overlay, header text and navbar.', 'hestia' ),
-					'is_in_lite'  => 'false',
-					'is_in_pro'   => 'true',
+					'is_in_lite'  => false,
+					'is_in_pro'   => true,
 				),
 				array(
 					'title'       => __( 'Jetpack Portfolio', 'hestia' ),
 					'description' => __( 'Portfolio section with two possible layouts.', 'hestia' ),
-					'is_in_lite'  => 'false',
-					'is_in_pro'   => 'true',
+					'is_in_lite'  => false,
+					'is_in_pro'   => true,
 				),
 				array(
 					'title'       => __( 'Pricing Plans Section', 'hestia' ),
 					'description' => __( 'A fully customizable pricing plans section.', 'hestia' ),
-					'is_in_lite'  => 'false',
-					'is_in_pro'   => 'true',
+					'is_in_lite'  => false,
+					'is_in_pro'   => true,
 				),
 				array(
 					'title'       => __( 'Quality Support', 'hestia' ),
 					'description' => __( '24/7 HelpDesk Professional Support', 'hestia' ),
-					'is_in_lite'  => 'false',
-					'is_in_pro'   => 'true',
+					'is_in_lite'  => false,
+					'is_in_pro'   => true,
 				),
 			),
 		);
@@ -324,12 +326,12 @@ class Hestia_Admin {
 									$output .= $this->get_feature_title_and_description( $feature );
 									$output .= '</td>';
 								}
-								if ( ! empty( $feature['is_in_lite'] ) && ( $feature['is_in_lite'] == 'true' ) ) {
+								if ( ! empty( $feature['is_in_lite'] ) && ( (bool) $feature['is_in_lite'] === true ) ) {
 									$output .= '<td class="only-lite"><span class="dashicons-before dashicons-yes"></span></td>';
 								} else {
 									$output .= '<td class="only-pro"><span class="dashicons-before dashicons-no-alt"></span></td>';
 								}
-								if ( ! empty( $feature['is_in_pro'] ) && ( $feature['is_in_pro'] == 'true' ) ) {
+								if ( ! empty( $feature['is_in_pro'] ) && ( (bool) $feature['is_in_pro'] === true ) ) {
 									$output .= '<td class="only-lite"><span class="dashicons-before dashicons-yes"></span></td>';
 								} else {
 									$output .= '<td class="only-pro"><span class="dashicons-before dashicons-no-alt"></span></td>';
@@ -492,10 +494,10 @@ class Hestia_Admin {
 			return;
 		}
 
-		if ( $content_imported === 'not-zerif' && in_array( $old_theme, array( 'zerif-pro', 'zerif-lite' ) ) ) {
+		if ( $content_imported === 'not-zerif' && in_array( $old_theme, array( 'zerif-pro', 'zerif-lite' ), true ) ) {
 			set_theme_mod( 'zerif_frontpage_was_imported', 'no' );
 		}
-		if ( ! in_array( $old_theme, array( 'zerif-pro', 'zerif-lite' ) ) ) {
+		if ( ! in_array( $old_theme, array( 'zerif-pro', 'zerif-lite' ), true ) ) {
 			set_theme_mod( 'zerif_frontpage_was_imported', 'not-zerif' );
 		}
 	}
@@ -504,6 +506,9 @@ class Hestia_Admin {
 	 * Render welcome notice content
 	 */
 	public function welcome_notice_content() {
+		if ( ! $this->should_show_welcome ) {
+			return;
+		}
 		$theme_args = wp_get_theme();
 		$name       = apply_filters( 'ti_wl_theme_name', $theme_args->__get( 'Name' ) );
 		$template   = $theme_args->get( 'Template' );
@@ -551,7 +556,8 @@ class Hestia_Admin {
 	 * Load site import module.
 	 */
 	public function load_site_import() {
-		if ( class_exists( 'Themeisle_Onboarding' ) ) {
+		if ( class_exists( 'Themeisle_Onboarding', false ) ) {
+			$this->should_show_welcome = true;
 			Themeisle_Onboarding::instance();
 		}
 	}

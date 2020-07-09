@@ -72,6 +72,12 @@ class Hestia_Blog_Section extends Hestia_Abstract_Main {
 		$wrapper_class   = $is_shortcode === true ? 'is-shortcode' : '';
 		$container_class = $is_shortcode === true ? '' : 'container';
 
+		$html_allowed_strings = array(
+			$hestia_blog_title,
+			$hestia_blog_subtitle,
+		);
+		maybe_trigger_fa_loading( $html_allowed_strings );
+
 		hestia_before_blog_section_trigger(); ?>
 		<section class="hestia-blogs <?php echo esc_attr( $wrapper_class ); ?>" id="blog"
 			data-sorder="hestia_blog" <?php echo wp_kses_post( $section_style ); ?>>
@@ -179,7 +185,7 @@ class Hestia_Blog_Section extends Hestia_Abstract_Main {
 				</div>
 				</article>
 				<?php
-				if ( $i % apply_filters( 'hestia_blog_per_row_no', 3 ) == 0 ) {
+				if ( $i % apply_filters( 'hestia_blog_per_row_no', 3 ) === 0 ) {
 					echo '</div><!-- /.row -->';
 					echo '<div class="row" ' . hestia_add_animationation( 'fade-up' ) . '>';
 				}

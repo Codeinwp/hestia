@@ -178,7 +178,7 @@ class Hestia_Customize_Control_Radio_Image extends WP_Customize_Control {
 				<img src="{{ data.choices[ key ]['url'] }}" alt="{{ data.choices[ key ]['label'] }}"/>
 				<# } else { #>
 				<# if( data.choices[ key ]['icon'] ){ #>
-				<i class="fa fa-{{ data.choices[ key ]['icon'] }}"></i>
+				<i class="fas fa-{{ data.choices[ key ]['icon'] }}"></i>
 				<# }
 				if( data.choices[ key ]['url'] ){
 				#>

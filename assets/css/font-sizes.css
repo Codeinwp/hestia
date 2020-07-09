@@ -36,14 +36,16 @@ h2.title {
 }
 
 .woocommerce div.product .product_title,
-.woocommerce .related.products h2 {
+.woocommerce .related.products h2,
+.woocommerce .exclusive-products h2{
 	font-size: 32px;
 }
 
 
 @media (max-width: 768px) {
 	.woocommerce div.product .product_title,
-	.woocommerce .related.products h2 {
+	.woocommerce .related.products h2,
+    .woocommerce .exclusive-products h2{
 		font-size: 24px;
 	}
 }

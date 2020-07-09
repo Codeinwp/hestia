@@ -235,12 +235,18 @@ wp.customize(
                     propertyUnit: 'px',
                     styleClass: 'hestia-menu-fs'
                 };
-
                 var arraySizes = {
                     size1: { selectors: '.navbar #main-navigation a, .footer .footer-menu li a', values: [12,12,12], limit: 10 }
                 };
-
                 hestiaGetCss( arraySizes, settings, to );
+
+                settings.cssProperty = 'width';
+                arraySizes.size1.selectors = '.footer-big .footer-menu li a[href*="mailto:"]:before, .footer-big .footer-menu li a[href*="tel:"]:before';
+	            hestiaGetCss( arraySizes, settings, to );
+
+	            settings.cssProperty = 'height';
+	            hestiaGetCss( arraySizes, settings, to );
+
             }
         );
     }

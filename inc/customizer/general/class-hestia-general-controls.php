@@ -31,6 +31,7 @@ class Hestia_General_Controls extends Hestia_Register_Customizer_Controls {
 		$this->add_sharing_icons_toggle();
 		$this->add_scrolltop_toggle();
 		$this->add_boxed_layout_toggle();
+		$this->add_shop_sidebar_layout_controls();
 	}
 
 	/**
@@ -181,8 +182,8 @@ class Hestia_General_Controls extends Hestia_Register_Customizer_Controls {
 	 *
 	 * @return array
 	 */
-	private function get_layout_choices() {
-		return array(
+	protected function get_layout_choices( $additional_options = array() ) {
+		$options = array(
 			'full-width'    => array(
 				'url'   => 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAABqAQMAAABknzrDAAAABlBMVEX////V1dXUdjOkAAAAPUlEQVRIx2NgGAUkAcb////Y/+d/+P8AdcQoc8vhH/X/5P+j2kG+GA3CCgrwi43aMWrHqB2jdowEO4YpAACyKSE0IzIuBgAAAABJRU5ErkJggg==',
 				'label' => esc_html__( 'Full Width', 'hestia' ),
@@ -196,6 +197,7 @@ class Hestia_General_Controls extends Hestia_Register_Customizer_Controls {
 				'label' => esc_html__( 'Right Sidebar', 'hestia' ),
 			),
 		);
+		return array_merge( $options, $additional_options );
 	}
 
 
@@ -215,5 +217,60 @@ class Hestia_General_Controls extends Hestia_Register_Customizer_Controls {
 	 */
 	public function rtl_layout_control_left_image() {
 		return 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAABqAgMAAAAjP0ATAAAACVBMVEX///8+yP/V1dXG9YqxAAAAWElEQVR42mNgGAXDE4RCQMDAKONaBQINWqtWrWBatQDIaxg8ygYqQIAOYwC6bwHUmYNH2eBPSMhgBQXKRr0w6oVRL4x6YdQLo14Y9cKoF0a9QCO3jYLhBADvmFlNY69qsQAAAABJRU5ErkJggg==';
+	}
+
+	/**
+	 * Add shop sidebar layout controls.
+	 *
+	 * @return bool
+	 */
+	private function add_shop_sidebar_layout_controls() {
+		if ( ! class_exists( 'WooCommerce' ) ) {
+			return false;
+		}
+
+		$shop_sidebar_options = apply_filters( 'hestia_shop_sidebar_options', array() );
+		$this->add_control(
+			new Hestia_Customizer_Control(
+				'hestia_shop_sidebar_layout',
+				array(
+					'default'           => self::get_shop_sidebar_layout_default(),
+					'sanitize_callback' => array( $this, 'sanitize_shop_sidebar_value' ),
+				),
+				array(
+					'label'    => esc_html__( 'Shop Sidebar Layout', 'hestia' ),
+					'section'  => 'hestia_general',
+					'priority' => 22,
+					'choices'  => $this->get_layout_choices( $shop_sidebar_options ),
+				),
+				'Hestia_Customize_Control_Radio_Image'
+			)
+		);
+
+		return true;
+	}
+
+	/**
+	 * Get default value for shop sidebar.
+	 *
+	 * @return string
+	 */
+	public static function get_shop_sidebar_layout_default() {
+		return get_theme_mod( 'hestia_page_sidebar_layout', 'full-width' );
+	}
+
+	/**
+	 * Sanitize shop sidebar value.
+	 *
+	 * @param string $value Shop sidebar value.
+	 *
+	 * @return string
+	 */
+	public function sanitize_shop_sidebar_value( $value ) {
+		$accepted_vals = array( 'full-width', 'sidebar-left', 'sidebar-right', 'off-canvas' );
+		if ( ! in_array( $value, $accepted_vals, true ) ) {
+			return 'full-width';
+		}
+		return $value;
 	}
 }

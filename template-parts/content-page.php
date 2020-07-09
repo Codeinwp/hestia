@@ -27,6 +27,8 @@ $wrap_class     = apply_filters( 'hestia_filter_page_content_classes', 'col-md-8
 
 				the_content();
 
+				echo apply_filters( 'hestia_filter_blog_social_icons', '' );
+
 				if ( comments_open() || get_comments_number() ) :
 					comments_template();
 				endif;

@@ -226,7 +226,7 @@ class Notification extends Abstract_Module {
 	/**
 	 * Get last notification details.
 	 *
-	 * @return array Last notification details.
+	 * @return int Last notification details.
 	 */
 	private static function get_last_active_notification_timestamp() {
 		$notification = self::get_notifications_metadata();
@@ -374,6 +374,10 @@ class Notification extends Abstract_Module {
 		if ( empty( $id ) ) {
 			wp_send_json( [] );
 		}
+		$ids = wp_list_pluck( self::$notifications, 'id' );
+		if ( ! in_array( $id, $ids, true ) ) {
+			wp_send_json( [] );
+		}
 		self::set_last_active_notification_timestamp();
 		update_option( $id, $confirm );
 		do_action( $id . '_process_confirm', $confirm );
@@ -430,6 +434,9 @@ class Notification extends Abstract_Module {
 	 * @return Notification Module instance.
 	 */
 	public function load( $product ) {
+		if ( apply_filters( 'themeisle_sdk_hide_notifications', false ) ) {
+			return;
+		}
 		$this->product = $product;
 
 		$notifications       = apply_filters( 'themeisle_sdk_registered_notifications', [] );

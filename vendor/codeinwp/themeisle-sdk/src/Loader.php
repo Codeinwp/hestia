@@ -51,11 +51,11 @@ final class Loader {
 		'uninstall_feedback',
 		'licenser',
 		'endpoint',
-		'notification',
 		'logger',
 		'translate',
 		'review',
 		'recommendation',
+		'notification',
 
 	];
 
@@ -76,6 +76,28 @@ final class Loader {
 	}
 
 	/**
+	 * Get cache token used in API requests.
+	 *
+	 * @return string Cache token.
+	 */
+	public static function get_cache_token() {
+		$cache_token = get_transient( 'themeisle_sdk_cache_token' );
+		if ( false === $cache_token ) {
+			$cache_token = wp_generate_password( 6, false );
+			set_transient( $cache_token, WEEK_IN_SECONDS );
+		}
+
+		return $cache_token;
+	}
+
+	/**
+	 * Clear cache token.
+	 */
+	public static function clear_cache_token() {
+		delete_transient( 'themeisle_sdk_cache_token' );
+	}
+
+	/**
 	 * Register product into SDK.
 	 *
 	 * @param string $base_file The product base file.
@@ -84,7 +106,7 @@ final class Loader {
 	 */
 	public static function add_product( $base_file ) {
 
-		if ( ! is_readable( $base_file ) ) {
+		if ( ! is_file( $base_file ) ) {
 			return self::$instance;
 		}
 		$product = new Product( $base_file );

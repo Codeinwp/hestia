@@ -16,7 +16,7 @@ class Hestia_Shop_Controls extends Hestia_Front_Page_Section_Controls_Abstract {
 	 * @return array | null
 	 */
 	protected function set_section_data() {
-		if ( ! class_exists( 'WooCommerce' ) ) {
+		if ( ! class_exists( 'WooCommerce', false ) ) {
 			return null;
 		}
 		return array(
@@ -30,7 +30,7 @@ class Hestia_Shop_Controls extends Hestia_Front_Page_Section_Controls_Abstract {
 	 * Add controls.
 	 */
 	public function add_controls() {
-		if ( ! class_exists( 'WooCommerce' ) ) {
+		if ( ! class_exists( 'WooCommerce', false ) ) {
 			return;
 		}
 		$this->add_content_controls();

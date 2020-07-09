@@ -169,7 +169,7 @@
             var packageSelector = '.home .hestia-pricing .hestia-table-' + tableNumber + ' .hestia-pricing-icon-wrapper';
 
             if ( newval ) {
-                $( packageSelector + ' i' ).removeClass().addClass( 'fa' ).addClass( newval );
+                $( packageSelector + ' i' ).removeClass().addClass( newval );
                 $( packageSelector ).addClass( 'pricing-has-icon' ).css( {'display' : 'block', 'color' : accent_color } );
             } else {
                 $( packageSelector + '.pricing-has-icon .card-title' ).css( { 'font-size' : '60px', 'margin-top' : '30px'  } );
@@ -304,7 +304,8 @@
                 'hestia_blog_hide',
                 'hestia_blog_title',
                 'hestia_contact_hide',
-                'hestia_contact_title'
+                'hestia_contact_title',
+                'hestia_contact_info'
             ];
 
             /**
@@ -318,7 +319,8 @@
                 'hestia_subscribe_hide',
                 'hestia_subscribe_title',
                 'hestia_contact_hide',
-                'hestia_contact_title'
+                'hestia_contact_title',
+                'hestia_contact_info'
             ];
             fakeShortcutClasses.forEach(function (element) {
                 $('.customize-partial-edit-shortcut-'+element).on('click',function () {
@@ -346,7 +348,7 @@
                             }
 
                             if( to === true ){
-                                $('.home.page .navbar').addClass('no-slider');
+                                $('.home.page .navbar').addClass('no-slider navbar-not-transparent');
                                 var mobile_media = window.matchMedia( '(max-width: 600px)' );
                                 if( $('#wpadminbar').length && mobile_media.matches ) {
                                     $('.home.page .main').css( 'margin-top', navbar_height - 46 );
@@ -354,7 +356,7 @@
                                     $('.home.page .main').css( 'margin-top', navbar_height );
                                 }
                             } else {
-                                $('.home.page .navbar').removeClass('no-slider');
+                                $('.home.page .navbar').removeClass('no-slider navbar-not-transparent');
                                 $('.home.page .main').removeAttr('style');
                                 $.navigation.toggleNavbarTransparency();
                             }
@@ -633,6 +635,19 @@
                             $( '.blog-posts-wrap, .archive-post-wrap, .single-post-container' ).css( 'width', content_width + '%' );
                             $( '.blog-sidebar-wrapper:not(.no-variable-width), .shop-sidebar-wrapper' ).css( 'width', newval + '%' );
                         }
+
+	                    layout = wp.customize._value.hestia_shop_sidebar_layout();
+	                    if (layout !== 'full-width' && layout !== '') {
+		                    hestia_content_width = 100 - newval;
+
+		                    if (newval <= 3 || newval >= 80) {
+			                    hestia_content_width = 100;
+			                    newval               = 100;
+		                    }
+
+		                    $( '.content-sidebar-left, .content-sidebar-right, .page-content-wrap' ).css( 'width', hestia_content_width + '%' );
+		                    $( '.blog-sidebar-wrapper:not(.no-variable-width), .shop-sidebar.col-md-3' ).css( 'width', newval + '%' );
+	                    }
                     }
                 }
             );
@@ -698,7 +713,7 @@
             value.bind(
                 function( newval ) {
                     $( '.main section:not(.hestia-blogs) a:not(.btn):not(.blog-item-title-link):not(.shop-item-title-link):not(.moretag):not(.button), .navbar.navbar-color-on-scroll:not(.navbar-transparent) li.active a, .single-product a.woocommerce-review-link, .woocommerce-checkout .woocommerce-checkout-payment a, .woocommerce-account .blog-post a:not(.woocommerce-Button)' ).css( 'color', newval );
-                    $( '.btn.btn-primary:not(.no-js-color), .card .header-primary, input#searchsubmit, .woocommerce nav.woocommerce-pagination ul li span.current, .woocommerce ul.products li.product .onsale, .woocommerce span.onsale, article .section-text a, body:not(.woocommerce-cart) .woocommerce .button:not(.btn-just-icon), .woocommerce-cart .checkout-button.button, .hestia-work .portfolio-item:nth-child(6n+1) .label, .pagination span.current, div.wpforms-container .wpforms-form button[type=submit].wpforms-submit, .woocommerce-product-search button, .single-product input[type="submit"]' ).css( 'background-color', newval );
+                    $( '.btn.btn-primary:not(.has-color), .card .header-primary, input#searchsubmit, .woocommerce nav.woocommerce-pagination ul li span.current, .woocommerce ul.products li.product .onsale, .woocommerce span.onsale, article .section-text a, body:not(.woocommerce-cart) .woocommerce .button:not(.btn-just-icon), .woocommerce-cart .checkout-button.button, .hestia-work .portfolio-item:nth-child(6n+1) .label, .pagination span.current, div.wpforms-container .wpforms-form button[type=submit].wpforms-submit, .woocommerce-product-search button, .single-product input[type="submit"]' ).css( 'background-color', newval );
 
                     var accentColorVariation2 = convertHex( newval, 20 );
                     var accentColorVariation3 = convertHex( newval, 42 );
@@ -726,11 +741,20 @@
                     style += '.footer-menu li > a:hover' +
                         '{ color: ' + newval + '; }';
 
+                    style += 'a, .navbar .dropdown-menu li:hover > a, .navbar .dropdown-menu li:focus > a, .navbar .dropdown-menu li:active > a, .navbar .navbar-nav > li .dropdown-menu li:hover > a, body:not(.home) .navbar-default .navbar-nav > .active:not(.btn) > a, body:not(.home) .navbar-default .navbar-nav > .active:not(.btn) > a:hover, body:not(.home) .navbar-default .navbar-nav > .active:not(.btn) > a:focus, a:hover,  .card-blog a.moretag:hover,  .card-blog a.more-link:hover,  .widget a:hover, .has-text-color.has-accent-color, p.has-text-color a' +
+                        '{ color: ' + newval + '; }';
+
+	                style += '.svg-text-color' +
+		                '{ fill: ' + newval + '; }';
+
                     style += '.navbar-not-transparent .navbar-nav li:not(.btn):hover > a' +
                         '{ color: ' + newval + '; }';
 
                     style += '.navbar .navbar-nav > li .dropdown-menu li:hover > a ' +
                         '{ color : ' + newval + '; }';
+
+                    style += '.woocommerce div.product form.cart .reset_variations:after' +
+	                    '{ background-color: ' + newval + '; }';
 
                     style += '.woocommerce div.product .woocommerce-tabs ul.tabs.wc-tabs li a:hover ' +
                         '{ border-color: ' + newval + '; }';
@@ -840,6 +864,13 @@
             value.bind(
                 function( newval ) {
                     $( '.hestia-top-bar' ).css( 'color', newval );
+
+                    var headStyle = $('head style.top-bar-icons-color');
+                    if ( headStyle.length > 0 ) {
+                    	headStyle.html( '.hestia-top-bar div.widget.widget_shopping_cart:before, .hestia-top-bar .widget.widget_product_search form.form-group:before, .hestia-top-bar .widget.widget_search form.form-group:before{ background-color:' + newval + '}' );
+                    } else {
+	                    $('head').append('<style class="top-bar-icons-color">.hestia-top-bar div.widget.widget_shopping_cart:before, .hestia-top-bar .widget.widget_product_search form.form-group:before, .hestia-top-bar .widget.widget_search form.form-group:before{ background-color:' + newval + ';}</style>');
+                    }
                 }
             );
         }
@@ -851,6 +882,13 @@
             value.bind(
                 function( newval ) {
                     $( '.hestia-top-bar a' ).css( 'color', newval );
+
+	                var headStyle = $('head style.top-bar-link-icons-color');
+	                if ( headStyle.length > 0 ) {
+		                headStyle.html( '.hestia-top-bar ul li a[href*="mailto:"]:before, .hestia-top-bar ul li a[href*="tel:"]:before{ background-color:' + newval + '}' );
+	                } else {
+		                $('head').append('<style class="top-bar-link-icons-color">.hestia-top-bar ul li a[href*="mailto:"]:before, .hestia-top-bar ul li a[href*="tel:"]:before{ background-color:' + newval + ';}</style>');
+	                }
                 }
             );
         }
@@ -869,6 +907,13 @@
                             $( this ).css( 'color', initial );
                         }
                     );
+
+	                var headStyle = $('head style.top-bar-link-icons-color-hover');
+	                if ( headStyle.length > 0 ) {
+		                headStyle.html( '.hestia-top-bar ul li:hover a[href*="mailto:"]:before, .hestia-top-bar ul li:hover a[href*="tel:"]:before{ background-color:' + newval + '}' );
+	                } else {
+		                $('head').append('<style class="top-bar-link-icons-color-hover">.hestia-top-bar ul li:hover a[href*="mailto:"]:before, .hestia-top-bar ul li:hover a[href*="tel:"]:before{ background-color:' + newval + ';}</style>');
+	                }
                 }
             );
         }

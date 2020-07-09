@@ -100,7 +100,7 @@ class Hestia_Customizer_Notices extends Hestia_Register_Customizer_Controls {
 	 * Maybe add WooCommerce notice.
 	 */
 	private function maybe_add_woo_notice() {
-		if ( class_exists( 'WooCommerce' ) ) {
+		if ( class_exists( 'WooCommerce', false ) ) {
 			return;
 		}
 		$this->add_section(
@@ -143,7 +143,7 @@ class Hestia_Customizer_Notices extends Hestia_Register_Customizer_Controls {
 	 * Check for required plugins and add main notice if needed.
 	 */
 	private function maybe_add_main_notice() {
-		if ( class_exists( 'Orbit_Fox' ) ) {
+		if ( class_exists( 'Orbit_Fox', false ) ) {
 			return;
 		}
 
@@ -151,6 +151,7 @@ class Hestia_Customizer_Notices extends Hestia_Register_Customizer_Controls {
 			new Hestia_Customizer_Section(
 				'hestia_info_obfx',
 				array(
+					'plugin_name' => 'Orbit Fox Companion',
 					'slug'        => 'themeisle-companion',
 					'priority'    => 0,
 					'capability'  => 'install_plugins',

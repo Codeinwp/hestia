@@ -206,7 +206,7 @@ abstract class Hestia_Metabox_Control_Base {
 				break;
 			case 'checkbox':
 				$allowed_values = array( 'on', 'off' );
-				if ( ! in_array( $value, $allowed_values ) ) {
+				if ( ! in_array( $value, $allowed_values, true ) ) {
 					return esc_html( $this->settings['default'] );
 				}
 

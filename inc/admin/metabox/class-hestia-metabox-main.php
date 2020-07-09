@@ -22,9 +22,15 @@ class Hestia_Metabox_Main extends Hestia_Metabox_Controls_Base {
 		if ( empty( $post_type ) && array_key_exists( 'post', $_GET ) ) {
 			$post_type = get_post_type( $_GET['post'] );
 		}
-		if ( $post_type !== 'product' && class_exists( 'WooCommerce' ) ) {
-			$this->sidebar_control();
-			$this->content_toggles();
+		switch ( $post_type ) {
+			case 'jetpack-portfolio':
+				$this->content_toggles();
+				break;
+			case 'product':
+				break;
+			default:
+				$this->sidebar_control();
+				$this->content_toggles();
 		}
 	}
 
@@ -79,7 +85,11 @@ class Hestia_Metabox_Main extends Hestia_Metabox_Controls_Base {
 		$default           = hestia_get_blog_layout_default();
 		$post_type         = get_post_type( $_GET['post'] );
 		$page_for_posts_id = get_option( 'page_for_posts' );
+		$shop_page         = get_option( 'woocommerce_shop_page_id' );
 
+		if ( (int) $_GET['post'] === (int) $shop_page ) {
+			return get_theme_mod( 'hestia_shop_sidebar_layout', Hestia_General_Controls::get_shop_sidebar_layout_default() );
+		}
 		if ( (int) $_GET['post'] === (int) $page_for_posts_id ) {
 			return get_theme_mod( 'hestia_blog_sidebar_layout', $default );
 		}

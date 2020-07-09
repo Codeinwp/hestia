@@ -67,7 +67,7 @@ class Hestia_Metabox_View extends Hestia_Abstract_Main {
 			return get_option( 'page_for_posts' );
 		}
 
-		if ( class_exists( 'WooCommerce' ) && is_shop() ) {
+		if ( class_exists( 'WooCommerce', false ) && is_shop() ) {
 			return get_option( 'woocommerce_shop_page_id' );
 		}
 

@@ -55,7 +55,7 @@ class TI_About_Render {
 
 		echo '<div class="loading-screen">';
 		echo '<div class="updating-message">';
-		echo '<p>'. esc_html__('Loading', 'hestia' ) .'...</p>';
+		echo '<p>' . esc_html__( 'Loading', 'hestia' ) . '...</p>';
 		echo '</div>';
 		echo '</div>';
 
@@ -79,14 +79,15 @@ class TI_About_Render {
 		<div class="header">
 			<div class="header-info">
 				<h1>Welcome to <?php echo esc_html( $this->theme['name'] ); ?>! - Version <span
-							class="version-container"><?php echo esc_html( $this->theme['version'] ); ?></span></h1>
+						class="version-container"><?php echo esc_html( $this->theme['version'] ); ?></span></h1>
 				<?php
 				$white_label_options = get_option( 'ti_white_label_inputs' );
 				$white_label_options = json_decode( $white_label_options, true );
 				if ( empty( $white_label_options['theme_name'] ) ) { ?>
-					<a href="https://themeisle.com/" class="ti-logo"><img
-								src="<?php echo esc_url( TI_ABOUT_PAGE_URL . 'assets/img/logo.png' ) ?>"
-								alt="logo"/></a>
+					<span class="ti-logo"><img
+							src="<?php echo esc_url( TI_ABOUT_PAGE_URL . 'assets/img/logo.png' ) ?>"
+							alt="logo"/>
+					</span>
 					<?php
 				} ?>
 			</div>
@@ -290,14 +291,23 @@ class TI_About_Render {
 		if ( ! empty( $changelog ) ) {
 			echo '<div class="featured-section changelog">';
 			foreach ( $changelog as $release ) {
+				echo '<div class="release-wrap">';
 				if ( ! empty( $release['title'] ) ) {
-					echo '<h2>' . str_replace( '#', '', $release['title'] ) . ' </h2 > ';
+					echo '<h3>' . str_replace( '#', '', $release['title'] ) . ' </h3 > ';
 				}
+				echo '<ul class="release">';
+
 				if ( ! empty( $release['changes'] ) ) {
 					foreach ( $release['changes'] as $change ) {
-						echo esc_html( $change ) . '<br/>';
+						if ( empty( trim( $change ) ) ) {
+							continue;
+						}
+						echo '<li>' . esc_html( ltrim( $change ) ) . '</li>';
 					}
 				}
+				echo '</ul>';
+				echo '</div>';
+
 			}
 			echo '</div>';
 		}
@@ -321,7 +331,7 @@ class TI_About_Render {
 			if ( strpos( $changelog_line, '**Changes:**' ) !== false || empty( $changelog_line ) ) {
 				continue;
 			}
-			if ( substr( $changelog_line, 0, 3 ) === '###' || substr( $changelog_line, 1, 3 ) === '###' ) {
+			if ( substr( ltrim( $changelog_line ), 0, 3 ) === '###' ) {
 				if ( isset( $release ) ) {
 					$releases[] = $release;
 				}
@@ -330,11 +340,13 @@ class TI_About_Render {
 					'changes' => array(),
 				);
 			} else {
-				$release['changes'][] = $changelog_line;
+				$release['changes'][] = str_replace( '*', '', $changelog_line );
 			}
 		}
 
 		return $releases;
+
+
 	}
 
 	/**
@@ -395,6 +407,7 @@ class TI_About_Render {
 		}
 		$footer_data = $this->tabs['footer_messages']['messages'];
 		echo '<div class="about-sidebar">';
+		do_action( 'ti-about-before-sidebar-content' );
 		foreach ( $footer_data as $data ) {
 			$heading   = ! empty( $data['heading'] ) ? $data['heading'] : '';
 			$text      = ! empty( $data['text'] ) ? $data['text'] : '';
@@ -419,6 +432,7 @@ class TI_About_Render {
 			echo '</div>';
 			echo '</div>';
 		}
+		do_action( 'ti-about-after-sidebar-content' );
 		echo '</div>';
 	}
 }

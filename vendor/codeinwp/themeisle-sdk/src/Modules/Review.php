@@ -60,14 +60,14 @@ class Review extends Abstract_Module {
 			'Stefan',
 			'Uriahs',
 			'Madalin',
-			'Radu',
+			'Cristi',
 			'Silviu',
 			'Andrei',
 		];
 
 		$link = 'https://wordpress.org/support/' . $this->product->get_type() . '/' . $this->product->get_slug() . '/reviews/#wporg-footer';
 
-		$message = apply_filters( $this->product->get_key() . '_feedback_review_message', '<p>Hey, it’s great to see you have <b>{product}</b> active for a few days now. How is everything going? If you can spare a few moments to rate it on WordPress.org it would help us a lot (and boost my motivation). Cheers! <br/> <br/>~ {developer}, developer of {product}</p>' );
+		$message = apply_filters( $this->product->get_key() . '_feedback_review_message', '<p>Hey, it\'s great to see you have <b>{product}</b> active for a few days now. How is everything going? If you can spare a few moments to rate it on WordPress.org it would help us a lot (and boost my motivation). Cheers! <br/> <br/>~ {developer}, developer of {product}</p>' );
 
 		$button_submit = apply_filters( $this->product->get_key() . '_feedback_review_button_do', 'Ok, I will gladly help.' );
 		$button_cancel = apply_filters( $this->product->get_key() . '_feedback_review_button_cancel', 'No, thanks.' );

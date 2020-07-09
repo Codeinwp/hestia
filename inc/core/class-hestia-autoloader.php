@@ -42,6 +42,7 @@ class Hestia_Autoloader {
 			'Hestia_Public'                               => HESTIA_CORE_DIR,
 			'Hestia_Feature_Factory'                      => HESTIA_CORE_DIR,
 			'Hestia_Abstract_Main'                        => HESTIA_CORE_DIR . 'abstract',
+			'Hestia_Abstract_Module'                      => HESTIA_CORE_DIR . 'abstract',
 			'Hestia_Register_Customizer_Controls'         => HESTIA_CORE_DIR . 'abstract',
 			'Hestia_Front_Page_Section_Controls_Abstract' => HESTIA_CORE_DIR . 'abstract',
 			'Hestia_Abstract_Metabox'                     => HESTIA_CORE_DIR . 'abstract',
@@ -91,6 +92,7 @@ class Hestia_Autoloader {
 			'Hestia_Blog_Settings_Controls'               => HESTIA_PHP_INCLUDE . 'customizer/general',
 			'Hestia_Upsell_Manager'                       => HESTIA_PHP_INCLUDE . 'customizer/general',
 			'Hestia_Buttons_Style_Controls'               => HESTIA_PHP_INCLUDE . 'customizer/general',
+			'Hestia_Footer_Controls'                      => HESTIA_PHP_INCLUDE . 'customizer/general',
 			'Hestia_Big_Title_Controls'                   => HESTIA_PHP_INCLUDE . 'customizer/front-page',
 			'Hestia_About_Controls'                       => HESTIA_PHP_INCLUDE . 'customizer/front-page',
 			'Hestia_Shop_Controls'                        => HESTIA_PHP_INCLUDE . 'customizer/front-page',
@@ -98,6 +100,7 @@ class Hestia_Autoloader {
 			'Hestia_Contact_Controls'                     => HESTIA_PHP_INCLUDE . 'customizer/front-page',
 			'Hestia_Subscribe_Controls'                   => HESTIA_PHP_INCLUDE . 'customizer/front-page',
 			'Hestia_Gutenberg'                            => HESTIA_PHP_INCLUDE . 'compatibility',
+			'Hestia_PWA'                                  => HESTIA_PHP_INCLUDE . 'compatibility',
 			'Hestia_Header_Footer_Elementor'              => HESTIA_PHP_INCLUDE . 'compatibility/page-builder',
 			'Hestia_Page_Builder_Helper'                  => HESTIA_PHP_INCLUDE . 'compatibility/page-builder',
 			'Hestia_Elementor_Compatibility'              => HESTIA_PHP_INCLUDE . 'compatibility/page-builder',
@@ -106,8 +109,11 @@ class Hestia_Autoloader {
 			'Hestia_Child'                                => HESTIA_PHP_INCLUDE . 'compatibility/child-themes',
 			'Hestia_Child_Customizer'                     => HESTIA_PHP_INCLUDE . 'compatibility/child-themes',
 			'Hestia_Woocommerce_Header_Manager'           => HESTIA_PHP_INCLUDE . 'compatibility/woocommerce',
+			'Hestia_Wp_Forms'                             => HESTIA_PHP_INCLUDE . 'compatibility/wp-forms',
 			'Hestia_Infinite_Scroll'                      => HESTIA_PHP_INCLUDE . 'infinite-scroll',
 			'Hestia_Tweaks'                               => HESTIA_PHP_INCLUDE . 'views',
+			'Hestia_Compatibility_Style'                  => HESTIA_PHP_INCLUDE . 'views',
+			'Hestia_Content_404'                          => HESTIA_PHP_INCLUDE . 'views/main',
 			'Hestia_Top_Bar'                              => HESTIA_PHP_INCLUDE . 'views/main',
 			'Hestia_Header'                               => HESTIA_PHP_INCLUDE . 'views/main',
 			'Hestia_Footer'                               => HESTIA_PHP_INCLUDE . 'views/main',
@@ -128,6 +134,7 @@ class Hestia_Autoloader {
 			'Hestia_Shop_Section'                         => HESTIA_PHP_INCLUDE . 'views/front-page',
 			'Hestia_Contact_Section'                      => HESTIA_PHP_INCLUDE . 'views/front-page',
 			'Hestia_Subscribe_Section'                    => HESTIA_PHP_INCLUDE . 'views/front-page',
+			'Hestia_Woocommerce_Manager'                  => HESTIA_PHP_INCLUDE . 'modules/woo_enhancements',
 
 			'Hestia_Main_Addon'                           => HESTIA_PHP_INCLUDE . 'addons',
 			'Hestia_Addon_Manager'                        => HESTIA_PHP_INCLUDE . 'addons',
@@ -160,8 +167,11 @@ class Hestia_Autoloader {
 			'Hestia_Defaults_Models'                      => HESTIA_PHP_INCLUDE . 'addons/models',
 
 			'Hestia_Dokan_Compatibility'                  => HESTIA_PHP_INCLUDE . 'addons/plugin-compatibility/dokan',
+			'Hestia_Woocommerce_Module'                   => HESTIA_PHP_INCLUDE . 'addons/modules/woo_enhancements',
 			'Hestia_Woocommerce_Infinite_Scroll'          => HESTIA_PHP_INCLUDE . 'addons/plugin-compatibility/woocommerce',
 			'Hestia_Woocommerce_Settings_Controls'        => HESTIA_PHP_INCLUDE . 'addons/plugin-compatibility/woocommerce',
+
+			'Hestia_Custom_Layouts_Module'                => HESTIA_PHP_INCLUDE . 'addons/modules/custom_layouts',
 
 			'Hestia_Translations_Manager'                 => HESTIA_PHP_INCLUDE . 'addons/plugin-compatibility',
 			'Hestia_Elementor_Compatibility_Addon'        => HESTIA_PHP_INCLUDE . 'addons/plugin-compatibility',
@@ -181,6 +191,7 @@ class Hestia_Autoloader {
 			'Hestia_Colors_Addon'                         => HESTIA_PHP_INCLUDE . 'addons/views/styles-output',
 			'Hestia_General_Inline_Style'                 => HESTIA_PHP_INCLUDE . 'addons/views/styles-output',
 			'Hestia_Public_Typography_Addon'              => HESTIA_PHP_INCLUDE . 'addons/views/styles-output',
+			'Hestia_Compatibility_Style_Addon'            => HESTIA_PHP_INCLUDE . 'addons/views',
 			'Hestia_Content_Import'                       => HESTIA_PHP_INCLUDE . 'content-import',
 			'Hestia_Import_Utilities'                     => HESTIA_PHP_INCLUDE . 'content-import',
 			'Hestia_Import_Zerif'                         => HESTIA_PHP_INCLUDE . 'content-import',
@@ -205,7 +216,7 @@ class Hestia_Autoloader {
 
 		$filename  = 'class-' . str_replace( '_', '-', strtolower( $class_name ) ) . '.php';
 		$full_path = trailingslashit( $this->classes_to_load[ $class_name ] ) . $filename;
-		if ( file_exists( $full_path ) ) {
+		if ( is_file( $full_path ) ) {
 			require $full_path;
 		}
 

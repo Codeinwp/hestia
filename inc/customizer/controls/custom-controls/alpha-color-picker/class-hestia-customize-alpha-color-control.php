@@ -23,10 +23,6 @@
  * @since Hestia 1.0
  */
 
-if ( ! class_exists( 'WP_Customize_Control' ) ) {
-	return null;
-}
-
 /**
  * Class Hestia_Customize_Alpha_Color_Control
  */

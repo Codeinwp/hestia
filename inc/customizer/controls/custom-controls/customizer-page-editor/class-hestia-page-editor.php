@@ -6,10 +6,6 @@
  * @since Hestia 1.1.3
  */
 
-if ( ! class_exists( 'WP_Customize_Control' ) ) {
-	return null;
-}
-
 /**
  * Class to create a custom tags control
  */

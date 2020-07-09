@@ -423,22 +423,14 @@
 				return;
 			}
 
-			var sidebarOrientation = 'left';
-
-			// RTL
-			if ( $( 'body.rtl' ).length !== 0 ) {
-				sidebarOrientation = 'right';
-			}
-
-			$( '.hestia-sidebar-open' ).click(
-				function () {
-					$( '.sidebar-toggle-container' ).css( sidebarOrientation, '0' );
+			$( '.hestia-sidebar-open' ).click( function () {
+					$( '.sidebar-toggle-container' ).addClass( 'sidebar-open' );
 				}
 			);
 
 			$( '.hestia-sidebar-close' ).click(
 				function () {
-					$( '.sidebar-toggle-container' ).css( sidebarOrientation, '-100%' );
+					$( '.sidebar-toggle-container' ).removeClass( 'sidebar-open' );
 				}
 			);
 		},
@@ -501,7 +493,7 @@
 		'addViewCart': function () {
 			$( document ).on(
 				'DOMNodeInserted', '.added_to_cart', function () {
-					if ( !($( this ).parent().hasClass( 'hestia-view-cart-wrapper' )) ) {
+					if ( !($( this ).parent().hasClass( 'hestia-view-cart-wrapper' ) ) ) {
 						$( this ).wrap( '<div class="hestia-view-cart-wrapper"></div>' );
 					}
 				}

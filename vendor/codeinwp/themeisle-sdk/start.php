@@ -37,7 +37,7 @@ $files_to_load = [
 $files_to_load = array_merge( $files_to_load, apply_filters( 'themeisle_sdk_required_files', [] ) );
 
 foreach ( $files_to_load as $file ) {
-	if ( is_readable( $file ) ) {
+	if ( is_file( $file ) ) {
 		require_once $file;
 	}
 }

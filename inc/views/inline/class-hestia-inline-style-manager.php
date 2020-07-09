@@ -53,7 +53,7 @@ class Hestia_Inline_Style_Manager extends Hestia_Abstract_Main {
 		$google_fonts = hestia_get_google_fonts();
 
 		// Make sure font is in our list of fonts
-		if ( ! $google_fonts || ! in_array( $font, $google_fonts ) ) {
+		if ( ! $google_fonts || ! in_array( $font, $google_fonts, true ) ) {
 			return;
 		}
 

@@ -73,7 +73,7 @@ class Hestia_Metabox_Manager {
 			get_option( 'woocommerce_terms_page_id' ),
 		);
 
-		if ( in_array( $post->ID, $restricted_pages_id ) ) {
+		if ( in_array( $post->ID, $restricted_pages_id, true ) ) {
 			return false;
 		}
 

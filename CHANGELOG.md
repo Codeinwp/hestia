@@ -1,4 +1,111 @@
+##### [Version 3.0.3](https://github.com/Codeinwp/hestia-pro/compare/v3.0.2...v3.0.3) (2020-07-09)
 
+- Removed onboarding from the free version
+
+##### [Version 3.0.2](https://github.com/Codeinwp/hestia-pro/compare/v3.0.1...v3.0.2) (2020-06-25)
+
+- [Fix] Compatibility issues with PHP 7.4
+- [Fix] Layout of the attribute archive page
+- [Fix] Position of show/hide password icon on the My Account page
+- [Fix][Pro] Allow iframe code in the Custom Layouts
+- [Fix][Pro] Translatable Custom Layouts
+- [Fix][Pro] Remove unused sidebar control meta box on single portfolio pages
+- [Fix][Pro] Empty team member widget appearing on mobile
+- [Fix][Pro] Seamless add to cart mechanism for variable products
+
+##### [Version 3.0.1](https://github.com/Codeinwp/hestia-pro/compare/v3.0.0...v3.0.1) (2020-05-11)
+
+- [Fix] Missing Font Awesome icons
+- [Fix] Fatal error when using Yoast
+- [Fix] Secondary color missing in the blocks color palette
+- [Fix][Pro] Second button link in the Big title section
+- [Fix][Pro] Check if attachment exists when swap images are used on the Shop page
+- [Fix][Pro] Seamless add to cart mechanism
+
+#### [Version 3.0.0](https://github.com/Codeinwp/hestia-pro/compare/v2.5.7...v3.0.0) (2020-04-28)
+
+- [Feat] [PRO] New Custom Layouts module
+- [Feat] [PRO] New options for Single Products ( Exclusive Products, Seamless Add to Cart )
+- [Feat] [PRO] New Payment Icons on the Cart page
+- [Feat] [PRO] New option for custom image style effects on the Shop page
+- [Feat] New layout control for the Shop Sidebar
+- [Feat] [PRO] New Off-Canvas Sidebar option for the Shop Page
+- [Feat] Option to enable/disable cross-sells products on the Cart page
+- [Feat] Moved Starter Sites remotely
+- [Fix] Code refactoring and improvements
+- [Fix] Load Font Awesome based on usage
+- [Fix] Upgrade default Font Awesome icons to FA 5
+- [Fix] Related products layout when using Elementor Pro Single Product template
+- [Fix] [PRO] Compatibility with Elementor Pro Header and Footer templates
+- [Fix] [PRO] Duplicated related product image in Elementor Pro templates
+- [Fix] Small tweaks to the White Label module
+- [Fix] Header Background color in the WP editor blocks
+- [Fix] Transparent logo on mobile
+- [Fix] Allow skipping cropping the transparent logo
+- [Fix] Slider icons position in RTL mode
+- [Fix] Display tags on product pages
+
+### v2.5.7 - 2020-04-01 
+ **Changes:** 
+ * Add new post causes errors in WP 5.4
+ 
+ ### v2.5.6 - 2019-12-17 
+ **Changes:** 
+ * [Fix] Logo positioning for the third navigation layout option and no widgets
+* [Fix] Sync between the image set as the featured image for the Frontpage and the image from the About section
+* [Fix] Customizer icons missing when Font Awesome was not loaded
+* [Fix] Compatibility with the Menu Icons plugin while the transparent menu is on
+ 
+ ### v2.5.5 - 2019-11-14 
+ **Changes:** 
+ * [Feat] Dedicated logo option for the transparent header
+* [Fix] Subscribe form on the blog page
+* [Fix] Line separator compatibility with WP 5.3
+ 
+ ### v2.5.4 - 2019-10-21 
+ **Changes:** 
+ * [Fix] Blog page Infinite Scroll compatibility with the Alternative layout
+* [Fix] Cover block text color not updating
+* [Fix][Hestia Pro] Shop page Infinite Scroll compatibility with widgets filtering
+* [Fix][Hestia Pro] Header layout selection for the Shop page
+* [Fix][Hestia Pro] Slider arrows position on RTL
+ 
+ ### v2.5.3 - 2019-09-13 
+ **Changes:** 
+ * [Fix] Improved About page layout
+* [Fix] License validation mechanism for Starter Sites
+ 
+ ### v2.5.2 - 2019-09-12 
+ **Changes:** 
+ * [Fix] Compatibility with Elementor Pro Menu Cart widget
+* [Fix] Mail and phone icons compatibility with FA5
+* [Fix] Primary menu icons spacing and alignment
+* [Fix] Uppercase submenu items back to Sentence case
+* [Fix] WooCommerce product gallery images not clickable on mobile
+* [Perf] Small performance fixes
+ 
+ ### v2.5.1 - 2019-08-13 
+ **Changes:** 
+ * [Fix] - Header layout on the front page
+* [Fix] - Removed Hestia's custom integration with Gutenberg
+* [Fix] - Social menu icons compatibility with FA5
+ 
+ ### v2.5.0 - 2019-08-08 
+ **Changes:** 
+ * Migrated to Font Awesome 5
+* Updated the Starter Sites library
+ 
+ ### v2.4.9 - 2019-08-01 
+ **Changes:** 
+ * Allow copyright text to be changed in both Hestia and Hestia PRO
+* Allow HTML tags in the title and subtitle fields of the Portfolio section
+* Create a WPForms form as a default value for the Contact section
+* Updated the Google Fonts Library
+* Fixed header layout on the tags archive page
+* Fixed issue with accent color not affecting links in the front-end
+* Made sure the header image is translatable with WPML
+* Fixed sidebar layout metabox not appearing when WooCommerce was not installed
+ 
  ### v2.4.8 - 2019-07-23 
  **Changes:** 
  * Speed improvement update for the Hestia Default Demo

@@ -80,7 +80,7 @@ abstract class Hestia_Front_Page_Section_Controls_Abstract extends Hestia_Regist
 		}
 
 		$controls = array();
-		if ( in_array( 'hide', $controls_to_add ) || empty( $controls_to_add ) ) {
+		if ( in_array( 'hide', $controls_to_add, true ) || empty( $controls_to_add ) ) {
 			$controls[ 'hestia_' . $slug . '_hide' ] = array(
 				'setting' => array(
 					'sanitize_callback' => 'hestia_sanitize_checkbox',
@@ -96,7 +96,7 @@ abstract class Hestia_Front_Page_Section_Controls_Abstract extends Hestia_Regist
 			);
 		}
 
-		if ( in_array( 'title', $controls_to_add ) || empty( $controls_to_add ) ) {
+		if ( in_array( 'title', $controls_to_add, true ) || empty( $controls_to_add ) ) {
 			$controls[ 'hestia_' . $slug . '_title' ] = array(
 				'setting' => array(
 					'sanitize_callback' => 'wp_kses_post',
@@ -110,7 +110,7 @@ abstract class Hestia_Front_Page_Section_Controls_Abstract extends Hestia_Regist
 			);
 		}
 
-		if ( in_array( 'subtitle', $controls_to_add ) || empty( $controls_to_add ) ) {
+		if ( in_array( 'subtitle', $controls_to_add, true ) || empty( $controls_to_add ) ) {
 			$controls[ 'hestia_' . $slug . '_subtitle' ] = array(
 				'setting' => array(
 					'sanitize_callback' => 'wp_kses_post',

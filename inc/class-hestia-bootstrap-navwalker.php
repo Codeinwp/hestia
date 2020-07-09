@@ -56,9 +56,9 @@ class Hestia_Bootstrap_Navwalker extends Walker_Nav_Menu {
 		 * a 0 if the strings are equal.
 		 */
 
-		if ( strcasecmp( $item->attr_title, 'divider' ) == 0 && $depth >= 1 ) {
+		if ( strcasecmp( $item->attr_title, 'divider' ) === 0 && $depth >= 1 ) {
 			$output .= $indent . '<li role="presentation" class="divider">';
-		} elseif ( strcasecmp( $item->title, 'divider' ) == 0 && $depth >= 1 ) {
+		} elseif ( strcasecmp( $item->title, 'divider' ) === 0 && $depth >= 1 ) {
 			$output .= $indent . '<li role="presentation" class="divider">';
 		} else {
 
@@ -74,7 +74,7 @@ class Hestia_Bootstrap_Navwalker extends Walker_Nav_Menu {
 				$class_names .= ' dropdown dropdown-submenu';
 			}
 
-			if ( in_array( 'current-menu-item', $classes ) ) {
+			if ( in_array( 'current-menu-item', $classes, true ) ) {
 				$class_names .= ' active';
 			}
 
@@ -92,7 +92,7 @@ class Hestia_Bootstrap_Navwalker extends Walker_Nav_Menu {
 			$atts['rel']    = ! empty( $item->xfn ) ? $item->xfn : '';
 
 			// Remove the title if the menu has 'social-item' as class.
-			if ( in_array( 'social-item', $classes ) ) {
+			if ( in_array( 'social-item', $classes, true ) ) {
 				$item->title = '';
 			}
 
@@ -127,16 +127,16 @@ class Hestia_Bootstrap_Navwalker extends Walker_Nav_Menu {
 			 */
 
 			if ( ! empty( $item->attr_title ) && ! $is_wpml_item ) {
-				$item_output .= '<a' . $attributes . '><i class="fa ' . esc_attr( $item->attr_title ) . ' "></i>&nbsp;';
-			} elseif ( in_array( 'hestia-mm-heading', $item->classes ) && ( $item->url === '#' ) ) {
+				$item_output .= '<a' . $attributes . '><i class="' . esc_attr( hestia_display_fa_icon( $item->attr_title ) ) . '"></i>&nbsp;';
+			} elseif ( in_array( 'hestia-mm-heading', $item->classes, true ) && ( $item->url === '#' ) ) {
 				$item_output .= '<span class="mm-heading-wrapper">';
-			} elseif ( in_array( 'hestia-mm-heading', $item->classes ) ) {
+			} elseif ( in_array( 'hestia-mm-heading', $item->classes, true ) ) {
 				$item_output .= '<span class="mm-heading-wrapper"><a' . $attributes . '>';
 			} else {
 				$item_output .= '<a' . $attributes . '>';
 			}
 			$item_output .= $args->link_before . apply_filters( 'the_title', $item->title, $item->ID ) . $args->link_after;
-			$item_output .= ( $args->has_children ) ? ' <span class="caret-wrap"><span class="caret"></span></span></a>' : '</a>';
+			$item_output .= ( $args->has_children ) ? ' <span class="caret-wrap"><span class="caret"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-down" class="svg-inline--fa fa-chevron-down fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z"></path></svg></span></span></a>' : '</a>';
 
 			if ( ! empty( $item->description ) && ( $item->description !== ' ' ) && $depth >= 1 ) {
 				$item_output .= '<span class="hestia-mm-description">' . $item->description . '</span>';

@@ -71,11 +71,11 @@ class Hestia_Typography_Controls extends Hestia_Register_Customizer_Controls {
 					'tabs'     => array(
 						'font_family' => array(
 							'label' => esc_html__( 'font family', 'hestia' ),
-							'icon'  => 'font',
+							'icon'  => 'editor-spellcheck',
 						),
 						'font_sizes'  => array(
 							'label' => esc_html__( 'font size', 'hestia' ),
-							'icon'  => 'text-height',
+							'icon'  => 'editor-textcolor',
 						),
 					),
 					'controls' => array(

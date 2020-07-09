@@ -47,9 +47,9 @@ class Hestia_Public_Typography extends Hestia_Inline_Style_Manager {
 		.carousel span.sub-title, .hestia-about h1, .hestia-about h2, .hestia-about h3, .hestia-about h4, .hestia-about h5 {
 			font-family: ' . esc_html( $hestia_headings_font ) . ';
 		}';
-			if ( class_exists( 'WooCommerce' ) ) {
+			if ( class_exists( 'WooCommerce', false ) ) {
 				$custom_css .=
-					'.woocommerce.single-product h1.product_title, .woocommerce section.related.products h2, .woocommerce span.comment-reply-title, .woocommerce ul.products[class*="columns-"] li.product-category h2 {
+				'.woocommerce.single-product h1.product_title, .woocommerce section.related.products h2, .woocommerce section.exclusive-products h2, .woocommerce span.comment-reply-title, .woocommerce ul.products[class*="columns-"] li.product-category h2 {
 				font-family: ' . esc_html( $hestia_headings_font ) . ';
 			}';
 			}
@@ -65,7 +65,7 @@ class Hestia_Public_Typography extends Hestia_Inline_Style_Manager {
 			font-family: ' . esc_html( $hestia_body_font ) . ';
 		}';
 
-			if ( class_exists( 'WooCommerce' ) ) {
+			if ( class_exists( 'WooCommerce', false ) ) {
 				$custom_css .= '
 		.products .shop-item .added_to_cart,
 		.woocommerce-checkout #payment input[type=submit], .woocommerce-checkout input[type=submit],

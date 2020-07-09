@@ -44,7 +44,6 @@ class Hestia_Sync_About extends Hestia_Abstract_Main {
 		 * The main function where the sync is happening
 		 */
 		add_action( 'after_setup_theme', array( $this, 'sync_controls' ) );
-
 	}
 
 	/**
@@ -66,13 +65,9 @@ class Hestia_Sync_About extends Hestia_Abstract_Main {
 			wp_send_json_error( 'Wrong nonce' );
 		}
 
-		$featured_image = '';
-		if ( has_post_thumbnail( $params['pid'] ) ) {
-			$featured_image = get_the_post_thumbnail_url( $params['pid'] );
+		if ( ! empty( $params['value'] ) ) {
+			set_theme_mod( 'hestia_feature_thumbnail_buffer', $params['value'] );
 		}
-		set_theme_mod( 'hestia_feature_thumbnail_buffer', $featured_image );
-
-		wp_send_json_success( $featured_image );
 
 		wp_die();
 	}
@@ -86,12 +81,17 @@ class Hestia_Sync_About extends Hestia_Abstract_Main {
 	 */
 	function trigger_sync_from_customizer() {
 		$current_thumbnail = get_theme_mod( 'hestia_feature_thumbnail_buffer' );
+		if ( $current_thumbnail === 'image_was_synced' ) {
+			return false;
+		}
 		set_theme_mod( 'hestia_feature_thumbnail', $current_thumbnail );
+		set_theme_mod( 'hestia_feature_thumbnail_buffer', 'image_was_synced' );
 
 		$frontpage_id = get_option( 'page_on_front' );
 		if ( ! empty( $frontpage_id ) ) {
 			update_option( 'hestia_sync_needed', 'sync_page' );
 		}
+		return true;
 	}
 
 	/**

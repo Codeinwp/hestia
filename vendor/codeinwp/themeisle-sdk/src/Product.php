@@ -106,7 +106,10 @@ class Product {
 	 * @var string $version The product version.
 	 */
 	private $version;
-
+	/**
+	 * Root api endpoint.
+	 */
+	const API_URL = 'https://api.themeisle.com/';
 	/**
 	 * ThemeIsle_SDK_Product constructor.
 	 *
@@ -114,7 +117,7 @@ class Product {
 	 */
 	public function __construct( $basefile ) {
 		if ( ! empty( $basefile ) ) {
-			if ( is_readable( $basefile ) ) {
+			if ( is_file( $basefile ) ) {
 				$this->basefile = $basefile;
 				$this->setup_from_path();
 				$this->setup_from_fileheaders();
@@ -345,7 +348,7 @@ class Product {
 	public function get_store_url() {
 
 		if ( strpos( $this->store_url, '/themeisle.com' ) !== false ) {
-			return 'https://store.themeisle.com';
+			return 'https://store.themeisle.com/';
 		}
 
 		return $this->store_url;
@@ -358,6 +361,21 @@ class Product {
 	 */
 	public function get_basefile() {
 		return $this->basefile;
+	}
+
+	/**
+	 * Get changelog url.
+	 *
+	 * @return string Changelog url.
+	 */
+	public function get_changelog() {
+		return add_query_arg(
+			[
+				'name'       => rawurlencode( $this->get_name() ),
+				'edd_action' => 'view_changelog',
+			],
+			$this->get_store_url()
+		);
 	}
 
 	/**

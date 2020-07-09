@@ -74,7 +74,7 @@ class Hestia_Admin_Notices_Manager extends Hestia_Abstract_Main {
 		global $current_user;
 		$user_id = $current_user->ID;
 		/* If user clicks to ignore the notice, add that to their user meta */
-		if ( isset( $_GET['hestia_nag_ignore'] ) && '0' == $_GET['hestia_nag_ignore'] ) {
+		if ( isset( $_GET['hestia_nag_ignore'] ) && 0 === (int) $_GET['hestia_nag_ignore'] ) {
 			add_user_meta( $user_id, 'hestia_ignore_multi_language_upsell_notice', 'true', true );
 		}
 	}

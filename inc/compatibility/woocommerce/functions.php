@@ -63,10 +63,10 @@ function hestia_woocommerce_header_add_to_cart_fragment( $fragments ) {
 
 	$fragments['a.cart-contents']  = '<a class="cart-contents btn btn-white pull-right" href="' . esc_url( wc_get_cart_url() ) . '"
 			title="' . esc_attr__( 'View your shopping cart', 'hestia' ) . '">';
-	$fragments['a.cart-contents'] .= '<i class="fa fa-shopping-cart"></i>';
+	$fragments['a.cart-contents'] .= '<i class="fas fa-shopping-cart"></i>';
 	$fragments['a.cart-contents'] .= sprintf(
 		/* translators: %d is number of items */
-			_n( '%d item', '%d items', absint( $woocommerce->cart->cart_contents_count ), 'hestia' ),
+		_n( '%d item', '%d items', absint( $woocommerce->cart->cart_contents_count ), 'hestia' ),
 		absint( $woocommerce->cart->cart_contents_count )
 	);
 	$fragments['a.cart-contents'] .= ' - ';
@@ -91,54 +91,66 @@ function hestia_woocommerce_before_main_content() {
 
 	$sidebar_layout = hestia_get_shop_sidebar_layout();
 	$wrapper_class  = apply_filters( 'hestia_filter_woocommerce_content_classes', 'content-full col-md-12' );
-	?>
 
-	<div class="<?php echo hestia_layout(); ?>">
-	<div class="blog-post">
-	<div class="container">
-	<?php if ( is_shop() || is_product_category() ) { ?>
-		<div class="before-shop-main">
-			<div class="row">
-				<?php
+	$main_container_classes = hestia_layout();
+
+	echo '<div class="' . esc_attr( $main_container_classes ) . '">';
+	echo '<div class="blog-post">';
+	echo '<div class="container">';
+
+	if ( is_shop() || is_product_category() || is_product_tag() || is_product_taxonomy() ) {
+		echo '<div class="before-shop-main">';
+			echo '<div class="row">';
 				do_action( 'hestia_before_woocommerce_content' );
-				echo '<div class="col-xs-12 ';
-				if ( is_active_sidebar( 'sidebar-woocommerce' ) && ! is_singular( 'product' ) && $sidebar_layout !== 'full-width' ) {
-					echo 'col-sm-12';
-				} else {
-					echo 'col-sm-9';
-				}
-				echo ' col-md-9" >';
-				do_action( 'hestia_woocommerce_custom_reposition_left_shop_elements' );
-				?>
-			</div>
-			<?php
-			$shop_ordering_class = 'col-xs-12 col-sm-3';
 
-			if ( is_active_sidebar( 'sidebar-woocommerce' ) && ! is_singular( 'product' ) && $sidebar_layout !== 'full-width' ) {
-				$shop_ordering_class = 'shop-sidebar-active col-xs-9 col-sm-9';
-				?>
-				<div class="col-xs-3 col-sm-3 col-md-3 row-sidebar-toggle">
-					<span class="hestia-sidebar-open btn btn-border"><i class="fa fa-filter"
-								aria-hidden="true"></i></span>
-				</div>
-				<?php
-			}
-			?>
-			<div class="<?php echo esc_attr( $shop_ordering_class ); ?> col-md-3">
-				<?php do_action( 'hestia_woocommerce_custom_reposition_right_shop_elements' ); ?>
-			</div>
-		</div>
-		</div>
-	<?php } ?>
+				echo '<div class="col-xs-12 col-md-9';
+		if ( is_active_sidebar( 'sidebar-woocommerce' ) && ! is_singular( 'product' ) && $sidebar_layout !== 'full-width' ) {
+			echo ' col-sm-12">';
+		} else {
+			echo ' col-sm-9">';
+		}
+
+					do_action( 'hestia_woocommerce_custom_reposition_left_shop_elements' );
+				echo '</div>';
+
+				$shop_ordering_class = 'col-xs-12 col-sm-3';
+
+		if ( is_active_sidebar( 'sidebar-woocommerce' ) && ! is_singular( 'product' ) && $sidebar_layout !== 'full-width' ) {
+			$shop_ordering_class = 'shop-sidebar-active col-xs-9 col-sm-9';
+			hestia_render_sidebar_toggle( 'mobile' );
+		}
+
+		echo '<div class="' . esc_attr( $shop_ordering_class ) . ' col-md-3">';
+		do_action( 'hestia_woocommerce_custom_reposition_right_shop_elements' );
+		echo '</div>';
+
+		hestia_render_sidebar_toggle( 'desktop' );
+
+		echo '</div>';
+		echo '</div>';
+	} ?>
 	<article id="post-<?php the_ID(); ?>" class="section section-text">
 	<div class="row">
 	<?php
-	if ( $sidebar_layout === 'sidebar-left' ) {
+	if ( $sidebar_layout === 'sidebar-left' || $sidebar_layout === 'off-canvas' ) {
 		hestia_shop_sidebar();
 	}
 	?>
-	<div class="<?php echo esc_attr( $wrapper_class ); ?>">
+	<div id="woo-products-wrap" class="<?php echo esc_attr( $wrapper_class ); ?>">
 	<?php
+}
+
+/**
+ * Render sidebar toggle.
+ *
+ * @param string $type Mobile or Desktop.
+ */
+function hestia_render_sidebar_toggle( $type ) {
+	echo '<div class="col-xs-3 col-sm-3 col-md-3 row-sidebar-toggle ' . esc_attr( $type ) . '">';
+	echo '<span class="hestia-sidebar-open btn btn-border">';
+	echo '<i class="fas fa-filter" aria-hidden="true"></i>';
+	echo '</span>';
+	echo '</div>';
 }
 
 /**
@@ -164,7 +176,16 @@ function hestia_woocommerce_after_main_content() {
  * Change the layout before each single product listing
  */
 function hestia_woocommerce_before_shop_loop_item() {
-	echo '<div class="' . apply_filters( 'hestia_shop_product_card_classes', 'card card-product' ) . '">';
+	$classes = apply_filters(
+		'hestia_shop_product_card_classes',
+		array(
+			'card',
+			'card-product',
+			'pop-and-glow',
+		)
+	);
+	$classes = implode( ' ', $classes );
+	echo '<div class="' . esc_attr( $classes ) . '">';
 }
 
 /**
@@ -191,6 +212,7 @@ function hestia_woocommerce_template_loop_product_thumbnail() {
 				do_action( 'hestia_shop_after_product_thumbnail' );
 				?>
 			</a>
+			<?php do_action( 'hestia_shop_after_product_thumbnail_link' ); ?>
 			<div class="ripple-container"></div>
 		</div>
 		<?php
@@ -317,19 +339,19 @@ function hestia_coupon_after_order_table() {
  * @return string
  */
 function hestia_get_shop_sidebar_layout() {
-	$hestia_page_sidebar_layout = apply_filters( 'hestia_sidebar_layout', get_theme_mod( 'hestia_page_sidebar_layout', 'full-width' ) );
+	$hestia_shop_sidebar_layout = apply_filters( 'hestia_sidebar_layout', get_theme_mod( 'hestia_shop_sidebar_layout', Hestia_General_Controls::get_shop_sidebar_layout_default() ) );
 	if ( is_shop() ) {
 		$pid = get_option( 'woocommerce_shop_page_id' );
 		if ( ! empty( $pid ) ) {
 			$values = get_post_custom( $pid );
 			if ( array_key_exists( 'hestia_layout_select', $values ) ) {
 				if ( $values['hestia_layout_select'][0] !== 'default' ) {
-					$hestia_page_sidebar_layout = esc_attr( $values['hestia_layout_select'][0] );
+					$hestia_shop_sidebar_layout = esc_attr( $values['hestia_layout_select'][0] );
 				}
 			}
 		}
 	}
-	return $hestia_page_sidebar_layout;
+	return $hestia_shop_sidebar_layout;
 }
 
 /**
@@ -340,6 +362,7 @@ function hestia_get_shop_sidebar_layout() {
  */
 function hestia_shop_sidebar() {
 	$hestia_page_sidebar_layout = hestia_get_shop_sidebar_layout();
+	$bootstrap_classes          = $hestia_page_sidebar_layout === 'off-canvas' ? 'col-xs-12 col-md-4' : 'col-xs-12 col-md-3';
 
 	$class_to_add = '';
 	if ( $hestia_page_sidebar_layout === 'sidebar-right' ) {
@@ -348,14 +371,18 @@ function hestia_shop_sidebar() {
 
 	if ( is_active_sidebar( 'sidebar-woocommerce' ) && ! is_singular( 'product' ) ) {
 		?>
-		<div class="col-md-3 shop-sidebar-wrapper sidebar-toggle-container">
+		<div class="<?php echo esc_attr( $bootstrap_classes ); ?> shop-sidebar-wrapper sidebar-toggle-container">
 			<div class="row-sidebar-toggle">
-				<span class="hestia-sidebar-close btn btn-border"><i class="fa fa-times" aria-hidden="true"></i></span>
+				<span class="hestia-sidebar-close btn btn-border"><i class="fas fa-times" aria-hidden="true"></i></span>
 			</div>
+			<?php do_action( 'hestia_before_shop_sidebar' ); ?>
 			<aside id="secondary" class="shop-sidebar card <?php echo apply_filters( 'hestia_shop_sidebar_card_classes', 'card-raised' ); ?> <?php echo esc_attr( $class_to_add ); ?>"
 					role="complementary">
+				<?php do_action( 'hestia_before_shop_sidebar_content' ); ?>
 				<?php dynamic_sidebar( 'sidebar-woocommerce' ); ?>
+				<?php do_action( 'hestia_after_shop_sidebar_content' ); ?>
 			</aside><!-- .sidebar .widget-area -->
+			<?php do_action( 'hestia_after_shop_sidebar' ); ?>
 		</div>
 		<?php
 	} elseif ( is_customize_preview() && ! is_singular( 'product' ) ) {
@@ -372,31 +399,6 @@ function hestia_woocommerce_hide_page_title() {
 	return false;
 }
 
-/**
- * Reposition breadcrumb, sorting and results count - removing
- */
-function hestia_woocommerce_remove_shop_elements() {
-	remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20 );
-	remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20 );
-	remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30 );
-	remove_action( 'woocommerce_archive_description', 'woocommerce_taxonomy_archive_description', 10 );
-}
-
-/**
- * Reposition breadcrumb and results count - adding
- */
-function hestia_woocommerce_reposition_left_shop_elements() {
-	woocommerce_breadcrumb();
-	woocommerce_result_count();
-}
-
-/**
- * Reposition ordering - adding
- */
-function hestia_woocommerce_reposition_right_shop_elements() {
-	woocommerce_catalog_ordering();
-}
-
 if ( ! function_exists( 'hestia_cart_link_after_primary_navigation' ) ) {
 	/**
 	 * Cart Link
@@ -408,7 +410,7 @@ if ( ! function_exists( 'hestia_cart_link_after_primary_navigation' ) ) {
 		?>
 		<a href="<?php echo esc_url( wc_get_cart_url() ); ?>" title="<?php esc_attr_e( 'View cart', 'hestia' ); ?>"
 				class="nav-cart-icon">
-			<i class="fa fa-shopping-cart"></i><?php echo trim( ( WC()->cart->get_cart_contents_count() > 0 ) ? '<span>' . WC()->cart->get_cart_contents_count() . '</span>' : '' ); ?></span>
+			<i class="fas fa-shopping-cart"></i><?php echo trim( ( WC()->cart->get_cart_contents_count() > 0 ) ? '<span>' . WC()->cart->get_cart_contents_count() . '</span>' : '' ); ?></span>
 		</a>
 		<?php
 	}
@@ -430,16 +432,6 @@ if ( ! function_exists( 'hestia_cart_link_fragment' ) ) {
 		$fragments['.nav-cart-icon'] = ob_get_clean();
 
 		return $fragments;
-	}
-}
-
-if ( ! function_exists( 'hestia_always_show_live_cart' ) ) {
-	/**
-	 *  Force WC_Widget_Cart widget to show on cart and checkout pages
-	 *  Used for the live cart in header
-	 */
-	function hestia_always_show_live_cart() {
-		return false;
 	}
 }
 
@@ -478,7 +470,7 @@ function hestia_woocommerce_product_images_compatibility() {
 	update_option( 'woocommerce_thumbnail_cropping_custom_width', '23' );
 	update_option( 'woocommerce_thumbnail_cropping_custom_height', '35' );
 
-	if ( class_exists( 'WC_Regenerate_Images' ) ) {
+	if ( class_exists( 'WC_Regenerate_Images', false ) ) {
 		$regenerate_obj = new WC_Regenerate_Images();
 		$regenerate_obj::init();
 		if ( method_exists( $regenerate_obj, 'maybe_regenerate_images' ) ) {
@@ -506,58 +498,3 @@ function hestia_view_cart_notice() {
 	}
 }
 add_action( 'after_setup_theme', 'hestia_view_cart_notice', 15 );
-
-/**
- * Change product-category classes based on customizer products layout options and hover effect
- *
- * @param array $classes - product-category initial classes.
- *
- * @return array $classes - product-category filtered classes.
- */
-function hestia_woocommerce_loop_category_classes( $classes ) {
-
-	$hestia_product_style = get_theme_mod( 'hestia_product_style', 'boxed' );
-
-	if ( in_array( $hestia_product_style, array( 'plain', 'boxed' ) ) ) {
-		$class = 'card-' . $hestia_product_style;
-		array_push( $classes, $class );
-	}
-
-	$hestia_product_hover_style = get_theme_mod( 'hestia_product_hover_style', 'pop-and-glow' );
-
-	if ( in_array( $hestia_product_hover_style, array( 'pop-and-glow', 'swap-images' ) ) ) {
-		$hover_class = 'card-hover-style-' . $hestia_product_hover_style;
-		array_push( $classes, $hover_class );
-	}
-
-	return $classes;
-}
-
-/**
- * Function to place the sale tag when classic blog layout is selected for products header.
- */
-function hestia_sale_tag_placement() {
-	if ( ! is_product() ) {
-		return;
-	}
-
-	remove_action( 'woocommerce_before_single_product_summary', 'woocommerce_show_product_sale_flash', 10 );
-	add_action( 'woocommerce_before_single_product_summary', 'hestia_wrap_product_image', 18 );
-	add_action( 'woocommerce_before_single_product_summary', 'woocommerce_show_product_sale_flash', 21 );
-	add_action( 'woocommerce_before_single_product_summary', 'hestia_close_wrap', 22 );
-}
-add_action( 'hestia_do_header', 'hestia_sale_tag_placement', 15 );
-
-/**
- * Wrap product image in a div.
- */
-function hestia_wrap_product_image() {
-	echo '<div class="hestia-product-image-wrap">';
-}
-
-/**
- * Close product image wrap.
- */
-function hestia_close_wrap() {
-	echo '</div>';
-}

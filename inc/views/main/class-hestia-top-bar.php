@@ -180,6 +180,9 @@ class Hestia_Top_Bar extends Hestia_Abstract_Main {
 		} 
 		.hestia-top-bar .widget .label-floating input[type=search]{
 			-webkit-text-fill-color:' . esc_html( $hestia_top_bar_text_color ) . ' !important 
+		}
+		.hestia-top-bar div.widget.widget_shopping_cart:before, .hestia-top-bar .widget.widget_product_search form.form-group:before, .hestia-top-bar .widget.widget_search form.form-group:before{
+			background-color: ' . esc_html( $hestia_top_bar_text_color ) . '
 		}';
 		}
 
@@ -187,14 +190,22 @@ class Hestia_Top_Bar extends Hestia_Abstract_Main {
 		if ( ! empty( $hestia_top_bar_link_color ) ) {
 			$custom_css .= '.hestia-top-bar a, .hestia-top-bar .top-bar-nav li a {
 			color: ' . esc_html( $hestia_top_bar_link_color ) . '
-		}';
+		}
+		.hestia-top-bar ul li a[href*="mailto:"]:before, .hestia-top-bar ul li a[href*="tel:"]:before{
+			background-color: ' . esc_html( $hestia_top_bar_link_color ) . '
+		}
+		';
 		}
 
 		$hestia_top_bar_link_color_hover = get_theme_mod( 'hestia_top_bar_link_color_hover', '#eeeeee' );
 		if ( ! empty( $hestia_top_bar_link_color_hover ) ) {
 			$custom_css .= '.hestia-top-bar a:hover, .hestia-top-bar .top-bar-nav li a:hover {
 			color: ' . esc_html( $hestia_top_bar_link_color_hover ) . '
-		}';
+		}
+		.hestia-top-bar ul li:hover a[href*="mailto:"]:before, .hestia-top-bar ul li:hover a[href*="tel:"]:before{
+			background-color: ' . esc_html( $hestia_top_bar_link_color_hover ) . '
+		}
+		';
 		}
 
 		return $custom_css;

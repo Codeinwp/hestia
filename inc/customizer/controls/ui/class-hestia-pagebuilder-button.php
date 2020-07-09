@@ -71,10 +71,10 @@ class Hestia_PageBuilder_Button extends WP_Customize_Control {
 			 */
 			$post_meta = ! empty( $frontpage_id ) ? get_post_meta( $frontpage_id ) : '';
 			if ( ! empty( $post_meta ) ) {
-				$page_edited_with_elementor = ! empty( $post_meta['_elementor_edit_mode'] ) && $post_meta['_elementor_edit_mode'][0] === 'builder' && class_exists( 'Elementor\Plugin' );
-				$page_edited_with_beaver    = ! empty( $post_meta['_fl_builder_enabled'] ) && $post_meta['_fl_builder_enabled'][0] === '1' && class_exists( 'FLBuilder' );
-				$page_edited_with_so        = ! empty( $post_meta['panels_data'] ) && class_exists( 'SiteOrigin_Panels' );
-				$page_edited_with_divi      = ! empty( $post_meta['_et_pb_use_builder'] ) && $post_meta['_et_pb_use_builder'][0] === 'on' && class_exists( 'ET_Builder_Plugin' );
+				$page_edited_with_elementor = ! empty( $post_meta['_elementor_edit_mode'] ) && $post_meta['_elementor_edit_mode'][0] === 'builder' && class_exists( 'Elementor\Plugin', false );
+				$page_edited_with_beaver    = ! empty( $post_meta['_fl_builder_enabled'] ) && $post_meta['_fl_builder_enabled'][0] === '1' && class_exists( 'FLBuilder', false );
+				$page_edited_with_so        = ! empty( $post_meta['panels_data'] ) && class_exists( 'SiteOrigin_Panels', false );
+				$page_edited_with_divi      = ! empty( $post_meta['_et_pb_use_builder'] ) && $post_meta['_et_pb_use_builder'][0] === 'on' && class_exists( 'ET_Builder_Plugin', false );
 			}
 
 			/**
@@ -83,7 +83,7 @@ class Hestia_PageBuilder_Button extends WP_Customize_Control {
 			 */
 			$post_content = get_post_field( 'post_content', $frontpage_id );
 			if ( ! empty( $post_content ) ) {
-				$page_edited_with_wpbakery = class_exists( 'Vc_Manager' ) && strpos( $post_content, '[vc_' ) !== false;
+				$page_edited_with_wpbakery = class_exists( 'Vc_Manager', false ) && strpos( $post_content, '[vc_' ) !== false;
 			}
 
 			$this->page_builder = array(

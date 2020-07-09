@@ -17,6 +17,135 @@ Hestia WordPress theme, Copyright 2018 Themeisle
 Hestia is distributed under the terms of the GNU GPLv2 or later
 
 == Changelog ==
+
+##### [Version 3.0.3](https://github.com/Codeinwp/hestia-pro/compare/v3.0.2...v3.0.3) (2020-07-09)
+
+- Removed onboarding from the free version
+
+
+
+
+##### [Version 3.0.2](https://github.com/Codeinwp/hestia-pro/compare/v3.0.1...v3.0.2) (2020-06-25)
+
+- [Fix] Compatibility issues with PHP 7.4
+- [Fix] Layout of the attribute archive page
+- [Fix] Position of show/hide password icon on the My Account page
+- [Fix][Pro] Allow iframe code in the Custom Layouts
+- [Fix][Pro] Translatable Custom Layouts
+- [Fix][Pro] Remove unused sidebar control meta box on single portfolio pages
+- [Fix][Pro] Empty team member widget appearing on mobile
+- [Fix][Pro] Seamless add to cart mechanism for variable products
+
+
+
+
+##### [Version 3.0.1](https://github.com/Codeinwp/hestia-pro/compare/v3.0.0...v3.0.1) (2020-05-11)
+
+[Fix] Missing Font Awesome icons
+[Fix] Fatal error when using Yoast
+[Fix] Secondary color missing in the blocks color palette
+[Fix][Pro] Second button link in the Big title section
+[Fix][Pro] Check if attachment exists when swap images are used on the Shop page
+[Fix][Pro] Seamless add to cart mechanism
+
+
+
+
+#### [Version 3.0.0](https://github.com/Codeinwp/hestia-pro/compare/v2.5.7...v3.0.0) (2020-04-28)
+
+- [Feat] [PRO] New Custom Layouts module
+- [Feat] [PRO] New options for Single Products ( Exclusive Products, Seamless Add to Cart )
+- [Feat] [PRO] New Payment Icons on the Cart page
+- [Feat] [PRO] New option for custom image style effects on the Shop page
+- [Feat] New layout control for the Shop Sidebar
+- [Feat] [PRO] New Off-Canvas Sidebar option for the Shop Page
+- [Feat] Option to enable/disable cross-sells products on the Cart page
+- [Feat] Moved Starter Sites remotely
+- [Fix] Code refactoring and improvements
+- [Fix] Load Font Awesome based on usage
+- [Fix] Upgrade default Font Awesome icons to FA 5
+- [Fix] Related products layout when using Elementor Pro Single Product template
+- [Fix] [PRO] Compatibility with Elementor Pro Header and Footer templates
+- [Fix] [PRO] Duplicated related product image in Elementor Pro templates
+- [Fix] Small tweaks to the White Label module
+- [Fix] Header Background color in the WP editor blocks
+- [Fix] Transparent logo on mobile
+- [Fix] Allow skipping cropping the transparent logo
+- [Fix] Slider icons position in RTL mode
+- [Fix] Display tags on product pages
+
+
+
+= 2.5.7 - 2020-04-01  = 
+
+* Add new post causes errors in WP 5.4
+
+
+= 2.5.6 - 2019-12-17  = 
+
+* [Fix] Logo positioning for the third navigation layout option and no widgets
+* [Fix] Sync between the image set as the featured image for the Frontpage and the image from the About section
+* [Fix] Customizer icons missing when Font Awesome was not loaded
+* [Fix] Compatibility with the Menu Icons plugin while the transparent menu is on
+
+
+= 2.5.5 - 2019-11-14  = 
+
+* [Feat] Dedicated logo option for the transparent header
+* [Fix] Subscribe form on the blog page
+* [Fix] Line separator compatibility with WP 5.3
+
+
+= 2.5.4 - 2019-10-21  = 
+
+* [Fix] Blog page Infinite Scroll compatibility with the Alternative layout
+* [Fix] Cover block text color not updating
+* [Fix][Hestia Pro] Shop page Infinite Scroll compatibility with widgets filtering
+* [Fix][Hestia Pro] Header layout selection for the Shop page
+* [Fix][Hestia Pro] Slider arrows position on RTL
+
+
+= 2.5.3 - 2019-09-13  = 
+
+* [Fix] Improved About page layout
+* [Fix] License validation mechanism for Starter Sites
+
+
+= 2.5.2 - 2019-09-12  = 
+
+* [Fix] Compatibility with Elementor Pro Menu Cart widget
+* [Fix] Mail and phone icons compatibility with FA5
+* [Fix] Primary menu icons spacing and alignment
+* [Fix] Uppercase submenu items back to Sentence case
+* [Fix] WooCommerce product gallery images not clickable on mobile
+* [Perf] Small performance fixes
+
+
+= 2.5.1 - 2019-08-13  = 
+
+* [Fix] - Header layout on the front page
+* [Fix] - Removed Hestia's custom integration with Gutenberg
+* [Fix] - Social menu icons compatibility with FA5
+
+
+= 2.5.0 - 2019-08-08  = 
+
+* Migrated to Font Awesome 5
+* Updated the Starter Sites library
+
+
+= 2.4.9 - 2019-08-01  = 
+
+* Allow copyright text to be changed in both Hestia and Hestia PRO
+* Allow HTML tags in the title and subtitle fields of the Portfolio section
+* Create a WPForms form as a default value for the Contact section
+* Updated the Google Fonts Library
+* Fixed header layout on the tags archive page
+* Fixed issue with accent color not affecting links in the front-end
+* Made sure the header image is translatable with WPML
+* Fixed sidebar layout metabox not appearing when WooCommerce was not installed
+
+
 = 2.4.8 - 2019-07-23  = 
 
 * Speed improvement update for the Hestia Default Demo
@@ -1064,126 +1193,46 @@ Hestia is distributed under the terms of the GNU GPLv2 or later
 
 = Images =
 
-* Hestia: screenshot.png, CC0, https://mystock.themeisle.com/photo/mountain/
-* Hestia: slider1.jpg, CC0, https://mystock.themeisle.com/photo/dam/
-* Hestia: slider2.jpg, CC0, https://mystock.photos/teddy/
-* Hestia: slider3.jpg, CC0, https://mystock.photos/new-york-cityscape/
+
 * Hestia: 1.jpg, CC0, https://mystock.themeisle.com/photo/girl/
 * Hestia: 2.jpg, CC0, https://mystock.themeisle.com/photo/winter-hat/
-* Hestia: 3.jpg, CC0, https://mystock.themeisle.com/photo/growing-old-together/
-* Hestia: 4.jpg, CC0, https://mystock.themeisle.com/photo/thinking-time/
-* Hestia: 5.jpg, CC0, https://mystock.themeisle.com/photo/growing-old-together/
-* Hestia: 6.jpg, CC0, https://mystock.themeisle.com/photo/mysterious-man-2/
-* Hestia: 7.jpg, CC0, https://mystock.themeisle.com/photo/sun-hat/
-* Hestia: about.jpg, CC0, https://mystock.photos/street-blur/
-* Hestia: contact.jpg, CC0, https://mystock.photos/city/
-* Hestia: img/parallax_1.jpg, CC0, https://pixabay.com/en/field-clouds-sky-agriculture-533541/
-* Hestia: parallax_2.png, CC0, https://mystock.themeisle.com/photo/statue-of-liberty-3/
+
 * Hestia Default: tropical-beach, CC0, https://mystock.themeisle.com/photo/tropical-beach/
-* Hestia Default: 31529251932_1a1d928c17_o, CC0, https://mystock.themeisle.com/photo/new-york-cityscape/
-* Hestia Default: pool, CC0, https://mystock.themeisle.com/photo/pool/
-* Hestia WooCommerce: flower1.jpg, CC0, https://mystock.themeisle.com/photo/sunflower/
-* Hestia WooCommerce: flower2.jpg, CC0, https://mystock.themeisle.com/photo/flower/
-* Hestia WooCommerce: flower3.jpg, CC0, https://mystock.themeisle.com/photo/blooming-bougainvillea-flowers/
-* Hestia WooCommerce: flower4.jpg, CC0, https://mystock.themeisle.com/photo/flower-buds/
-* Hestia WooCommerce: flower5.jpg, CC0, https://mystock.themeisle.com/photo/rock-flowers/
-* Hestia WooCommerce: flower6.jpg, CC0, https://mystock.themeisle.com/photo/mountain-flowers/
-* Hestia WooCommerce: lavender-1506506, CC0, https://pixabay.com/en/lavender-flower-pots-beer-tent-set-1506506/
-* Hestia WooCommerce: plant-763965_1920, CC0, https://pixabay.com/en/plant-green-sheet-nature-plants-763965/
-* Hestia WooCommerce: cactus-close-up-plant-6936, CC0, https://www.pexels.com/photo/cactus-on-white-pot-with-stones-in-high-angle-photography-6936/
-* Hestia WooCommerce: flower-951780_1920, CC0, https://pixabay.com/en/flower-flower-pot-pots-candle-951780/
-* Hestia WooCommerce: succulent-2931486_1920, CC0, https://pixabay.com/en/succulent-cactus-plant-garden-2931486/
-* Hestia WooCommerce: water-lily-1510707_1920, CC0, https://pixabay.com/en/water-lily-pink-aquatic-plant-1510707/
-* Hestia WooCommerce: roses-1274039_1920, CC0, https://pixabay.com/en/roses-white-flower-nature-petals-1274039/
-* Hestia WooCommerce: botanic-botanical-cacti-1048036, CC0, https://stocksnap.io/photo/BJNWHUUGLL
-* Hestia WooCommerce: red-cactus, CC0, https://stocksnap.io/photo/04I1YE5EXV
-* Hestia WooCommerce: plant-3077047_1920, CC0, https://pixabay.com/en/plant-nature-sheet-3077047/
-* Hestia WooCommerce: plant-3077047, CC0, https://pixabay.com/en/plant-nature-sheet-3077047/
-* Hestia WooCommerce: aromatic-basil-blur-615304, CC0, https://www.pexels.com/photo/selective-photography-of-green-leaf-plant-in-brown-pot-615304/
-* Hestia WooCommerce: branch-camera-minolta-156144, CC0, https://www.pexels.com/photo/branch-camera-minolta-tree-156144/
-* Hestia WooCommerce: flower-pot-flowerpot-flowers-6803, CC0, https://www.pexels.com/photo/flower-pot-flowerpot-flowers-plants-6803/
-* Hestia WooCommerce: kitchen-1867663_1920, CC0, https://pixabay.com/en/kitchen-tap-sink-blur-faucet-1867663/
-* Hestia WooCommerce: kitchen-1867663_1280, CC0, https://pixabay.com/en/kitchen-tap-sink-blur-faucet-1867663/
-* Hestia WooCommerce: StockSnap_04I1YE5EXV, CC0, https://stocksnap.io/photo/04I1YE5EXV
-* Hestia WooCommerce: window-593364, CC0, https://pixabay.com/en/window-potted-plant-plant-interior-593364/
-* Hestia WooCommerce: model-2911330_1920, CC0, https://pixabay.com/en/model-businessman-corporate-2911330/
-* Hestia WooCommerce: young-man-2939344_640, CC0, https://pixabay.com/en/young-man-blue-sky-thumbs-up-2939344/
-* Hestia WooCommerce: pretty-2682798_640, CC0, https://pixabay.com/en/pretty-fresh-happy-female-young-2682798/
-* Hestia WooCommerce: landscape-3779922_1920_3, CC0, https://pixabay.com/en/landscape-clouds-sky-trees-hills-3779922/
-* Hestia WooCommerce: flowers, CC0, https://mystock.themeisle.com/photo/flowers/
-* Hestia WooCommerce: adult-agriculture-backyard-planting-162637, CC0, https://pixabay.com/en/watering-watering-can-man-vietnam-1501209/
-* Hestia WooCommerce: watering-791312_640 ,CC0, https://pixabay.com/en/watering-watering-can-plant-plants-791312/
-* Hestia WooCommerce: apple-black-coffee-business-461064, CC0, https://pixabay.com/en/laptop-notebook-work-keyboard-2443734/
-* Hestia WooCommerce: eating_place, CC0, https://mystock.themeisle.com/photo/eating-place/
-* Hestia WooCommerce: table-869379_1920, CC0, https://pixabay.com/en/table-desk-notebook-potted-plant-869379/
-* Hestia WooCommerce: bonsai-316573_1280, CC0, https://pixabay.com/en/bonsai-tree-green-plant-small-316573/
-* Hestia WooCommerce: cactus-1842095_1920, CC0, https://pixabay.com/en/cactus-minimalism-plant-pot-white-1842095/
-* Hestia WooCommerce: lavender-1507499_1920, CC0, https://pixabay.com/en/lavender-flowers-purple-flowers-1507499/
-* Hestia WooCommerce: narrow-leaf-dracaena-2651391_1920, CC0, https://pixabay.com/en/narrow-leaf-dracaena-flower-plant-2651391/
-* Hestia WooCommerce: poppy-63755_1920, CC0, https://pixabay.com/en/poppy-field-of-poppies-flower-63755/
-* Hestia WooCommerce: StockSnap_BJNWHUUGLL, CC0, https://stocksnap.io/photo/BJNWHUUGLL
-* Hestia WooCommerce: thing-2569683_1920, CC0, https://pixabay.com/en/thing-plants-bonsai-cactus-green-2569683/
-* Hestia WooCommerce: plant-3414671_1920, CC0, https://pixabay.com/en/plant-cactus-green-cacti-nature-3414671/
-* Hestia Vet Center: collie-163997_1280.jpg, CC0, https://pixabay.com/en/collie-rough-collie-dog-pet-canine-163997/
-* Hestia Vet Center: man-1209494_1920.jpg, CC0, https://pixabay.com/en/man-male-adult-person-caucasian-1209494/
-* Hestia Vet Center: chihuahua-820087_1920.jpg, CC0, https://pixabay.com/en/chihuahua-puppy-pet-dog-animal-820087/
-* Hestia Vet Center: beard-1834429_1920.jpg, CC0, https://pixabay.com/en/beard-colorful-colourful-expression-1834429/
-* Hestia Vet Center: animal-beautiful-blonde-460305.jpg, CC0, https://pixabay.com/en/doberman-blonde-woman-friendship-2390596/
-* Hestia Vet Center: animal-close-up-ocean-68744.jpg, CC0, https://pixabay.com/en/loggerhead-turtle-sea-ocean-water-123402/
-* Hestia Vet Center: animal-chihuahua-cute-39317.jpg, CC0, https://pixabay.com/en/chihuahua-dog-puppy-cute-pet-624924/
-* Hestia Vet Center: adorable-animal-cat-236603.jpg, CC0, https://pixabay.com/en/cat-kitten-mieze-breed-cat-1803904/
-* Hestia Vet Center: adorable-animal-canine-134392.jpg, CC0, https://freestocks.org/photo/dog-riding-car/
-* Hestia Vet Center: art-capsules-close-up-47073.jpg, CC0, https://pixabay.com/en/nutrient-additives-medicine-pills-505124/
-* Hestia Vet Center: adult-ambulance-care-263210.jpg, CC0, https://pixabay.com/en/veterinarian-animal-doctor-vet-pet-809930/
-* Hestia Vet Center: biology-clinic-doctor-4154.jpg, CC0, https://pixabay.com/en/medic-hospital-laboratory-medical-563423/
-* Hestia Vet Center: background-business-clean-811101.jpg, CC0, https://pixabay.com/en/aisle-background-buy-clean-food-3105629/
-* Hestia Vet Center: adult-doctor-girl-355934.jpg, CC0, https://pixabay.com/en/nurse-stethoscope-medicine-2141808/
-* Hestia Vet Center: adult-attractive-beautiful-415829.jpg, CC0,  | https://pixabay.com/en/beauty-makeup-skin-care-2190682/
-* Hestia Vet Center: animals-cats-cute-45170.jpg (also used ins screenshot), CC0, https://pixabay.com/en/kittens-cat-cat-puppy-rush-555822/
-* Hestia Vet Center: adult-biology-chemical-356040.jph (also used in screenshot), CC0, https://pixabay.com/en/scientist-drugstore-microscope-2141259/
-* Hestia Vet Center: smile-1726471_1920.jpg, CC0, https://pixabay.com/en/smile-profile-face-male-portrait-1726471/
-* Hestia Energy Panels: energy-2181904_1920.jpg, CC0, https://pixabay.com/en/energy-wind-energy-wind-power-2181904/
-* Hestia Energy Panels: windrader-1048981_1920.jpg, CC0, https://pixabay.com/en/windr%C3%A4der-wind-power-wind-park-fog-1048981/
-* Hestia Energy Panels: window-cleaner-104890.jpg, CC0, https://pixabay.com/en/window-cleaner-window-cleaning-104890/
-* Hestia Energy Panels: computer-3365366_1920.jpg, CC0, https://pixabay.com/en/computer-adult-laptop-office-woman-3365366/
-* Hestia Energy Panels: office-1574717_1920.jpg, CC0, https://pixabay.com/en/office-pen-calculator-computation-1574717/
-* Hestia Energy Panels: office-space-1744803.jpg, CC0, https://pixabay.com/en/office-space-office-sunny-coworking-1744803/
-* Hestia Energy Panels: computer-2157100.jpg, CC0, https://pixabay.com/en/computer-programmer-it-business-2157100/
-* Hestia Energy Panels: model-2911332_1920.jpg, CC0, https://pixabay.com/en/model-businessman-corporate-2911332/
-* Hestia Energy Panels: adult-1868750.jpg, CC0, https://pixabay.com/en/adult-bald-beard-corporate-1868750/
-* Hestia Energy Panels: business-437020_1920.jpg, CC0, https://pixabay.com/en/business-notebook-business-people-437020/
-* Hestia Energy Panels: cold-1284411_1920.jpg, CC0, https://pixabay.com/en/cold-snow-nature-fashion-hands-1284411/
-* Hestia Energy Panels: abstract-aluminum-210158.jpg, CC0, https://pixabay.com/en/basel-switzerland-tram-architecture-1722831/
-* Hestia Energy Panels: alternative-alternative-energy-clouds-433308.jpg, CC0, https://pixabay.com/en/energy-renewable-energy-solar-energy-2302001/
-* Hestia Energy Panels: alternative-alternative-energy-collector-159243.jpg, CC0, https://pixabay.com/en/solar-solar-cells-photovoltaic-1476224/
-* Hestia Energy Panels: close-up-energy-low-angle-shot-68674.jpg, CC0, https://pixabay.com/en/windmill-wind-wind-turbine-electric-62257/
-* Hestia Energy Panels: alternative-energy-environment-power-356060.jpg, CC0, https://pixabay.com/en/environmental-technology-current-1837636/
-* Hestia Energy Panels: afterglow-alternative-energy-clouds-532192.jpg, CC0, https://pixabay.com/en/sunset-sunrise-sun-water-afterglow-2469106/
-* Hestia Energy Panels: alternative-alternative-energy-collector-159243.jpg, CC0, https://pixabay.com/en/solar-solar-cells-photovoltaic-1476224/
-* Hestia Energy Panels: adult-beautiful-casual-372042.jpg, CC0, https://pixabay.com/en/emotions-girl-hair-model-beauty-2166221/
-* Hestia Energy Panels: adult-agreement-beard-573565.jpg, CC0, https://pixabay.com/en/business-deal-smile-cheerful-2703167/
-* Hestia Energy Panels: adult-chill-computer-450271.jpg, CC0, https://pixabay.com/en/adult-break-business-caucasian-2449725/
-* Hestia Energy Panels: alternative-alternative-energy-clean-356049.jpg, CC0, https://pixabay.com/en/photovoltaic-photovoltaic-system-2138994/
-* Hestia Energy Panels: alternative-alternative-energy-blades-691458.jpg, CC0, http://snapwiresnaps.tumblr.com/post/167509411781/logan-edmark-free-under-cc0-10-download
-* Hestia Energy Panels: alternative-alternative-energy-clean-159397.jpg, CC0, https://pixabay.com/en/solar-panel-array-power-sun-1591350/
-* Hestia Energy Panels: alternative-alternative-energy-blue-411592.jpg (also used in screenshot), CC0, https://pixabay.com/en/solar-energy-solar-system-2157212/
-* Hestia Energy Panels: cruise-1578528.jpg (used in Travel Agency Demo screenshot), CC0, https://pixabay.com/en/cruise-ship-cruiser-cruise-ship-1578528/
-* Hestia Energy Panels: people-2594770_960_720.jpg (used in Coffee Shop Demo screenshot), CC0, https://pixabay.com/en/people-woman-girl-bar-coffee-2594770/
-* Hestia Energy Panels: aroma-aromatic-art-434213, CC0, https://www.pexels.com/photo/aroma-aromatic-art-artistic-434213/
-* Hestia Energy Panels: blur-burger-close-up-460599.jpg, CC0, https://www.pexels.com/photo/blur-burger-close-up-fastfood-460599/
-* Hestia Energy Panels: alcohol-aperol-bar-128242, CC0, https://pixabay.com/en/cocktail-aperol-spritz-1542495/
-* Hestia Energy Panels: IMG_6455.jpg (used in Lawyers Demo), CC0, https://mystock.themeisle.com/photo/liberty-in-shadow/
-* Hestia Energy Panels: hestia_gym-slide1.jpg, CC0, https://pixabay.com/en/sport-fitness-training-sporty-2262083/
-* Hestia Energy Panels: metal snowflake, CC0, https://mystock.themeisle.com/photo/metal-snowflake/
-* Hestia Energy Panels: window, CC0, https://mystock.themeisle.com/photo/window/
-* Hestia Energy Panels: red umbrellas, CC0, https://mystock.themeisle.com/photo/red-umbrellas/
-* Hestia Coffee Shop: hestia-coffee-shop1.jpg, CC0, https://mystock.themeisle.com/photo/strawberries-and-oranges-for-sale-in-baskets/
-* Hestia Coffee Shop: hestia-coffee-shop2.jpg, CC0, https://mystock.themeisle.com/photo/vices/
-* Hestia Coffee Shop: hestia-coffee-shop3.jpg, CC0, https://mystock.themeisle.com/photo/orange-tree/
-* Hestia Coffee Shop: hestia-coffee-shop4.jpg, CC0, https://mystock.themeisle.com/photo/candy/
-* Hestia Coffee Shop: hestia-coffee-shop5.jpg, CC0, https://mystock.themeisle.com/photo/wedding-table/
-* Hestia Coffee Shop: hestia-coffee-shop6.jpg, CC0, https://mystock.themeisle.com/photo/sweet-cake-christmas-tree/
-* Hestia Travel: hestia-travel1.jpg, CC0, https://mystock.themeisle.com/photo/swimming-pool-in-hotel-resort/
-* Hestia Travel: hestia-travel2.jpg, CCO, https://mystock.themeisle.com/photo/subway-train-arriving-in-station/
-* Hestia Travel: hestia-travel3.jpg, CCO, https://mystock.themeisle.com/photo/hill-houses/
-* Hestia Travel: hestia-travel4.jpg, CCO, https://mystock.themeisle.com/photo/airplane/
+
+
+All images are licensed under CC0.
+
+Screenshot resources:
+
+* https://mystock.themeisle.com/photo/mountain/
+
+Starter Sites screenshots resources:
+
+WooCommerce
+
+* https://mystock.themeisle.com/photo/sunflower/
+* https://mystock.themeisle.com/photo/flower/
+* https://mystock.themeisle.com/photo/blooming-bougainvillea-flowers/
+* https://mystock.themeisle.com/photo/flower-buds/
+* https://mystock.themeisle.com/photo/rock-flowers/
+* https://mystock.themeisle.com/photo/mountain-flowers/
+* http://mystock.themeisle.com/photo/lilac/
+
+Energy Panels
+
+* https://stocksnap.io/photo/J5Z48RFO76
+* https://stocksnap.io/photo/QEUHCFGQNP
+* https://stocksnap.io/photo/WVKCUPH3RC
+* https://stocksnap.io/photo/KAUFJW1PEQ
+
+Vet Center
+
+* https://stocksnap.io/photo/GSBJXWRSDV
+
+Agency Travel
+
+* https://mystock.themeisle.com/photo/amsterdam/
+
+Lawyers
+
+* https://mystock.themeisle.com/photo/liberty-in-shadow/

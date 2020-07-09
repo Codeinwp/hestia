@@ -27,7 +27,7 @@ function hestia_sanitize_alignment_options( $value ) {
 		'extra',
 	);
 
-	if ( ! in_array( $value, $valid_values ) ) {
+	if ( ! in_array( $value, $valid_values, true ) ) {
 		wp_die( 'Invalid value, go back and try again.' );
 	}
 
@@ -50,7 +50,7 @@ function hestia_sanitize_footer_layout_control( $value ) {
 		'black_footer',
 	);
 
-	if ( ! in_array( $value, $valid_values ) ) {
+	if ( ! in_array( $value, $valid_values, true ) ) {
 		wp_die( 'Invalid value, go back and try again.' );
 	}
 
@@ -74,7 +74,7 @@ function hestia_sanitize_blog_layout_control( $value ) {
 		'blog_normal_layout',
 	);
 
-	if ( ! in_array( $value, $valid_values ) ) {
+	if ( ! in_array( $value, $valid_values, true ) ) {
 		wp_die( 'Invalid value, go back and try again.' );
 	}
 
@@ -127,7 +127,7 @@ function hestia_sanitize_colors( $value ) {
  */
 function hestia_sanitize_big_title_type( $input ) {
 	$options = array( 'image', 'parallax', 'video' );
-	if ( in_array( $input, $options ) ) {
+	if ( in_array( $input, $options, true ) ) {
 		return $input;
 	}
 	return 'image';

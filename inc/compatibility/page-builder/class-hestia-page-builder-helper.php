@@ -47,7 +47,7 @@ abstract class Hestia_Page_Builder_Helper extends Hestia_Abstract_Main {
 		}
 		$section = $_POST['section'];
 		if ( ! empty( $section ) ) {
-			if ( $section == 'products' ) {
+			if ( $section === 'products' ) {
 				$theme_mod = esc_html( 'hestia_shop_hide' );
 			} else {
 				$theme_mod = esc_html( 'hestia_' . $section . '_hide' );
@@ -96,7 +96,7 @@ abstract class Hestia_Page_Builder_Helper extends Hestia_Abstract_Main {
 		 * Bail if is frontpage
 		 */
 		if ( 'page' === get_option( 'show_on_front' ) ) {
-			if ( get_option( 'page_on_front' ) == $post_id ) {
+			if ( get_option( 'page_on_front' ) === $post_id ) {
 				return false;
 			}
 		}

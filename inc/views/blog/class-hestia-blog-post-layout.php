@@ -328,13 +328,13 @@ class Hestia_Blog_Post_Layout {
 		$time = '';
 
 		$time .= '<time class="entry-date published" datetime="' . esc_attr( get_the_date( 'c' ) ) . '" content="' . esc_attr( get_the_date( 'Y-m-d' ) ) . '">';
-		$time .= esc_html( human_time_diff( get_the_time( 'U' ), current_time( 'timestamp' ) ) );
+		$time .= esc_html( human_time_diff( get_the_time( 'U' ), time() ) );
 		$time .= '</time>';
 		if ( get_the_time( 'U' ) === get_the_modified_time( 'U' ) ) {
 			return $time;
 		}
 		$time .= '<time class="updated hestia-hidden" datetime="' . esc_attr( get_the_modified_date( 'c' ) ) . '">';
-		$time .= esc_html( human_time_diff( get_the_modified_date( 'U' ), current_time( 'timestamp' ) ) );
+		$time .= esc_html( human_time_diff( get_the_modified_date( 'U' ), time() ) );
 		$time .= '</time>';
 
 		return $time;
@@ -383,7 +383,7 @@ class Hestia_Blog_Post_Layout {
 			'default',
 			'alt-2',
 		);
-		if ( in_array( $type, $allowed_layouts ) ) {
+		if ( in_array( $type, $allowed_layouts, true ) ) {
 			return true;
 		}
 

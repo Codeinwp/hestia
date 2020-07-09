@@ -130,10 +130,18 @@ class Hestia_Big_Title_Section extends Hestia_First_Front_Page_Section {
 	 * @since 1.1.41
 	 */
 	public function show_big_title_content( $content ) {
-
 		$alignment               = get_theme_mod( 'hestia_slider_alignment', 'center' );
 		$slider_elements_classes = $this->get_big_title_elements_class( $alignment );
+		$html_allowed_strings    = array();
+
 		$this->maybe_render_widgets_area( $alignment, 'right', 1 );
+		if ( array_key_exists( 'title', $content ) ) {
+			$html_allowed_strings[] = $content['title'];
+		}
+		if ( array_key_exists( 'text', $content ) ) {
+			$html_allowed_strings[] = $content['text'];
+		}
+		maybe_trigger_fa_loading( $html_allowed_strings );
 		?>
 		<div class="
 		<?php

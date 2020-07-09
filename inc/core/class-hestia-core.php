@@ -53,11 +53,14 @@ class Hestia_Core {
 			'hestia_filter_main_features',
 			array(
 				'tweaks',
+				'compatibility-style',
 				'customizer-page-editor-helper',
 				'customizer-main',
 				'customizer-notices',
 				'header-controls',
+				'footer-controls',
 				'top-bar',
+				'content-404',
 				'header',
 				'footer',
 				'colors',
@@ -103,7 +106,10 @@ class Hestia_Core {
 				'buttons-style-controls',
 				'woocommerce-header-manager',
 				'gutenberg',
+				'pwa',
+				'wp-forms',
 				'sync-about',
+				'woocommerce-manager',
 			)
 		);
 	}
@@ -123,6 +129,7 @@ class Hestia_Core {
 
 	/**
 	 * Check Features and register them.
+	 * Hestia_Compatibility_Style
 	 *
 	 * @access  private
 	 */
@@ -162,5 +169,20 @@ class Hestia_Core {
 		add_action( 'wp_enqueue_scripts', array( $front_end, 'enqueue_scripts' ) );
 		add_action( 'enqueue_block_editor_assets', array( $front_end, 'enqueue_custom_fonts' ) );
 		add_action( 'elementor/frontend/before_register_styles', array( $front_end, 'enqueue_before_elementor' ) );
+	}
+
+	/**
+	 * Enqueue with RTL support.
+	 *
+	 * @param string $handle       style handle.
+	 * @param string $src          style src.
+	 * @param array  $dependencies dependencies.
+	 * @param string $version      version.
+	 */
+	public static function rtl_enqueue_style( $handle, $src, $dependencies, $version ) {
+		wp_register_style( $handle, $src, $dependencies, $version );
+		wp_style_add_data( $handle, 'rtl', 'replace' );
+		wp_style_add_data( $handle, 'suffix', '.min' );
+		wp_enqueue_style( $handle );
 	}
 }

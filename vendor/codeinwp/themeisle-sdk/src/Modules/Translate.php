@@ -295,7 +295,7 @@ class Translate extends Abstract_Module {
 		),
 		'gn'             => array(
 			'slug' => 'gn',
-			'name' => 'Guaraní',
+			'name' => 'Guarani',
 		),
 		'gsw'            => array(
 			'slug' => 'gsw',
@@ -471,7 +471,7 @@ class Translate extends Abstract_Module {
 		),
 		'nb_NO'          => array(
 			'slug' => 'nb',
-			'name' => 'Norwegian (Bokmål)',
+			'name' => 'Norwegian (Bokmal)',
 		),
 		'nl_NL'          => array(
 			'slug' => 'nl',

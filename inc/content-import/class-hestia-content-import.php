@@ -109,7 +109,7 @@ final class Hestia_Content_Import {
 	 */
 	public final function import() {
 
-		if ( ! in_array( $this->previous_theme, array( 'azera-shop', 'parallax-one', 'llorix-one-lite' ) ) ) {
+		if ( ! in_array( $this->previous_theme, array( 'azera-shop', 'parallax-one', 'llorix-one-lite' ), true ) ) {
 			return;
 		}
 		// Prefix the theme mods with the previously active theme slug.

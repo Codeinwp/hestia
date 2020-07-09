@@ -3,77 +3,86 @@
  *
  * @package Hestia
  */
-(function ($) {
+( function($) {
 	'use strict';
 	wp.customizerRepeater = {
 
-		init: function () {
+		init: function() {
 			$( '.iconpicker-items>i' ).on(
-				'click', function () {
-					var iconClass  = $( this ).attr( 'class' ).slice( 3 );
-					var classInput = $( this ).parents( '.iconpicker-popover' ).prev().find( '.icp' );
-					classInput.val( iconClass );
-					classInput.attr( 'value', iconClass );
+					'click', function() {
+						var iconClass = $( this ).attr( 'class' ).toString();
+						var classInput = $( this ).
+								parents( '.iconpicker-popover' ).
+								prev().
+								find( '.icp' );
 
-					var iconPreview = classInput.next( '.input-group-addon' );
-					var iconElement = '<i class="fa '.concat( iconClass, '"><\/i>' );
-					iconPreview.empty();
-					iconPreview.append( iconElement );
-					classInput.trigger( 'change' );
-					return false;
-				}
+						classInput.val( iconClass );
+						classInput.attr( 'value', iconClass );
+
+						var iconPreview = classInput.next( '.input-group-addon' );
+						var iconElement = '<i class="' + iconClass + '"><\/i>';
+						iconPreview.empty();
+						iconPreview.append( iconElement );
+
+						classInput.trigger( 'change' );
+						return false;
+					}
 			);
 		},
-		search: function ($searchField) {
-			var itemsList  = $searchField.parent().next().find( '.iconpicker-items' );
+		search: function($searchField) {
+			var itemsList = $searchField.parent().next().find( '.iconpicker-items' );
 			var searchTerm = $searchField.val().toLowerCase();
-			if (searchTerm.length > 0) {
+			if ( searchTerm.length > 0 ) {
 				itemsList.children().each(
-					function () {
-						if ($( this ).filter( '[title*='.concat( searchTerm ).concat( ']' ) ).length > 0 || searchTerm.length < 1) {
-							$( this ).show();
-						} else {
-							$( this ).hide();
+						function() {
+							if ( $( this ).
+											filter(
+													'[title*='.concat( searchTerm ).concat( ']' ) ).length >
+									0 || searchTerm.length < 1 ) {
+								$( this ).show();
+							} else {
+								$( this ).hide();
+							}
 						}
-					}
 				);
 			} else {
 				itemsList.children().show();
 			}
 		},
-		iconPickerToggle: function ($input) {
+		iconPickerToggle: function($input) {
 			var iconPicker = $input.parent().next();
 			iconPicker.addClass( 'iconpicker-visible' );
 		}
 	};
 
 	$( document ).ready(
-		function () {
-			wp.customizerRepeater.init();
+			function() {
+				wp.customizerRepeater.init();
 
-			$( '.iconpicker-search' ).on(
-				'keyup', function () {
-					wp.customizerRepeater.search( $( this ) );
-				}
-			);
+				$( '.iconpicker-search' ).on(
+						'keyup', function() {
+							wp.customizerRepeater.search( $( this ) );
+						}
+				);
 
-			$( '.icp-auto' ).on(
-				'click', function () {
-					wp.customizerRepeater.iconPickerToggle( $( this ) );
-				}
-			);
+				$( '.icp-auto' ).on(
+						'click', function() {
+							wp.customizerRepeater.iconPickerToggle( $( this ) );
+						}
+				);
 
-			$( document ).mouseup(
-				function (e) {
-					var container = $( '.iconpicker-popover' );
+				$( document ).mouseup(
+						function(e) {
+							var container = $( '.iconpicker-popover' );
 
-					if ( ! container.is( e.target )	&& container.has( e.target ).length === 0) {
-						container.removeClass( 'iconpicker-visible' );
-					}
-				}
-			);
+							if ( !container.is( e.target ) &&
+									container.has( e.target ).length === 0 ) {
+								container.removeClass( 'iconpicker-visible' );
+							}
+						}
+				);
 
-		}
+			}
 	);
 
-})( jQuery );
+} )( jQuery );

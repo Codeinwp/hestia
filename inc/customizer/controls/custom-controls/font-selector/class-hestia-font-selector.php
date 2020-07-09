@@ -6,10 +6,6 @@
  * @since 1.1.38
  */
 
-if ( ! class_exists( 'WP_Customize_Control' ) ) {
-	return;
-}
-
 /**
  * Class Hestia_Font_Selector
  */

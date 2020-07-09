@@ -51,11 +51,11 @@ class Hestia_Contact_Controls extends Hestia_Front_Page_Section_Controls_Abstrac
 					'tabs'     => array(
 						'general' => array(
 							'label' => esc_html__( 'General Settings', 'hestia' ),
-							'icon'  => 'cogs',
+							'icon'  => 'admin-tools',
 						),
 						'contact' => array(
 							'label' => esc_html__( 'Contact Content', 'hestia' ),
-							'icon'  => 'newspaper-o',
+							'icon'  => 'welcome-widgets-menus',
 						),
 					),
 					'controls' => array(

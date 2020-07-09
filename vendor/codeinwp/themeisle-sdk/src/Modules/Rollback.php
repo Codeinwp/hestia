@@ -167,7 +167,7 @@ class Rollback extends Abstract_Module {
 			return '';
 		}
 
-		return sprintf( '%s?edd_action=get_versions&name=%s&url=%s&license=%s', $this->product->get_store_url(), urlencode( $this->product->get_name() ), urlencode( get_site_url() ), $license );
+		return sprintf( '%slicense/versions/%s/%s/%s/%s', Product::API_URL, rawurlencode( $this->product->get_name() ), $license, urlencode( get_site_url() ), $this->product->get_version() );
 	}
 
 	/**

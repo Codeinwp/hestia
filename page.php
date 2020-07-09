@@ -14,7 +14,7 @@ do_action( 'hestia_before_single_page_wrapper' );
 <div class="<?php echo hestia_layout(); ?>">
 	<?php
 	$class_to_add = '';
-	if ( class_exists( 'WooCommerce' ) && ! is_cart() ) {
+	if ( class_exists( 'WooCommerce', false ) && ! is_cart() ) {
 		$class_to_add = 'blog-post-wrapper';
 	}
 	?>

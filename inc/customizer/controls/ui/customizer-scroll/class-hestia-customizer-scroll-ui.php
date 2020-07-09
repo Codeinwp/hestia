@@ -10,10 +10,6 @@
  * @license    http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
 
-if ( ! class_exists( 'WP_Customize_Control' ) ) {
-	return;
-}
-
 /**
  * Scroll to section.
  *

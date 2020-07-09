@@ -21,7 +21,9 @@ class Hestia_Upsell_Manager extends Hestia_Register_Customizer_Controls {
 			$this->add_front_page_sections_upsells();
 			$this->add_typography_upsells();
 			$this->add_big_title_upsells();
+			$this->add_small_pro_notices();
 		}
+
 	}
 
 	/**
@@ -202,27 +204,44 @@ class Hestia_Upsell_Manager extends Hestia_Register_Customizer_Controls {
 		);
 	}
 
-
 	/**
-	 * Check if should display upsell.
-	 *
-	 * @since 1.1.45
-	 * @access public
-	 * @return bool
+	 * Small pro notices in the extended sections area.
 	 */
-	private function should_display_upsells() {
-		$current_time    = time();
-		$show_after      = 12 * HOUR_IN_SECONDS;
-		$activation_time = get_option( 'hestia_time_activated' );
+	private function add_small_pro_notices() {
 
-		if ( empty( $activation_time ) ) {
-			return false;
+		$sections    = array(
+			'hestia_general',
+			'colors',
+			'hestia_shop',
+			'hestia_blog',
+			'hestia_footer_content',
+			'hestia_blog_layout',
+		);
+		$description = sprintf(
+			/* translators: %s is the Learn more link */
+			__( 'More options are available for this section in our premium version. %s', 'hestia' ),
+			/* translators: %s is the Learn more label*/
+			sprintf(
+				'<a class="button button-primary" target="_blank" href="https://themeisle.com/themes/hestia-pro/upgrade/" style="display: block; clear: both; width: fit-content; margin-top: 5px;">%s</a>',
+				__( 'Learn more', 'hestia' )
+			)
+		);
+
+		foreach ( $sections as $section ) {
+			$this->add_control(
+				new Hestia_Customizer_Control(
+					'hestia_pro_notice_' . $section,
+					array(
+						'sanitize_callback' => 'sanitize_text_field',
+					),
+					array(
+						'section'     => $section,
+						'description' => '<hr style="width: 80px; margin-left: 0px; border-bottom: none;">' . $description,
+						'priority'    => 900,
+						'type'        => 'hidden',
+					)
+				)
+			);
 		}
-
-		if ( $current_time < $activation_time + $show_after ) {
-			return false;
-		}
-
-		return true;
 	}
 }

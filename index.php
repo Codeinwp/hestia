@@ -69,7 +69,9 @@ do_action( 'hestia_before_index_wrapper' ); ?>
 						echo '</div>';
 						$hestia_pagination_type = get_theme_mod( 'hestia_pagination_type', 'number' );
 						if ( $hestia_pagination_type === 'number' ) {
+							do_action( 'hestia_before_pagination' );
 							the_posts_pagination();
+							do_action( 'hestia_after_pagination' );
 						}
 					} else {
 						get_template_part( 'template-parts/content', 'none' );

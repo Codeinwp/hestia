@@ -107,7 +107,8 @@ class Hestia_Import_Zerif extends Hestia_Import_Utilities {
 				'zerif-lite',
 				'zblackbeard',
 				'responsiveboat',
-			)
+			),
+			true
 		) ) {
 			return;
 		}
@@ -491,7 +492,7 @@ class Hestia_Import_Zerif extends Hestia_Import_Utilities {
 			return;
 		}
 		$zerif_parallax_use = $this->previous_theme_content['zerif_parallax_show'];
-		if ( ! empty( $zerif_parallax_use ) && ( $zerif_parallax_use == 1 ) ) {
+		if ( ! empty( $zerif_parallax_use ) && ( (bool) $zerif_parallax_use === true ) ) {
 			set_theme_mod( 'hestia_slider_type', 'parallax' );
 		}
 
@@ -570,7 +571,7 @@ class Hestia_Import_Zerif extends Hestia_Import_Utilities {
 				return;
 			}
 			$zerif_parallax_use = $this->previous_theme_content['zerif_parallax_show'];
-			if ( ! empty( $zerif_parallax_use ) && ( $zerif_parallax_use == 1 ) ) {
+			if ( ! empty( $zerif_parallax_use ) && ( (bool) $zerif_parallax_use === true ) ) {
 				set_theme_mod( 'hestia_slider_type', 'parallax' );
 			} else {
 				set_theme_mod( 'hestia_slider_type', 'image' );
@@ -697,7 +698,7 @@ class Hestia_Import_Zerif extends Hestia_Import_Utilities {
 			),
 		);
 		foreach ( $repeater_map as $k => $v ) {
-			if ( in_array( $key, $v ) ) {
+			if ( in_array( $key, $v, true ) ) {
 				return $k;
 			}
 		}
@@ -839,7 +840,7 @@ class Hestia_Import_Zerif extends Hestia_Import_Utilities {
 	 */
 	private function import_package( $content, $table ) {
 
-		if ( ! in_array( $table, array( 'one', 'two' ) ) || empty( $content ) ) {
+		if ( ! in_array( $table, array( 'one', 'two' ), true ) || empty( $content ) ) {
 			return;
 		}
 

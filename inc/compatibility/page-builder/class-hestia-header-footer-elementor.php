@@ -15,7 +15,7 @@ class Hestia_Header_Footer_Elementor extends Hestia_Abstract_Main {
 		if ( ! defined( 'ELEMENTOR_VERSION' ) ) {
 			return false;
 		}
-		if ( ! class_exists( 'Header_Footer_Elementor' ) ) {
+		if ( ! class_exists( 'Header_Footer_Elementor', false ) ) {
 			return false;
 		}
 		return true;

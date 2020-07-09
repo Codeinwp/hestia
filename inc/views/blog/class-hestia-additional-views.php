@@ -38,39 +38,30 @@ class Hestia_Additional_Views extends Hestia_Abstract_Main {
 		$post_link  = esc_url( get_the_permalink() );
 		$post_title = get_the_title();
 
-		$facebook_url =
-			esc_url(
-				add_query_arg(
-					array(
-						'u' => $post_link,
-					),
-					'https://www.facebook.com/sharer.php'
-				)
-			);
+		$facebook_url = add_query_arg(
+			array(
+				'u' => $post_link,
+			),
+			'https://www.facebook.com/sharer.php'
+		);
 
-		$twitter_url =
-			esc_url(
-				add_query_arg(
-					array(
-						'url'  => $post_link,
-						'text' => rawurlencode( html_entity_decode( wp_strip_all_tags( $post_title ), ENT_COMPAT, 'UTF-8' ) ),
-					),
-					'http://twitter.com/share'
-				)
-			);
+		$twitter_url = add_query_arg(
+			array(
+				'url'  => $post_link,
+				'text' => rawurlencode( html_entity_decode( wp_strip_all_tags( $post_title ), ENT_COMPAT, 'UTF-8' ) ),
+			),
+			'http://twitter.com/share'
+		);
 
 		$email_title = str_replace( '&', '%26', $post_title );
 
-		$email_url =
-			esc_url(
-				add_query_arg(
-					array(
-						'subject' => wp_strip_all_tags( $email_title ),
-						'body'    => $post_link,
-					),
-					'mailto:'
-				)
-			);
+		$email_url = add_query_arg(
+			array(
+				'subject' => wp_strip_all_tags( $email_title ),
+				'body'    => $post_link,
+			),
+			'mailto:'
+		);
 
 		$social_links = '
         <div class="col-md-6">
@@ -78,22 +69,22 @@ class Hestia_Additional_Views extends Hestia_Abstract_Main {
                 <a target="_blank" rel="tooltip"
                    data-original-title="' . esc_attr__( 'Share on Facebook', 'hestia' ) . '"
                    class="btn btn-just-icon btn-round btn-facebook"
-                   href="' . $facebook_url . '">
-                   <i class="fa fa-facebook"></i>
+                   href="' . esc_url( $facebook_url ) . '">
+                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width="20" height="17"><path fill="currentColor" d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"></path></svg>
                 </a>
                 
                 <a target="_blank" rel="tooltip"
                    data-original-title="' . esc_attr__( 'Share on Twitter', 'hestia' ) . '"
                    class="btn btn-just-icon btn-round btn-twitter"
-                   href="' . $twitter_url . '">
-                   <i class="fa fa-twitter"></i>
+                   href="' . esc_url( $twitter_url ) . '">
+                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="20" height="17"><path fill="currentColor" d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path></svg>
                 </a>
                 
                 <a rel="tooltip"
                    data-original-title=" ' . esc_attr__( 'Share on Email', 'hestia' ) . '"
                    class="btn btn-just-icon btn-round"
-                   href="' . $email_url . '">
-                   <i class="fa fa-envelope"></i>
+                   href="' . esc_url( $email_url ) . '">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="20" height="17"><path fill="currentColor" d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"></path></svg>
                </a>
             </div>
 		</div>';
@@ -171,8 +162,9 @@ class Hestia_Additional_Views extends Hestia_Abstract_Main {
 			return;
 		}
 		?>
+
 		<button class="hestia-scroll-to-top">
-			<i class="fa fa-angle-double-up" aria-hidden="true"></i>
+			<svg  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width="12.5px" height="20px"><path d="M177 255.7l136 136c9.4 9.4 9.4 24.6 0 33.9l-22.6 22.6c-9.4 9.4-24.6 9.4-33.9 0L160 351.9l-96.4 96.4c-9.4 9.4-24.6 9.4-33.9 0L7 425.7c-9.4-9.4-9.4-24.6 0-33.9l136-136c9.4-9.5 24.6-9.5 34-.1zm-34-192L7 199.7c-9.4 9.4-9.4 24.6 0 33.9l22.6 22.6c9.4 9.4 24.6 9.4 33.9 0l96.4-96.4 96.4 96.4c9.4 9.4 24.6 9.4 33.9 0l22.6-22.6c9.4-9.4 9.4-24.6 0-33.9l-136-136c-9.2-9.4-24.4-9.4-33.8 0z"></path></svg>
 		</button>
 		<?php
 	}

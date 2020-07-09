@@ -6,7 +6,7 @@
  * @since   Hestia 1.0
  */
 
-define( 'HESTIA_VERSION', '2.4.8' );
+define( 'HESTIA_VERSION', '3.0.3' );
 define( 'HESTIA_VENDOR_VERSION', '1.0.2' );
 define( 'HESTIA_PHP_INCLUDE', trailingslashit( get_template_directory() ) . 'inc/' );
 define( 'HESTIA_CORE_DIR', HESTIA_PHP_INCLUDE . 'core/' );
@@ -22,7 +22,7 @@ require_once( HESTIA_PHP_INCLUDE . 'hooks/hooks.php' );
 require_once( HESTIA_PHP_INCLUDE . 'helpers/sanitize-functions.php' );
 require_once( HESTIA_PHP_INCLUDE . 'helpers/layout-functions.php' );
 
-if ( class_exists( 'WooCommerce' ) ) {
+if ( class_exists( 'WooCommerce', false ) ) {
 	require_once( HESTIA_PHP_INCLUDE . 'compatibility/woocommerce/functions.php' );
 }
 
@@ -81,7 +81,7 @@ function hestia_run() {
 	}
 	add_filter( 'themeisle_sdk_products', 'hestia_load_sdk' );
 
-	if ( class_exists( 'Ti_White_Label' ) ) {
+	if ( class_exists( 'Ti_White_Label', false ) ) {
 		Ti_White_Label::instance( get_template_directory() . '/style.css' );
 	}
 }

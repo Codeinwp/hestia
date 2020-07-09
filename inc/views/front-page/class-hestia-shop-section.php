@@ -56,64 +56,63 @@ class Hestia_Shop_Section extends Hestia_Abstract_Main {
 			}
 		}
 
-		if ( ! class_exists( 'WooCommerce' ) ) {
+		if ( ! class_exists( 'WooCommerce', false ) ) {
 			return;
 		}
 
-			/**
-			 * Gather data to display the section.
-			 */
+		/**
+		 * Gather data to display the section.
+		 */
 		if ( current_user_can( 'edit_theme_options' ) ) {
 			/* translators: 1 - link to customizer setting. 2 - 'customizer' */
 			$hestia_shop_subtitle = get_theme_mod( 'hestia_shop_subtitle', sprintf( __( 'Change this subtitle in %s.', 'hestia' ), sprintf( '<a href="%1$s" class="default-link">%2$s</a>', esc_url( admin_url( 'customize.php?autofocus&#91;control&#93;=hestia_shop_subtitle' ) ), __( 'customizer', 'hestia' ) ) ) );
 		} else {
 			$hestia_shop_subtitle = get_theme_mod( 'hestia_shop_subtitle' );
 		}
-			$hestia_shop_title = get_theme_mod( 'hestia_shop_title', esc_html__( 'Products', 'hestia' ) );
+		$hestia_shop_title = get_theme_mod( 'hestia_shop_title', esc_html__( 'Products', 'hestia' ) );
 
-			/**
-			 * In case this function is called as shortcode, we remove the container and we add 'is-shortcode' class.
-			 */
-			$wrapper_class   = $is_shortcode === true ? 'is-shortcode' : 'section-gray';
-			$container_class = $is_shortcode === true ? '' : 'container';
+		/**
+		 * In case this function is called as shortcode, we remove the container and we add 'is-shortcode' class.
+		 */
+		$wrapper_class   = $is_shortcode === true ? 'is-shortcode' : 'section-gray';
+		$container_class = $is_shortcode === true ? '' : 'container';
 
-			hestia_before_shop_section_trigger(); ?>
-			<section class="hestia-shop products <?php echo esc_attr( $wrapper_class ); ?>" id="products"
-					data-sorder="hestia_shop" <?php echo wp_kses_post( $section_style ); ?>>
-				<?php
-				hestia_before_shop_section_content_trigger();
-				if ( $is_shortcode === false ) {
-					hestia_display_customizer_shortcut( 'hestia_shop_hide', true );
-				}
-				?>
-				<div class="<?php echo esc_attr( $container_class ); ?>">
-					<?php
-					hestia_top_shop_section_content_trigger();
-					if ( $is_shortcode === false ) {
-						?>
-						<div class="row">
-							<div class="col-md-8 col-md-offset-2 text-center hestia-shop-title-area">
-								<?php
-								hestia_display_customizer_shortcut( 'hestia_shop_title' );
-								if ( ! empty( $hestia_shop_title ) || is_customize_preview() ) :
-									?>
-									<h2 class="hestia-title"><?php echo wp_kses_post( $hestia_shop_title ); ?></h2>
-								<?php endif; ?>
-								<?php if ( ! empty( $hestia_shop_subtitle ) || is_customize_preview() ) : ?>
-									<h5 class="description"><?php echo hestia_sanitize_string( $hestia_shop_subtitle ); ?></h5>
-								<?php endif; ?>
-							</div>
-						</div>
-						<?php
-					}
-					$this->shop_content();
-					hestia_bottom_shop_section_content_trigger();
-					?>
-				</div>
-				<?php hestia_after_shop_section_content_trigger(); ?>
-			</section>
+		hestia_before_shop_section_trigger(); ?>
+		<section class="woocommerce hestia-shop products <?php echo esc_attr( $wrapper_class ); ?>" id="products" data-sorder="hestia_shop" <?php echo wp_kses_post( $section_style ); ?>>
 			<?php
-			hestia_after_shop_section_trigger();
+			hestia_before_shop_section_content_trigger();
+			if ( $is_shortcode === false ) {
+				hestia_display_customizer_shortcut( 'hestia_shop_hide', true );
+			}
+			?>
+			<div class="<?php echo esc_attr( $container_class ); ?>">
+				<?php
+				hestia_top_shop_section_content_trigger();
+				if ( $is_shortcode === false ) {
+					?>
+					<div class="row">
+						<div class="col-md-8 col-md-offset-2 text-center hestia-shop-title-area">
+							<?php
+							hestia_display_customizer_shortcut( 'hestia_shop_title' );
+							if ( ! empty( $hestia_shop_title ) || is_customize_preview() ) :
+								?>
+								<h2 class="hestia-title"><?php echo wp_kses_post( $hestia_shop_title ); ?></h2>
+							<?php endif; ?>
+							<?php if ( ! empty( $hestia_shop_subtitle ) || is_customize_preview() ) : ?>
+								<h5 class="description"><?php echo hestia_sanitize_string( $hestia_shop_subtitle ); ?></h5>
+							<?php endif; ?>
+						</div>
+					</div>
+					<?php
+				}
+				$this->shop_content();
+				hestia_bottom_shop_section_content_trigger();
+				?>
+			</div>
+			<?php hestia_after_shop_section_content_trigger(); ?>
+		</section>
+		<?php
+		hestia_after_shop_section_trigger();
 	}
 
 	/**
@@ -178,9 +177,10 @@ class Hestia_Shop_Section extends Hestia_Abstract_Main {
 					$loop->the_post();
 					global $product;
 					global $post;
+
 					?>
 					<div class="col-ms-6 col-sm-6 col-md-3 shop-item">
-						<div class="<?php echo apply_filters( 'hestia_shop_product_card_classes', 'card card-product' ); ?>">
+						<?php do_action( 'woocommerce_before_shop_loop_item' ); ?>
 							<?php
 							$thumbnail = function_exists( 'woocommerce_get_product_thumbnail' ) ? woocommerce_get_product_thumbnail() : '';
 							if ( empty( $thumbnail ) && function_exists( 'wc_placeholder_img' ) ) {
@@ -292,10 +292,10 @@ class Hestia_Shop_Section extends Hestia_Abstract_Main {
 									</div>
 								</div>
 							</div>
-						</div>
+						<?php do_action( 'woocommerce_after_shop_loop_item' ); ?>
 					</div>
 					<?php
-					if ( $i % 4 == 0 ) {
+					if ( $i % 4 === 0 ) {
 						echo '</div><!-- /.row -->';
 						echo '<div class="row">';
 					}

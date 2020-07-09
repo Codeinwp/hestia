@@ -43,9 +43,11 @@ function hestia_top_big_title_section_content_trigger() {
  * Hook after the button in Big Title Section
  *
  * HTML context: inside `div.big-title-content div.buttons`
+ *
+ * @param bool | int $slide_nb Current slide number.
  */
-function hestia_big_title_section_buttons_trigger() {
-	do_action( 'hestia_big_title_section_buttons' );
+function hestia_big_title_section_buttons_trigger( $slide_nb = false ) {
+	do_action( 'hestia_big_title_section_buttons', $slide_nb );
 }
 
 /**
@@ -588,11 +590,6 @@ function hestia_after_portfolio_section_content_trigger() {
 function hestia_after_portfolio_section_trigger() {
 	do_action( 'hestia_after_portfolio_section_hook' );
 }
-
-/**
- * Force displaying cart on checkout and cart pages.
- */
-add_filter( 'woocommerce_widget_cart_is_hidden', 'hestia_always_show_live_cart', 40, 0 );
 
 /* Clients Bar section */
 /**

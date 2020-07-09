@@ -56,11 +56,9 @@ class Hestia_Sidebar_Layout_Manager extends Hestia_Abstract_Main {
 			return $layout;
 		}
 
-		if ( is_singular() ) {
-			$individual_layout = get_post_meta( $pid, 'hestia_layout_select', true );
-			if ( ! empty( $individual_layout ) && $individual_layout !== 'default' ) {
-				return $individual_layout;
-			}
+		$individual_layout = get_post_meta( $pid, 'hestia_layout_select', true );
+		if ( ! empty( $individual_layout ) && $individual_layout !== 'default' ) {
+			return $individual_layout;
 		}
 
 		return $layout;
@@ -76,7 +74,7 @@ class Hestia_Sidebar_Layout_Manager extends Hestia_Abstract_Main {
 	 */
 	public function page_content_classes( $classes ) {
 
-		if ( class_exists( 'WooCommerce' ) && ( is_cart() || is_checkout() ) ) {
+		if ( class_exists( 'WooCommerce', false ) && ( is_cart() || is_checkout() ) ) {
 			return 'col-md-12';
 		}
 
@@ -88,9 +86,9 @@ class Hestia_Sidebar_Layout_Manager extends Hestia_Abstract_Main {
 
 		return is_customize_preview() ?
 			$classes :
-			is_active_sidebar( 'sidebar-1' ) ?
+			( is_active_sidebar( 'sidebar-1' ) ?
 				$classes :
-				$classes . ' col-md-offset-2';
+				$classes . ' col-md-offset-2' );
 	}
 
 	/**
@@ -116,17 +114,17 @@ class Hestia_Sidebar_Layout_Manager extends Hestia_Abstract_Main {
 		if ( $sidebar_layout === 'sidebar-left' ) {
 			return is_customize_preview() ?
 				$classes . ' ' . esc_attr( $offset ) :
-				is_active_sidebar( 'sidebar-1' ) ?
+				( is_active_sidebar( 'sidebar-1' ) ?
 					$classes . ' ' . esc_attr( $offset ) :
-					$classes . ' col-md-offset-2';
+					$classes . ' col-md-offset-2' );
 		}
 
 		if ( $sidebar_layout === 'sidebar-right' ) {
 			return is_customize_preview() ?
 				$classes :
-				is_active_sidebar( 'sidebar-1' ) ?
+				( is_active_sidebar( 'sidebar-1' ) ?
 					$classes :
-					$classes . ' col-md-offset-2';
+					$classes . ' col-md-offset-2' );
 		}
 
 		return $classes;
@@ -156,17 +154,17 @@ class Hestia_Sidebar_Layout_Manager extends Hestia_Abstract_Main {
 		if ( $sidebar_layout === 'sidebar-left' ) {
 			return is_customize_preview() ?
 				$classes . ' ' . esc_attr( $offset ) :
-				is_active_sidebar( 'sidebar-1' ) ?
+				( is_active_sidebar( 'sidebar-1' ) ?
 					$classes . ' ' . esc_attr( $offset ) :
-					'col-md-10 col-md-offset-1 blog-posts-wrap';
+					'col-md-10 col-md-offset-1 blog-posts-wrap' );
 		}
 
 		if ( $sidebar_layout === 'sidebar-right' ) {
 			return is_customize_preview() ?
 				$classes :
-				is_active_sidebar( 'sidebar-1' ) ?
+				( is_active_sidebar( 'sidebar-1' ) ?
 					$classes :
-					'col-md-10 col-md-offset-1 blog-posts-wrap';
+					'col-md-10 col-md-offset-1 blog-posts-wrap' );
 		}
 
 		return $classes;
@@ -214,7 +212,7 @@ class Hestia_Sidebar_Layout_Manager extends Hestia_Abstract_Main {
 	 * Render the page sidebar.
 	 */
 	public function render_page_sidebar() {
-		if ( class_exists( 'WooCommerce' ) ) {
+		if ( class_exists( 'WooCommerce', false ) ) {
 			if ( is_cart() || is_checkout() || is_account_page() ) {
 				return;
 			}
@@ -237,7 +235,7 @@ class Hestia_Sidebar_Layout_Manager extends Hestia_Abstract_Main {
 	 * @return string
 	 */
 	public function content_classes( $classes ) {
-		if ( ! class_exists( 'WooCommerce' ) ) {
+		if ( ! class_exists( 'WooCommerce', false ) ) {
 			return $classes;
 		}
 
@@ -266,10 +264,11 @@ class Hestia_Sidebar_Layout_Manager extends Hestia_Abstract_Main {
 	 * @return bool
 	 */
 	private function should_have_sidebar() {
-		if ( is_customize_preview() && $this->get_page_sidebar_layout() !== 'full-width' ) {
+		$page_sidebar = $this->get_page_sidebar_layout();
+		if ( is_customize_preview() && $page_sidebar !== 'full-width' && $page_sidebar !== 'off-canvas' ) {
 			return true;
 		}
-		if ( is_active_sidebar( 'sidebar-woocommerce' ) && $this->get_page_sidebar_layout() !== 'full-width' ) {
+		if ( is_active_sidebar( 'sidebar-woocommerce' ) && $page_sidebar !== 'full-width' && $page_sidebar !== 'off-canvas' ) {
 			return true;
 		}
 
@@ -282,7 +281,7 @@ class Hestia_Sidebar_Layout_Manager extends Hestia_Abstract_Main {
 	 * @return mixed|string
 	 */
 	public function get_page_sidebar_layout() {
-		if ( is_shop() ) {
+		if ( is_shop() || is_product_category() || is_product_tag() || is_product_taxonomy() ) {
 			return hestia_get_shop_sidebar_layout();
 		}
 

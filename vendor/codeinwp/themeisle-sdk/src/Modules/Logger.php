@@ -27,7 +27,7 @@ class Logger extends Abstract_Module {
 	/**
 	 * Endpoint where to collect logs.
 	 */
-	const TRACKING_ENDPOINT = 'http://log.themeisle.com/wp-json/v1/logs/';
+	const TRACKING_ENDPOINT = 'https://api.themeisle.com/tracking/log';
 
 
 	/**
@@ -90,19 +90,22 @@ class Logger extends Abstract_Module {
 	 * @return bool Is logger active?
 	 */
 	private function is_logger_active() {
-		if ( ! $this->product->is_wordpress_available() ) {
-			return true;
-		}
-		$pro_slug = $this->product->get_pro_slug();
+		$default = 'no';
 
-		if ( ! empty( $pro_slug ) ) {
-			$all_products = Loader::get_products();
-			if ( isset( $all_products[ $pro_slug ] ) ) {
-				return true;
+		if ( ! $this->product->is_wordpress_available() ) {
+			$default = 'yes';
+		} else {
+			$pro_slug = $this->product->get_pro_slug();
+
+			if ( ! empty( $pro_slug ) ) {
+				$all_products = Loader::get_products();
+				if ( isset( $all_products[ $pro_slug ] ) ) {
+					$default = 'yes';
+				}
 			}
 		}
 
-		return ( get_option( $this->product->get_key() . '_logger_flag', 'no' ) === 'yes' );
+		return ( get_option( $this->product->get_key() . '_logger_flag', $default ) === 'yes' );
 	}
 
 	/**
@@ -151,6 +154,7 @@ class Logger extends Abstract_Module {
 		$environment['theme']           = array();
 		$environment['theme']['name']   = $theme->get( 'Name' );
 		$environment['theme']['author'] = $theme->get( 'Author' );
+		$environment['theme']['parent'] = $theme->parent() !== false ? $theme->parent()->get( 'Name' ) : $theme->get( 'Name' );
 		$environment['plugins']         = get_option( 'active_plugins' );
 		global $wp_version;
 		wp_remote_post(
@@ -159,14 +163,12 @@ class Logger extends Abstract_Module {
 				'method'      => 'POST',
 				'timeout'     => 3,
 				'redirection' => 5,
-				'headers'     => array(
-					'X-ThemeIsle-Event' => 'log_site',
-				),
 				'body'        => array(
 					'site'        => get_site_url(),
 					'slug'        => $this->product->get_slug(),
 					'version'     => $this->product->get_version(),
 					'wp_version'  => $wp_version,
+					'locale'      => get_locale(),
 					'data'        => apply_filters( $this->product->get_key() . '_logger_data', array() ),
 					'environment' => $environment,
 					'license'     => apply_filters( $this->product->get_key() . '_license_status', '' ),

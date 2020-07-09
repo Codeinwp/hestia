@@ -79,9 +79,12 @@ class Hestia_Infinite_Scroll extends Hestia_Abstract_Main {
 		}
 
 		$page                    = $_POST['page'];
-		$counter                 = $_POST['counter'];
 		$alternative_blog_layout = get_theme_mod( 'hestia_alternative_blog_layout', 'blog_normal_layout' );
 		$posts_per_page          = get_option( 'posts_per_page' );
+		$counter                 = $posts_per_page * $page;
+		if ( $posts_per_page % 2 === 0 ) {
+			$counter += 1;
+		}
 
 		$args = array(
 			'posts_per_page'      => $posts_per_page,
@@ -98,7 +101,7 @@ class Hestia_Infinite_Scroll extends Hestia_Abstract_Main {
 				$counter ++;
 				if ( $alternative_blog_layout === 'blog_alternative_layout2' ) {
 					get_template_part( 'template-parts/content', 'alternative-2' );
-				} elseif ( ( $alternative_blog_layout === 'blog_alternative_layout' ) && ( $counter % 2 == 0 ) ) {
+				} elseif ( ( $alternative_blog_layout === 'blog_alternative_layout' ) && ( $counter % 2 === 0 ) ) {
 					get_template_part( 'template-parts/content', 'alternative' );
 				} else {
 					get_template_part( 'template-parts/content' );

@@ -19,11 +19,11 @@ class Hestia_Main_Notice_Section extends Hestia_Generic_Notice_Section {
 	public $type = 'main-customizer-notice';
 
 	/**
-	 * The plugin information requested from plugins api.
+	 * The plugin name.
 	 *
 	 * @var array
 	 */
-	private $plugin_info;
+	public $plugin_name;
 
 	/**
 	 * Slug of recommended plugin.
@@ -53,50 +53,6 @@ class Hestia_Main_Notice_Section extends Hestia_Generic_Notice_Section {
 		if ( empty( $this->slug ) ) {
 			return;
 		}
-		$this->plugin_info = $this->call_plugin_api( $this->slug );
-	}
-
-	/**
-	 * Call plugin API to get plugins info
-	 *
-	 * @param plugin-slug $slug The plugin slug.
-	 *
-	 * @return mixed
-	 */
-	private function call_plugin_api( $slug ) {
-		if ( empty( $slug ) ) {
-			return;
-		}
-		include_once( ABSPATH . 'wp-admin/includes/plugin-install.php' );
-		$call_api = get_transient( 'ti_cust_notify_plugin_info_' . $slug );
-		if ( false === $call_api ) {
-			$call_api = plugins_api(
-				'plugin_information',
-				array(
-					'slug'   => $slug,
-					'fields' => array(
-						'downloaded'        => false,
-						'rating'            => false,
-						'description'       => false,
-						'short_description' => true,
-						'donate_link'       => false,
-						'tags'              => false,
-						'sections'          => false,
-						'homepage'          => false,
-						'added'             => false,
-						'last_updated'      => false,
-						'compatibility'     => false,
-						'tested'            => false,
-						'requires'          => false,
-						'downloadlink'      => false,
-						'icons'             => false,
-					),
-				)
-			);
-			set_transient( 'ti_cust_notify_plugin_info_' . $slug, $call_api, 30 * MINUTE_IN_SECONDS );
-		}
-
-		return $call_api;
 	}
 
 	/**
@@ -108,8 +64,8 @@ class Hestia_Main_Notice_Section extends Hestia_Generic_Notice_Section {
 	 */
 	public function json() {
 		$json                          = parent::json();
-		$json['name']                  = ! empty( $this->plugin_info ) && ! is_wp_error( $this->plugin_info ) && property_exists( $this->plugin_info, 'name' ) ? $this->plugin_info->name : '';
-		$json['description']           = $this->description;
+		$json['name']                  = ! empty( $this->plugin_name ) ? $this->plugin_name : '';
+		$json['description']           = ! empty( $this->description ) ? $this->description : '';
 		$json['plugin_install_button'] = $this->create_plugin_install_button( $this->slug, $this->options );
 		$json['hide_notice']           = $this->hide_notice;
 
